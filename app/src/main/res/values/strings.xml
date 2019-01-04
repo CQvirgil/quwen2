@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">quwen2</string>
+    <string name="mine_item_0">消息</string>
+    <string name="mine_item_1">绑定手机</string>
+    <string name="mine_item_2">设置</string>
+    <string name="mine_item_3">帮助</string>
+    <string name="mine_item_4">关于</string>
+</resources>
