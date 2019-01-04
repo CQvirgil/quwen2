@@ -1,4 +1,4 @@
-package quwen.lecai.com.quwen2.MainActivity.Fragment;
+package com.lecai.quwen.MainActivity.Fragment;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -8,9 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.lecai.quwen.R;
 import com.yidian.newssdk.exportui.NewsPortalFragment;
-
-import quwen.lecai.com.quwen2.R;
 
 
 @SuppressLint("ValidFragment")

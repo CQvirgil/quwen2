@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "quwen.lecai.com.quwen2"
+        applicationId "com.lecai.quwen"
         minSdkVersion 19
         targetSdkVersion 28
         versionCode 1
@@ -26,6 +26,5 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-    //noinspection GradleDynamicVersion
     implementation 'com.yidian.android:feeds:+'
 }

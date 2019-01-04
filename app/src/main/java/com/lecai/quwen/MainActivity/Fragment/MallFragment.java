@@ -1,4 +1,4 @@
-package quwen.lecai.com.quwen2.MainActivity.Fragment;
+package com.lecai.quwen.MainActivity.Fragment;
 
 import android.os.Build;
 import android.os.Bundle;
@@ -10,9 +10,10 @@ import android.view.ViewGroup;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import java.lang.reflect.Method;
 
-import quwen.lecai.com.quwen2.R;
+import com.lecai.quwen.R;
+
+import java.lang.reflect.Method;
 
 public class MallFragment extends Fragment {
     private WebView webView;

@@ -1,4 +1,4 @@
-package quwen.lecai.com.quwen2.MainActivity.Fragment;
+package com.lecai.quwen.MainActivity.Fragment;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -10,12 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.lecai.quwen.R;
 
-import quwen.lecai.com.quwen2.R;
 
 @SuppressLint("ValidFragment")
 public class MineFragment extends Fragment {

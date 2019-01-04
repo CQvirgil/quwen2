@@ -1,21 +1,21 @@
-package quwen.lecai.com.quwen2.MainActivity;
+package com.lecai.quwen.MainActivity;
 
 import android.graphics.drawable.Drawable;
-import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.view.ViewGroup;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
-import quwen.lecai.com.quwen2.MainActivity.Fragment.HomepageFragment;
-import quwen.lecai.com.quwen2.MainActivity.Fragment.MallFragment;
-import quwen.lecai.com.quwen2.MainActivity.Fragment.MineFragment;
-import quwen.lecai.com.quwen2.MainActivity.Fragment.TaskFragment;
-import quwen.lecai.com.quwen2.R;
+import com.lecai.quwen.MainActivity.Fragment.HomepageFragment;
+import com.lecai.quwen.MainActivity.Fragment.MallFragment;
+import com.lecai.quwen.MainActivity.Fragment.MineFragment;
+import com.lecai.quwen.MainActivity.Fragment.TaskFragment;
+import com.lecai.quwen.R;
 
 public class MainActivity extends AppCompatActivity {
     private RadioButton rb_home,rb_game,rb_mall,rb_task,rb_mine;
@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private int mRadioGroup_height;
     public static Fragment A_Currentfragment;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +34,14 @@ public class MainActivity extends AppCompatActivity {
         initView();
         initRadioButtonDrawable();
         initTab();
+    }
+
+    private void initView(){
+        rb_home = findViewById(R.id.radio_button_home);
+        rb_mall = findViewById(R.id.radio_button_mall);
+        rb_task = findViewById(R.id.radio_button_task);
+        rb_mine = findViewById(R.id.radio_button_mine);
+        mRadioGroup = findViewById(R.id.radio_group_button);
     }
 
     private void initRadioButtonDrawable(){
@@ -67,13 +76,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void initView(){
-        rb_home = findViewById(R.id.radio_button_home);
-        rb_mall = findViewById(R.id.radio_button_mall);
-        rb_task = findViewById(R.id.radio_button_task);
-        rb_mine = findViewById(R.id.radio_button_mine);
-        mRadioGroup = findViewById(R.id.radio_group_button);
-    }
 
     private void initTab() {
         mfragments = new Fragment[5];
@@ -133,4 +135,5 @@ public class MainActivity extends AppCompatActivity {
         mFrag = f;
         fragmentTransaction.commit();
     }
+
 }

@@ -1,4 +1,4 @@
-package quwen.lecai.com.quwen2;
+package com.lecai.quwen;
 
 import org.junit.Test;
 
