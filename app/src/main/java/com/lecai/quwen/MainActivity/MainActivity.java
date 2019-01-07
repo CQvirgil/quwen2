@@ -1,5 +1,8 @@
 package com.lecai.quwen.MainActivity;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.IdRes;
 import android.support.v4.app.Fragment;
@@ -7,15 +10,27 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.ViewGroup;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
+import com.lecai.quwen.AndroidRX.RxBus;
+import com.lecai.quwen.Bean.WXUserBean;
 import com.lecai.quwen.MainActivity.Fragment.HomepageFragment;
 import com.lecai.quwen.MainActivity.Fragment.MallFragment;
 import com.lecai.quwen.MainActivity.Fragment.MineFragment;
 import com.lecai.quwen.MainActivity.Fragment.TaskFragment;
+import com.lecai.quwen.MyApplication;
+import com.lecai.quwen.NetWork.Client;
 import com.lecai.quwen.R;
+
+import org.json.JSONObject;
+
+import java.util.Map;
+
+import io.reactivex.functions.Consumer;
 
 public class MainActivity extends AppCompatActivity {
     private RadioButton rb_home,rb_game,rb_mall,rb_task,rb_mine;
@@ -25,6 +40,14 @@ public class MainActivity extends AppCompatActivity {
     private RadioGroup mRadioGroup;
     private int mRadioGroup_height;
     public static Fragment A_Currentfragment;
+    private String code;
+    private JSONObject jsonObject;
+    private String access_token;
+    private String openid;
+    private String refresh_token;
+    private SharedPreferences.Editor editor;
+    private SharedPreferences read;
+    private String getWXuserURL;
 
 
     @Override
@@ -34,6 +57,148 @@ public class MainActivity extends AppCompatActivity {
         initView();
         initRadioButtonDrawable();
         initTab();
+        editor = this.getSharedPreferences("Setting", Context.MODE_PRIVATE).edit();
+        read = this.getSharedPreferences("Setting", Context.MODE_PRIVATE);
+        Checkhaslogin();
+        WXlogin();
+        Client.getInstance().getServer("http://api.lecaigogo.com:5000/","test");
+    }
+
+    private void Checkhaslogin() {
+        access_token = read.getString("access_token", "null");
+        openid = read.getString("openid", "null");
+        refresh_token = read.getString("refresh_token", "null");
+        Log.i("testrxbus", access_token + "  " + openid + " " + refresh_token);
+        if (read.getBoolean("haslogin", false)) {
+            if (!access_token.equals("null") || !openid.equals("null")) {
+                Client.getInstance().getServer("https://api.weixin.qq.com/sns/auth?access_token=" + access_token +
+                        "&openid=" + openid, "Checkaccess_token");
+            }
+        }
+    }
+
+    /*
+     * access_token返回机制：
+     * 1.首次登陆需要点击登陆按钮跳转到微信授权登陆，利用授权获得的code获取access_token直接用
+     * access_token请求微信获取用户信息并将access_token缓存到手机当中。
+     * 2.再次打开APP时，获取手机已存在的access_token，请求微信检查access_token是否超时，超时则利用refresh_token
+     * 重新请求获取access_token，然后再次检查access_token是否超时，是则再次利用refresh_token获取，否则用access_token
+     * 获取用户信息。
+     * 3.refresh_token超时重新授权登陆
+     * */
+
+    private void WXlogin() {
+        RxBus.getInstance().subscribe(String.class, new Consumer() {
+            @SuppressLint("ApplySharedPref")
+            @Override
+            public void accept(Object o) throws Exception {
+                String[] res = o.toString().split(":_");
+                String key = res[0];
+                String value = res[1];
+                switch (key) {
+                    case "test":
+                        Log.i("testrxbus", value);
+                        break;
+                    case "WXcode"://获取授权后获得的code
+                        code = value;
+                        if (code != null) {
+                            String getaccess_token_URL = "https://api.weixin.qq.com/sns/oauth2/access_token?" +
+                                    "appid=" + MyApplication.getWxAppId() +
+                                    "&secret=" + MyApplication.getWX_AppSecret() +
+                                    "&code=" + code +
+                                    "&grant_type=authorization_code";
+                            Log.i("testrxbus", getaccess_token_URL);
+                            Client.getInstance().getServer(getaccess_token_URL,"getaccess_token");
+                        }
+                        Log.i("testrxbus", code);
+                        break;
+                    case "getaccess_token"://获取access_token等数据
+                        jsonObject = new JSONObject(value);
+                        access_token = jsonObject.get("access_token").toString();
+                        openid = jsonObject.get("openid").toString();
+                        refresh_token = jsonObject.get("refresh_token").toString();
+                        getWXuserURL = "https://api.weixin.qq.com/sns/userinfo?" +
+                                "access_token=" + access_token +
+                                "&openid=" + openid;
+                        editor.putString("access_token", access_token);
+                        editor.putString("openid", openid);
+                        editor.putString("refresh_token", refresh_token);
+                        editor.putBoolean("haslogin", true);
+                        editor.commit();
+                        Client.getInstance().getServer(getWXuserURL, "getWXuser");
+                        Log.i("testrxbus", value);
+                        break;
+                    case "getWXuser":
+                        Log.i("testrxbus", value);
+                        if (!value.contains("errcode")) {
+                            jsonObject = new JSONObject(value);
+                            String WXusername = jsonObject.get("nickname").toString();
+                            String headimgurl = jsonObject.get("headimgurl").toString();
+                            int sex = jsonObject.getInt("sex");
+                            String province = jsonObject.getString("province");
+                            String city = jsonObject.getString("city");
+                            String country = jsonObject.getString("country");
+                            String privilege = jsonObject.getString("privilege");
+                            String unionid = jsonObject.getString("unionid");
+                            getApp().setWXUser(new WXUserBean(WXusername, sex, province, city, headimgurl, country, privilege, unionid, 0));
+                            if (MineFragment.handler != null) {
+                                MineFragment.handler.sendEmptyMessage(MineFragment.SET_fgm_Mine_LL_user_VISIABLE);
+                            }
+                        } else {
+                            Log.e("testrxbus", value);
+                        }
+                        break;
+                    case "Checkaccess_token"://检查access_token是否可用
+                        Log.i("testrxbus", value);
+                        jsonObject = new JSONObject(value);
+                        String errcode = jsonObject.get("errcode").toString();
+                        if (errcode.equals("0")) {
+                            if (!access_token.equals("null") || !openid.equals("null")) {
+                                getWXuserURL = "https://api.weixin.qq.com/sns/userinfo?" +
+                                        "access_token=" + access_token +
+                                        "&openid=" + openid;
+                            }
+                            if (getWXuserURL != null) {
+                                Client.getInstance().getServer(getWXuserURL, "getWXuser");
+                            }
+                        } else {
+                            if (!access_token.equals("null") || !refresh_token.equals("null")) {
+                                String refresh_tokenUrl = "https://api.weixin.qq.com/sns/oauth2/refresh_token?appid=" + MyApplication.getWxAppId() +
+                                        "&grant_type=refresh_token&refresh_token=" + refresh_token;
+                                Client.getInstance().getServer(refresh_tokenUrl, "refresh_tokenUrl");
+                            }
+                        }
+                        break;
+                    case "refresh_tokenUrl":
+                        if (!value.contains("errcode")) {
+                            Log.i("testrxbus", "refresh_tokenUrl   " + value);
+                            jsonObject = new JSONObject(value);
+                            access_token = jsonObject.get("access_token").toString();
+                            openid = jsonObject.get("openid").toString();
+                            refresh_token = jsonObject.get("refresh_token").toString();
+                            editor.putString("access_token", access_token);
+                            editor.putString("openid", openid);
+                            editor.putString("refresh_token", refresh_token);
+                            editor.commit();
+                            Client.getInstance().getServer("https://api.weixin.qq.com/sns/auth?access_token=" + access_token +
+                                    "&openid=" + openid, "Checkaccess_token");
+                        } else {
+                            Toast.makeText(MainActivity.this, "登陆超时请重新登陆", Toast.LENGTH_SHORT).show();
+                            editor.putBoolean("haslogin", false);
+                            editor.commit();
+                        }
+                        break;
+                    case "api_lecai_getuser":
+                        Log.i("api_lecai_getuser", value);
+                        JSONObject json = new JSONObject(value);
+                        if (json.getInt("ret") == 0) {
+                            jsonObject = json.getJSONObject("data");
+                            getApp().getWXUser().setTOKEN(jsonObject.getInt("token"));
+                        }
+                        break;
+                }
+            }
+        });
     }
 
     private void initView(){
@@ -136,4 +301,14 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.commit();
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        RxBus.getInstance().unSubcribe();
+        editor.commit();
+    }
+
+    private MyApplication getApp() {
+        return (MyApplication) this.getApplicationContext();
+    }
 }
