@@ -2,28 +2,28 @@ package com.lecai.quwen.MainActivity.Fragment;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Matrix;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.lecai.quwen.MyApplication;
 import com.lecai.quwen.R;
+import com.lecai.quwen.SettingActivity.SettingActivity;
 import com.lecai.quwen.wxapi.WXUtil;
 
 import java.io.InputStream;
@@ -36,6 +36,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
     private Context context;
     private Button login;
     private LinearLayout fgm_Mine_LL_user;
+    private RelativeLayout Setting;
     public static Handler handler;
     public static final int SET_fgm_Mine_LL_user_VISIABLE = 1001,SET_USER_ICON = 1002;
     private static MineFragment fragment;
@@ -71,6 +72,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         initView(view);
         setLoginDiaLog();
         initLoginBtn();
+        initSetting();
 
         initHandler();
         read = getContext().getSharedPreferences("Setting", Context.MODE_PRIVATE);
@@ -109,22 +111,6 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         };
     }
 
-    //图片缩放
-    private Bitmap resetBmp(){
-        Bitmap bitmap = getURLimage(getApp().getWXUser().getHeadimgurl());
-        if(bitmap!=null){
-            float bmpwidth = bitmap.getWidth();
-            float bmpheight = bitmap.getHeight();
-            float scaleWidth = bmpwidth/2;
-            float scaleheight = bmpheight/2;
-            Matrix matrix = new Matrix();
-            matrix.postScale(scaleWidth,scaleheight);
-            Bitmap newbmp = Bitmap.createBitmap(bitmap,0,0,(int) bmpwidth,(int) bmpheight,matrix,true);
-            return newbmp;
-        }
-        return null;
-    }
-
     //加载图片
     public Bitmap getURLimage(String url) {
         Bitmap bmp = null;
@@ -154,6 +140,11 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         fgm_Mine_LL_user = view.findViewById(R.id.fgm_Mine_LL_user);
         user_name = view.findViewById(R.id.user_name);
         user_icon = view.findViewById(R.id.user_icon);
+        Setting = view.findViewById(R.id.item_set);
+    }
+
+    private void initSetting(){
+        Setting.setOnClickListener(this);
     }
 
     private void initLoginBtn() {
@@ -171,6 +162,10 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.fgm_Mine_btn_login:
                 WXUtil.getInstance().loginToWX();
+                break;
+            case R.id.item_set:
+                Intent intent = new Intent(getContext(),SettingActivity.class);
+                startActivity(intent);
                 break;
         }
     }
