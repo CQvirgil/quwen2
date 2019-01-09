@@ -13,9 +13,10 @@ public class RecyclerViewClickListener2 implements RecyclerView.OnItemTouchListe
 
     //内部接口，定义点击方法以及长按方法
     public interface OnItemClickListener {
-        void onItemClick(View view, int position);
+        void onItemClick(View view, int position,float x,float y);
 
         void onItemLongClick(View view, int position);
+
     }
 
     public RecyclerViewClickListener2(Context context, final RecyclerView recyclerView, OnItemClickListener listener){
@@ -27,11 +28,17 @@ public class RecyclerViewClickListener2 implements RecyclerView.OnItemTouchListe
                     public boolean onSingleTapUp(MotionEvent e) {
                         View childView = recyclerView.findChildViewUnder(e.getX(),e.getY());
                         if(childView != null && mListener != null){
-                            mListener.onItemClick(childView,recyclerView.getChildLayoutPosition(childView));
+                            mListener.onItemClick(childView,recyclerView.getChildLayoutPosition(childView),e.getX(),e.getY());
                             return true;
                         }
                         return false;
                     }
+
+                    @Override
+                    public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
+                        return true;
+                    }
+
                     //长按事件
                     @Override
                     public void onLongPress(MotionEvent e) {
