@@ -8,7 +8,6 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.lecai.quwen.R;
 import com.lecai.quwen.SettingActivity.RecyclerAdapter.AdapterChannel;

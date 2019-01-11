@@ -2,20 +2,21 @@ package com.lecai.quwen.MainActivity.Fragment;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+
 import android.content.SharedPreferences;
 import android.os.Bundle;
+
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TableLayout;
+import android.widget.Button;
 
 import com.lecai.quwen.R;
 import com.yidian.newssdk.exportui.NewsListForViewPagerFragment;
-import com.yidian.newssdk.exportui.NewsListFragment;
-import com.yidian.newssdk.exportui.NewsPortalFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,12 +27,13 @@ import static android.content.Context.MODE_PRIVATE;
 @SuppressLint("ValidFragment")
 public class HomepageFragment extends Fragment {
     private Context context;
-    private NewsListFragment fragmentNavi;
     private ViewPager viewPager;
     private TabLayout tab;
     public static List<String> tabTilte;
-    public List<Fragment> fragments;
+    private List<ChannelFragment> fragments;
     private SharedPreferences read;
+    private Button btn;
+    private ViewPagerAdapter viewPagerAdapter;
 
     @SuppressLint("ValidFragment")
     public HomepageFragment(Context context) {
@@ -47,6 +49,7 @@ public class HomepageFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         read = getContext().getSharedPreferences("channle",MODE_PRIVATE);
+        Log.i("asdasdasdasd","onCreate");
     }
 
     @Override
@@ -55,44 +58,56 @@ public class HomepageFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         initView(view);
         initTabTitle();
-        initViewPager();
         initTabLayout();
+        initViewPager();
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
     }
 
     private void initTabTitle(){
         int size = read.getInt("size",-1);
-        tabTilte = new ArrayList<>();
         if(size!=-1){
             for(int i=0;i<=size;i++){
                 tabTilte.add(read.getString(i+"",null));
             }
+        }else{
+            initList();
         }
+    }
+
+    private void initList(){
+        tabTilte.add("推荐");
+        tabTilte.add("热点");
+        tabTilte.add("科技");
+        tabTilte.add("娱乐");
+        tabTilte.add("汽车");
+        tabTilte.add("旅游");
+        tabTilte.add("情感");
     }
 
     private void initView(View view){
         tab = view.findViewById(R.id.tab);
         viewPager = view.findViewById(R.id.view_pager);
+        tabTilte = new ArrayList<>();
     }
 
     private void initViewPager(){
         fragments = new ArrayList<>();
         for(int i=0;i<tabTilte.size();i++){
-            fragments.add(NewsListForViewPagerFragment.newInstance(tabTilte.get(i)));
+            fragments.add(ChannelFragment.newInstance(tabTilte.get(i)));
         }
-        viewPager.setAdapter(new ViewPagerAdapter(getChildFragmentManager(),fragments));
+        viewPagerAdapter = new ViewPagerAdapter(getChildFragmentManager(),fragments);
+        viewPager.setAdapter(viewPagerAdapter);
     }
 
     private void initTabLayout(){
         tab.setupWithViewPager(viewPager);
         //设置可以滑动
         tab.setTabMode(TabLayout.MODE_SCROLLABLE);
-    }
-
-    private void initNewsPortalFragment(){
-        //fragmentNavi = new NewsPortalFragment();
-//        fragmentNavi = NewsListFragment.newInstance("推荐",false);
-//        getChildFragmentManager().beginTransaction().replace(R.id.news_root,fragmentNavi).commitAllowingStateLoss();
     }
 
 }

@@ -28,12 +28,10 @@ import com.lecai.quwen.R;
 
 import org.json.JSONObject;
 
-import java.util.Map;
-
 import io.reactivex.functions.Consumer;
 
 public class MainActivity extends AppCompatActivity {
-    private RadioButton rb_home,rb_game,rb_mall,rb_task,rb_mine;
+    private RadioButton rb_home,rb_mall,rb_task,rb_mine;
     private Fragment mfragments[];
     private Fragment mFrag;
     private ViewGroup.LayoutParams layoutParams;
@@ -48,6 +46,8 @@ public class MainActivity extends AppCompatActivity {
     private SharedPreferences.Editor editor;
     private SharedPreferences read;
     private String getWXuserURL;
+    private Thread thread_timer;
+    private int time;
 
 
     @Override
@@ -61,7 +61,28 @@ public class MainActivity extends AppCompatActivity {
         read = this.getSharedPreferences("Setting", Context.MODE_PRIVATE);
         Checkhaslogin();
         WXlogin();
-        Client.getInstance().getServer("http://api.lecaigogo.com:5000/","test");
+        //initTimer();
+    }
+
+    //开辟线程用于计时
+    private void initTimer(){
+        thread_timer = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while(true){
+                    if(A_Currentfragment instanceof HomepageFragment||A_Currentfragment instanceof MallFragment){
+                        time++;
+                        try {
+                            Thread.sleep(1000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        Log.i("asdasdasdasda",time+"");
+                    }
+                }
+            }
+        });
+        thread_timer.start();
     }
 
     private void Checkhaslogin() {
