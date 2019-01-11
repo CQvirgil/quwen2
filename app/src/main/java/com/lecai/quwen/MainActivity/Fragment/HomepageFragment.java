@@ -57,18 +57,19 @@ public class HomepageFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         initView(view);
-        initTabTitle();
         initTabLayout();
-        initViewPager();
         return view;
     }
 
     @Override
     public void onResume() {
         super.onResume();
+        initTabTitle();
+        initViewPager();
     }
 
     private void initTabTitle(){
+        tabTilte = new ArrayList<>();
         int size = read.getInt("size",-1);
         if(size!=-1){
             for(int i=0;i<=size;i++){
@@ -92,7 +93,6 @@ public class HomepageFragment extends Fragment {
     private void initView(View view){
         tab = view.findViewById(R.id.tab);
         viewPager = view.findViewById(R.id.view_pager);
-        tabTilte = new ArrayList<>();
     }
 
     private void initViewPager(){
