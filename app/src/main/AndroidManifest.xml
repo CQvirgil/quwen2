@@ -19,7 +19,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".MainActivity.MainActivity">
+        <activity android:name=".MainActivity.MainActivity" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -33,10 +33,8 @@
             android:launchMode="singleTask"
             android:taskAffinity="net.sourceforge.simcpux"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-        <activity
-            android:name=".SettingActivity.SettingActivity"
-            >
-        </activity>
+        <activity android:name=".SettingActivity.SettingActivity"></activity>
+        <activity android:name=".DragGridView.DragGridActivity"></activity>
     </application>
 
 </manifest>

@@ -16,7 +16,6 @@ import com.yidian.newssdk.exportui.NewsListFragment;
 @SuppressLint("ValidFragment")
 public class ChannelFragment extends Fragment {
     private NewsListFragment fragment;
-    private Button btn_SX;
     private final String Tag = "ChannelFragmentTag";
     private String channelName;
 
@@ -40,13 +39,6 @@ public class ChannelFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_channel, container, false);
-        btn_SX = view.findViewById(R.id.btn_SX);
-        btn_SX.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                fragment.refreshCurrentChannel();
-            }
-        });
         Log.i(Tag,channelName+"onCreateView");
         return view;
     }
