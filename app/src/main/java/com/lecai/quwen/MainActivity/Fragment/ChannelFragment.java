@@ -15,7 +15,7 @@ import com.yidian.newssdk.exportui.NewsListFragment;
 
 @SuppressLint("ValidFragment")
 public class ChannelFragment extends Fragment {
-    private NewsListFragment fragment;
+    private NewsListFragment fragment = null;
     private final String Tag = "ChannelFragmentTag";
     private String channelName;
 
@@ -39,6 +39,10 @@ public class ChannelFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_channel, container, false);
+        if(fragment == null){
+            fragment = NewsListFragment.newInstance(channelName,false);
+        }
+        getChildFragmentManager().beginTransaction().replace(R.id.channel_root,fragment).commitNowAllowingStateLoss();
         Log.i(Tag,channelName+"onCreateView");
         return view;
     }
@@ -47,9 +51,8 @@ public class ChannelFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+
         Log.i(Tag,channelName+"onDetach");
-        fragment = NewsListFragment.newInstance(channelName,false);
-        getChildFragmentManager().beginTransaction().replace(R.id.channel_root,fragment).commitNowAllowingStateLoss();
     }
 
     @Override

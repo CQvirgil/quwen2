@@ -6,6 +6,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -15,8 +17,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.lecai.quwen.DragGridView.bean.ProvinceItem;
+import com.lecai.quwen.DragGridView.tools.JsonTOList;
 import com.lecai.quwen.R;
-import com.yidian.newssdk.exportui.NewsListForViewPagerFragment;
+
+import org.json.JSONException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,11 +34,13 @@ public class HomepageFragment extends Fragment {
     private Context context;
     private ViewPager viewPager;
     private TabLayout tab;
-    public static List<String> tabTilte;
+    public static List<ProvinceItem> tabTilte;
     private List<ChannelFragment> fragments;
     private SharedPreferences read;
     private Button btn;
     private ViewPagerAdapter viewPagerAdapter;
+    private int tabsize = 0;
+    public static boolean isChang = true;
 
     @SuppressLint("ValidFragment")
     public HomepageFragment(Context context) {
@@ -48,7 +55,7 @@ public class HomepageFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        read = getContext().getSharedPreferences("channle",MODE_PRIVATE);
+        read = getContext().getSharedPreferences("user",MODE_PRIVATE);
         Log.i("asdasdasdasd","onCreate");
     }
 
@@ -58,36 +65,56 @@ public class HomepageFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         initView(view);
         initTabLayout();
+
+        try {
+            initTabTitle();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        initViewPager();
+
         return view;
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        initTabTitle();
-        initViewPager();
-    }
-
-    private void initTabTitle(){
-        tabTilte = new ArrayList<>();
-        int size = read.getInt("size",-1);
-        if(size!=-1){
-            for(int i=0;i<=size;i++){
-                tabTilte.add(read.getString(i+"",null));
+        if(isChang){
+            try {
+                initTabTitle();
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
-        }else{
-            initList();
+            initViewPager();
+            //isChang = false;
         }
     }
 
-    private void initList(){
-        tabTilte.add("推荐");
-        tabTilte.add("热点");
-        tabTilte.add("科技");
-        tabTilte.add("娱乐");
-        tabTilte.add("汽车");
-        tabTilte.add("旅游");
-        tabTilte.add("情感");
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        int tabid = tab.getId();
+        outState.putInt("tab_id",tabid);
+    }
+
+    private void initTabTitle() throws JSONException {
+        String province = read.getString("province",null);
+        if(province == null){
+            initTabData();
+        }
+        tabTilte = JsonTOList.toList(province);
+        if(tabsize == 0){
+            tabsize = tabTilte.size();
+        }
+    }
+
+    private void initTabData() {
+        tabTilte.add(new ProvinceItem(1, "推荐"));
+        tabTilte.add(new ProvinceItem(2, "热点"));
+        tabTilte.add(new ProvinceItem(3, "科技"));
+        tabTilte.add(new ProvinceItem(4, "娱乐"));
+        tabTilte.add(new ProvinceItem(5, "汽车"));
+        tabTilte.add(new ProvinceItem(6, "旅游"));
     }
 
     private void initView(View view){
@@ -98,7 +125,7 @@ public class HomepageFragment extends Fragment {
     private void initViewPager(){
         fragments = new ArrayList<>();
         for(int i=0;i<tabTilte.size();i++){
-            fragments.add(ChannelFragment.newInstance(tabTilte.get(i)));
+            fragments.add(ChannelFragment.newInstance(tabTilte.get(i).getName()));
         }
         viewPagerAdapter = new ViewPagerAdapter(getChildFragmentManager(),fragments);
         viewPager.setAdapter(viewPagerAdapter);

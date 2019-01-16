@@ -13,6 +13,7 @@ import com.lecai.quwen.DragGridView.draggridview.DragAdapter;
 import com.lecai.quwen.DragGridView.draggridview.DragGridView;
 import com.lecai.quwen.DragGridView.model.ProvinceModel;
 import com.lecai.quwen.DragGridView.tools.Constant;
+import com.lecai.quwen.MainActivity.Fragment.HomepageFragment;
 import com.lecai.quwen.R;
 
 import java.util.ArrayList;
@@ -112,10 +113,16 @@ public class DragGridFragment extends Fragment implements DragAdapter.changeList
     @Override
     public void exchangeOtherAdapter(List<ProvinceItem> data, int position) {
         //重新排序后出发该事件
+        HomepageFragment.isChang = true;
     }
 
     @Override
     public void setCurrentPosition() {
+
+    }
+
+    @Override
+    public void onClearClick(int position) {
 
     }
 }

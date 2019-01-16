@@ -1,7 +1,10 @@
 package com.lecai.quwen.DragGridView;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.SharedPreferences;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,6 +12,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.GridView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,11 +30,12 @@ import static android.view.KeyEvent.KEYCODE_BACK;
 
 public class DragGridActivity extends Activity implements DragAdapter.changeListener {
 
-    private DragGridView gridView,gridView_channle;
+    private DragGridView gridView;
+    private GridView gridView_channle;
 
     private List<ProvinceItem> items = new ArrayList<ProvinceItem>();
     private List<ProvinceItem> channles = new ArrayList<ProvinceItem>();
-    private DragAdapter dragAdapter_channles;
+    private mAdapter dragAdapter_channles;
 
     private SharedPreferences mShared;
     private SharedPreferences.Editor mEditor;
@@ -41,6 +46,8 @@ public class DragGridActivity extends Activity implements DragAdapter.changeList
 
     ProvinceModel model;
 
+    public static Handler handler;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +55,20 @@ public class DragGridActivity extends Activity implements DragAdapter.changeList
         setContentView(R.layout.activity_drag_grid);
         init();
         initChannles();
+    }
+
+    @SuppressLint("HandlerLeak")
+    private void initHandler(){
+        handler = new Handler(){
+            @Override
+            public void handleMessage(Message msg) {
+                super.handleMessage(msg);
+                if(msg.what == 2001){
+                    int pos = (int) msg.obj;
+                    Toast.makeText(DragGridActivity.this, pos+"", Toast.LENGTH_SHORT).show();
+                }
+            }
+        };
     }
 
     private void initChannles(){
@@ -73,15 +94,17 @@ public class DragGridActivity extends Activity implements DragAdapter.changeList
 
     private void initgridView_channle(){
         gridView_channle = findViewById(R.id.The_rest_cannle);
-        dragAdapter_channles = new DragAdapter(this,channles);
-        dragAdapter_channles.setTYPE(DragAdapter.TYPE_2);
+        dragAdapter_channles = new mAdapter(this,channles);
         gridView_channle.setAdapter(dragAdapter_channles);
         gridView_channle.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 TextView textView = view.findViewById(R.id.title);
-                String name = textView.getText().toString();
-                Toast.makeText(DragGridActivity.this, name, Toast.LENGTH_SHORT).show();
+                String text = textView.getText().toString();
+                String name = text.substring(1);
+                dragAdapter.addItem(channles.get(position));
+                dragAdapter_channles.removePosition(position);
+                //Toast.makeText(DragGridActivity.this, name, Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -150,6 +173,13 @@ public class DragGridActivity extends Activity implements DragAdapter.changeList
     public void setCurrentPosition() {
 
     }
+
+    @Override
+    public void onClearClick(int position) {
+        dragAdapter_channles.addItem(items.get(position));
+        dragAdapter.removePosition(position);
+    }
+
 
     public void Close(View view) {
         finish();

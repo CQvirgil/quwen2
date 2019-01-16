@@ -107,4 +107,10 @@ public class EditorCannleDiaLog extends BaseDiaLog implements changeListener {
     public void setCurrentPosition() {
 
     }
+
+    @Override
+    public void onClearClick(int position) {
+
+    }
+
 }

@@ -64,6 +64,12 @@ public class MainActivity extends AppCompatActivity {
         //initTimer();
     }
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.i("asdasdasd","onRestart");
+    }
+
     //开辟线程用于计时
     private void initTimer(){
         thread_timer = new Thread(new Runnable() {

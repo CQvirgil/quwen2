@@ -3,12 +3,14 @@ package com.lecai.quwen.DragGridView.draggridview;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.lecai.quwen.DragGridView.DragGridActivity;
 import com.lecai.quwen.DragGridView.base.BaseDragAdapter;
 import com.lecai.quwen.DragGridView.base.BaseItem;
 import com.lecai.quwen.DragGridView.bean.ProvinceItem;
@@ -32,7 +34,7 @@ public class DragAdapter extends BaseDragAdapter {
     private int TYPE = 1;
     public static int TYPE_1 = 1,TYPE_2 = 2;
 
-    View view;
+    private View view;
 
     private int mHidePosition = -1;
 
@@ -107,7 +109,7 @@ public class DragAdapter extends BaseDragAdapter {
                     clear.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            removePosition(position);
+                            listener.onClearClick(position);
                         }
                     });
                 }else{
@@ -153,6 +155,8 @@ public class DragAdapter extends BaseDragAdapter {
     @Override
     public void addItem(BaseItem item) {
         provinceList.add((ProvinceItem) item);
+        mEditor.putString(Constant.PROVINCE, ListToJson.toJson(provinceList).toString());
+        mEditor.commit();
         notifyDataSetChanged();
     }
 
@@ -224,6 +228,7 @@ public class DragAdapter extends BaseDragAdapter {
         public void exchangeOtherAdapter(List<ProvinceItem> data, int position);
 
         public void setCurrentPosition();
+        public void onClearClick(int position);
     }
 
     private class ViewHolder{

@@ -42,6 +42,6 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
     @Nullable
     @Override
     public CharSequence getPageTitle(int position) {
-        return HomepageFragment.tabTilte.get(position);
+        return HomepageFragment.tabTilte.get(position).getName();
     }
 }

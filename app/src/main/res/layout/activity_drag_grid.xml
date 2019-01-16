@@ -87,19 +87,16 @@
             android:textSize="12sp" />
     </LinearLayout>
 
-    <com.lecai.quwen.DragGridView.draggridview.DragGridView
-        android:layout_marginTop="14dip"
+    <GridView
         android:id="@+id/The_rest_cannle"
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:listSelector="@android:color/transparent"
         android:numColumns="4"
         android:scrollbars="vertical"
-        android:stretchMode="columnWidth"
-        app:columnscount="4"
-        app:scale_num="1.2"
-        app:fixed_num="2"
-        />
+        android:stretchMode="columnWidth">
+
+    </GridView>
 
 </LinearLayout>
