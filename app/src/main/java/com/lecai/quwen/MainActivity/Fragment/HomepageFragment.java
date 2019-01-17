@@ -6,8 +6,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -17,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.lecai.quwen.Bean.Setting;
 import com.lecai.quwen.DragGridView.bean.ProvinceItem;
 import com.lecai.quwen.DragGridView.tools.JsonTOList;
 import com.lecai.quwen.R;
@@ -41,6 +40,7 @@ public class HomepageFragment extends Fragment {
     private ViewPagerAdapter viewPagerAdapter;
     private int tabsize = 0;
     public static boolean isChang = true;
+    private static volatile HomepageFragment instance;
 
     @SuppressLint("ValidFragment")
     public HomepageFragment(Context context) {
@@ -48,8 +48,10 @@ public class HomepageFragment extends Fragment {
     }
 
     public static HomepageFragment newInstance(Context context) {
-        HomepageFragment fragment = new HomepageFragment(context);
-        return fragment;
+        if(instance == null){
+            instance = new HomepageFragment(context);
+        }
+        return instance;
     }
 
     @Override
@@ -79,22 +81,19 @@ public class HomepageFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        if(isChang){
+        if(!Setting.getInstance().isChannleChang()){
             try {
                 initTabTitle();
             } catch (JSONException e) {
                 e.printStackTrace();
             }
             initViewPager();
-            //isChang = false;
+            Setting.getInstance().setChannleChang(true);
+            if(tab!=null&&Setting.getInstance()!=null){
+                tab.getTabAt(Setting.getInstance().getChannle()).select();
+            }
         }
-    }
 
-    @Override
-    public void onSaveInstanceState(@NonNull Bundle outState) {
-        super.onSaveInstanceState(outState);
-        int tabid = tab.getId();
-        outState.putInt("tab_id",tabid);
     }
 
     private void initTabTitle() throws JSONException {

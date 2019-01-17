@@ -75,9 +75,11 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         initLoginBtn();
         initSetting();
 
-        initHandler();
+        if(handler == null){
+            initHandler();
+        }
         read = getContext().getSharedPreferences("Setting", Context.MODE_PRIVATE);
-        if(read.getBoolean("haslogin",false)&&getApp().getWXUser()!=null){
+        if(read.getBoolean("haslogin",false)&&MyApplication.getInstance().getWXUser()!=null){
             handler.sendEmptyMessage(SET_fgm_Mine_LL_user_VISIABLE);
         }
         return view;
@@ -93,13 +95,15 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                     case 1001:
                         login.setVisibility(View.INVISIBLE);
                         fgm_Mine_LL_user.setVisibility(View.VISIBLE);
-                        user_name.setText(getApp().getWXUser().getNickname());
+                        user_name.setText(MyApplication.getInstance().getWXUser().getNickname());
 
                         Thread getHeadImage = new Thread(new Runnable() {
                             @Override
                             public void run() {
-                                bitmap = getURLimage(getApp().getWXUser().getHeadimgurl());
-                                handler.sendEmptyMessage(1002);
+                                if(MyApplication.getInstance()!=null){
+                                    bitmap = getURLimage(MyApplication.getInstance().getWXUser().getHeadimgurl());
+                                    handler.sendEmptyMessage(1002);
+                                }
                             }
                         });
                         getHeadImage.start();
@@ -171,7 +175,4 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         }
     }
 
-    private MyApplication getApp() {
-        return (MyApplication) getContext().getApplicationContext();
-    }
 }

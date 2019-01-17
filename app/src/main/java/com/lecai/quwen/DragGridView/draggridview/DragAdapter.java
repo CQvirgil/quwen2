@@ -97,11 +97,15 @@ public class DragAdapter extends BaseDragAdapter {
                 view.setVisibility(View.GONE);
             }
             if (selectItem.getId() == provinceList.get(position).getId()){
-                view.setBackgroundColor(Color.parseColor("#fbfbfb"));
+                //view.setBackgroundColor(Color.parseColor("#fbfbfb"));
                 textView.setTextColor(Color.parseColor("#ff604f"));
-            }else {
-                view.setBackgroundColor(Color.parseColor("#ffffff"));
                 textView.setTextColor(Color.parseColor("#464646"));
+                textView.setBackgroundResource(R.drawable.text_bg);
+            }else {
+                //view.setBackgroundColor(Color.parseColor("#ffffff"));
+                //view.setBackgroundResource(R.drawable.text_bg);
+                textView.setTextColor(Color.parseColor("#464646"));
+                textView.setBackgroundResource(R.drawable.text_bg);
 
                 if(CLEAR_ISVISIBLE&&position>1){
                     clear.setVisibility(View.VISIBLE);

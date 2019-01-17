@@ -11,6 +11,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.ViewGroup;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -29,6 +30,8 @@ import com.lecai.quwen.R;
 import org.json.JSONObject;
 
 import io.reactivex.functions.Consumer;
+
+import static android.view.KeyEvent.KEYCODE_BACK;
 
 public class MainActivity extends AppCompatActivity {
     private RadioButton rb_home,rb_mall,rb_task,rb_mine;
@@ -333,6 +336,16 @@ public class MainActivity extends AppCompatActivity {
         super.onDestroy();
         RxBus.getInstance().unSubcribe();
         editor.commit();
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        switch(keyCode){
+            case KEYCODE_BACK:
+                    finish();
+                break;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 
     private MyApplication getApp() {

@@ -16,6 +16,7 @@ import android.widget.GridView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.lecai.quwen.Bean.Setting;
 import com.lecai.quwen.DragGridView.bean.ProvinceItem;
 import com.lecai.quwen.DragGridView.draggridview.DragAdapter;
 import com.lecai.quwen.DragGridView.draggridview.DragGridView;
@@ -104,6 +105,7 @@ public class DragGridActivity extends Activity implements DragAdapter.changeList
                 String name = text.substring(1);
                 dragAdapter.addItem(channles.get(position));
                 dragAdapter_channles.removePosition(position);
+                Setting.getInstance().setChannleChang(false);
                 //Toast.makeText(DragGridActivity.this, name, Toast.LENGTH_SHORT).show();
             }
         });
@@ -142,6 +144,16 @@ public class DragGridActivity extends Activity implements DragAdapter.changeList
         gridView = findViewById(R.id.userGridView);
         gridView.setAdapter(dragAdapter);
         dragAdapter.setListener(this);
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if(!EDITOR_STATE){
+                    Setting.getInstance().setChannleChang(false);
+                    Setting.getInstance().setChannle(position);
+                    finish();
+                }
+            }
+        });
 
         btn_editor_cannle = findViewById(R.id.set);
         btn_editor_cannle.setOnClickListener(new View.OnClickListener() {
@@ -166,7 +178,7 @@ public class DragGridActivity extends Activity implements DragAdapter.changeList
 
     @Override
     public void exchangeOtherAdapter(List<ProvinceItem> data, int position) {
-
+        Setting.getInstance().setChannleChang(false);
     }
 
     @Override
@@ -178,6 +190,8 @@ public class DragGridActivity extends Activity implements DragAdapter.changeList
     public void onClearClick(int position) {
         dragAdapter_channles.addItem(items.get(position));
         dragAdapter.removePosition(position);
+        Setting.getInstance().setChannle(1);
+        Setting.getInstance().setChannleChang(false);
     }
 
 

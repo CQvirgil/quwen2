@@ -13,13 +13,18 @@ import com.lecai.quwen.R;
 
 public class TaskFragment extends Fragment{
 
+    private static volatile TaskFragment instance;
+
+
     public TaskFragment() {
         // Required empty public constructor
     }
     // TODO: Rename and change types and number of parameters
     public static TaskFragment newInstance() {
-        TaskFragment fragment = new TaskFragment();
-        return fragment;
+        if(instance == null){
+            instance = new TaskFragment();
+        }
+        return instance;
     }
 
     @Override

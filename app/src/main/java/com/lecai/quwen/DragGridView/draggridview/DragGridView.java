@@ -215,7 +215,7 @@ public class DragGridView extends GridView {
 
 
     /**
-     * 在拖动的情况
+     * 在松开的情况
      **/
     private void onDrop(int x, int y) {
         int tempPosition = pointToPosition(x, y);
