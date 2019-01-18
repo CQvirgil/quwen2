@@ -104,7 +104,7 @@ public class DragAdapter extends BaseDragAdapter {
             }else {
                 //view.setBackgroundColor(Color.parseColor("#ffffff"));
                 //view.setBackgroundResource(R.drawable.text_bg);
-                textView.setTextColor(Color.parseColor("#464646"));
+                textView.setTextColor(Color.parseColor("#ffffff"));
                 textView.setBackgroundResource(R.drawable.text_bg);
 
                 if(CLEAR_ISVISIBLE&&position>1){

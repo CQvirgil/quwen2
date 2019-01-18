@@ -99,12 +99,15 @@ public class HomepageFragment extends Fragment {
     private void initTabTitle() throws JSONException {
         String province = read.getString("province",null);
         if(province == null){
+            tabTilte = new ArrayList<ProvinceItem>();
             initTabData();
+        }else{
+            tabTilte = JsonTOList.toList(province);
+            if(tabsize == 0){
+                tabsize = tabTilte.size();
+            }
         }
-        tabTilte = JsonTOList.toList(province);
-        if(tabsize == 0){
-            tabsize = tabTilte.size();
-        }
+
     }
 
     private void initTabData() {

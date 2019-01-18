@@ -144,8 +144,8 @@ public class DragGridView extends GridView {
             for (int i = 0; i < childCount; i++) {
                 // TODO: 16-3-26 draw line
                 View item = getChildAt(i);
-                canvas.drawLine(item.getRight(), item.getTop(), item.getRight(), item.getBottom(), paint);
-                canvas.drawLine(item.getLeft(), item.getBottom(), item.getRight(), item.getBottom(), paint);
+                //canvas.drawLine(item.getRight(), item.getTop(), item.getRight(), item.getBottom(), paint);
+                //canvas.drawLine(item.getLeft(), item.getBottom(), item.getRight(), item.getBottom(), paint);
             }
         }
     }
@@ -267,7 +267,7 @@ public class DragGridView extends GridView {
                     dragOffsetY = (int) (ev.getRawY() - y);//手指在屏幕的上y位置-手指在控件中的位置就是距离最上边的距离
                     dragViewGroup.destroyDrawingCache();
                     dragViewGroup.setDrawingCacheEnabled(true);
-                    dragViewGroup.setBackgroundColor(mDragColor);
+                    //dragViewGroup.setBackgroundColor(mDragColor);
                     Bitmap dragBitmap = Bitmap.createBitmap(dragViewGroup.getDrawingCache());
                     mVibrator.vibrate(50);//设置震动时间
                     startDrag(dragBitmap, (int) ev.getRawX(), (int) ev.getRawY());
