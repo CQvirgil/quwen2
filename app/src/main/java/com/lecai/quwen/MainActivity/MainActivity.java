@@ -34,7 +34,7 @@ import io.reactivex.functions.Consumer;
 import static android.view.KeyEvent.KEYCODE_BACK;
 
 public class MainActivity extends AppCompatActivity {
-    private RadioButton rb_home,rb_mall,rb_task,rb_mine;
+    private RadioButton rb_home,rb_task,rb_mine;
     private Fragment mfragments[];
     private Fragment mFrag;
     private ViewGroup.LayoutParams layoutParams;
@@ -233,7 +233,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void initView(){
         rb_home = findViewById(R.id.radio_button_home);
-        rb_mall = findViewById(R.id.radio_button_mall);
         rb_task = findViewById(R.id.radio_button_task);
         rb_mine = findViewById(R.id.radio_button_mine);
         mRadioGroup = findViewById(R.id.radio_group_button);
@@ -243,29 +242,22 @@ public class MainActivity extends AppCompatActivity {
         //定义底部标签图片大小和位置
         Drawable drawable_news = getResources().getDrawable(R.drawable.tab_home_selector);
         //当这个图片被绘制时，给他绑定一个矩形 ltrb规定这个矩形
-        drawable_news.setBounds(0, 0, 80, 50);
+        drawable_news.setBounds(0, 0, 40, 40);
         //设置图片在文字的哪个方向
         rb_home.setCompoundDrawables(null, drawable_news, null, null);
 
 
         //定义底部标签图片大小和位置
-        Drawable drawable_mall = getResources().getDrawable(R.drawable.tab_attention_selector);
-        //当这个图片被绘制时，给他绑定一个矩形 ltrb规定这个矩形
-        drawable_mall.setBounds(0, 0, 80, 50);
-        //设置图片在文字的哪个方向
-        rb_mall.setCompoundDrawables(null, drawable_mall, null, null);
-
-        //定义底部标签图片大小和位置
         Drawable drawable_task = getResources().getDrawable(R.drawable.tab_discovery_selector);
         //当这个图片被绘制时，给他绑定一个矩形 ltrb规定这个矩形
-        drawable_task.setBounds(0, 0, 80, 50);
+        drawable_task.setBounds(0, 0, 40, 40);
         //设置图片在文字的哪个方向
         rb_task.setCompoundDrawables(null, drawable_task, null, null);
 
         //定义底部标签图片大小和位置
         Drawable drawable_mine = getResources().getDrawable(R.drawable.tab_profile_selector);
         //当这个图片被绘制时，给他绑定一个矩形 ltrb规定这个矩形
-        drawable_mine.setBounds(0, 0, 80, 50);
+        drawable_mine.setBounds(0, 0, 40, 40);
         //设置图片在文字的哪个方向
         rb_mine.setCompoundDrawables(null, drawable_mine, null, null);
 
@@ -275,9 +267,8 @@ public class MainActivity extends AppCompatActivity {
     private void initTab() {
         mfragments = new Fragment[5];
         mfragments[0] = HomepageFragment.newInstance(this);
-        mfragments[1] = MallFragment.newInstance();
-        mfragments[2] = MineFragment.newInstance(this);
-        mfragments[3] = TaskFragment.newInstance();
+        mfragments[1] = MineFragment.newInstance(this);
+        mfragments[2] = TaskFragment.newInstance();
         mRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             Fragment Currentfragment = null;
 
@@ -288,17 +279,13 @@ public class MainActivity extends AppCompatActivity {
                         Currentfragment = mfragments[0];
                         loadFragment(0);
                         break;
-                    case R.id.radio_button_mall:
+                    case R.id.radio_button_mine:
                         Currentfragment = mfragments[1];
                         loadFragment(1);
                         break;
-                    case R.id.radio_button_mine:
+                    case R.id.radio_button_task:
                         Currentfragment = mfragments[2];
                         loadFragment(2);
-                        break;
-                    case R.id.radio_button_task:
-                        Currentfragment = mfragments[3];
-                        loadFragment(3);
                         break;
                 }
                 if (Currentfragment != null) {

@@ -6,7 +6,7 @@
         <!--标题栏-->
         <item name="colorPrimary">@color/colorPrimary</item>
         <!--状态栏-->
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorPrimaryDark">@color/colorPrimary</item>
         <!--系统中，子空间，复选框，单选按钮，选中时的颜色-->
         <item name="colorAccent">@color/colorAccent</item>
         <!--窗体无标题栏-->
@@ -15,6 +15,32 @@
         <item name="windowActionBar">false</item>
         <!--取消状态栏,也就是全屏显示-->
         <!--<item name="android:windowFullscreen">true</item>-->
+        <!--半透明状态栏-->
+        <!--<item name="android:windowTranslucentStatus">true</item>-->
+    </style>
+
+    <style name="mine_user_name">
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="mine_user_ID">
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:textSize">11sp</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="mine_num">
+        <item name="android:textColor">#333333</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:gravity">left</item>
+    </style>
+
+    <style name="mine_text">
+        <item name="android:textColor">#333333</item>
+        <item name="android:textSize">10sp</item>
+        <item name="android:gravity">left</item>
     </style>
 
     <style name="RadioGroupButtonStyle" >

@@ -16,108 +16,114 @@
             android:layout_height="match_parent">
 
             <FrameLayout
-                android:background="@color/colorPrimary"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <LinearLayout
                     android:id="@+id/fgm_Mine_LL_user"
                     android:visibility="invisible"
-                    android:background="#00f"
                     android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <LinearLayout
-                        android:layout_margin="10dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-
-                        <ImageView
-                            android:id="@+id/user_icon"
-                            android:layout_width="70dp"
-                            android:layout_height="70dp"
-                            android:src="@mipmap/ic_launcher"
-                             />
-
-                        <LinearLayout
-                            android:orientation="vertical"
-                            android:layout_gravity="center"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
-                            <TextView
-                                android:id="@+id/user_name"
-                                android:padding="5dp"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="username"
-                                android:textColor="#ffffff"/>
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textColor="#ffffff"
-                                android:text="ID："/>
-                        </LinearLayout>
-
-                    </LinearLayout>
-
-
-                    <LinearLayout
-                        android:weightSum="3"
-                        android:background="#ffffff"
+                    <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="225dp">
 
                         <LinearLayout
-                            android:layout_weight="1"
-                            android:gravity="center"
                             android:orientation="vertical"
-                            android:layout_width="0dp"
+                            android:background="@color/colorPrimary"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content">
-                            <TextView
-                                android:id="@+id/fgm_Mine_text_usertoken2"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="0"/>
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="未到账"/>
+                            <LinearLayout
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:layout_width="match_parent"
+                                android:layout_height="200dp">
+
+                                <ImageView
+                                    android:id="@+id/user_icon"
+                                    android:layout_width="71dp"
+                                    android:layout_height="71dp"
+                                    android:src="@mipmap/ic_launcher"
+                                    />
+
+                                <LinearLayout
+                                    android:orientation="vertical"
+                                    android:layout_gravity="center"
+                                    android:gravity="center"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content">
+                                    <TextView
+                                        android:id="@+id/user_name"
+                                        android:padding="5dp"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:theme="@style/mine_user_name"
+                                        android:text="username"
+                                        android:textColor="#ffffff"/>
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textColor="#ffffff"
+                                        android:theme="@style/mine_user_ID"
+                                        android:text="ID："/>
+                                </LinearLayout>
+
+                            </LinearLayout>
                         </LinearLayout>
+
+
 
                         <LinearLayout
-                            android:layout_weight="1"
                             android:gravity="center"
-                            android:orientation="vertical"
-                            android:layout_width="0dp"
+                            android:layout_alignParentBottom="true"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content">
-                            <TextView
-                                android:id="@+id/fgm_Mine_text_usertoken"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="0"/>
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="金币"/>
+
+                            <LinearLayout
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:background="@drawable/mine_fillet_rectangle"
+                                android:layout_marginRight="5dp"
+                                android:layout_width="150dp"
+                                android:layout_height="50dp">
+                                <TextView
+                                    android:id="@+id/fgm_Mine_text_usertoken2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:theme="@style/mine_num"
+
+                                    android:text="0"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:theme="@style/mine_text"
+                                    android:text="我的权益份额"/>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:background="@drawable/mine_fillet_rectangle"
+                                android:layout_marginLeft="5dp"
+                                android:layout_width="150dp"
+                                android:layout_height="50dp">
+                                <TextView
+                                    android:id="@+id/fgm_Mine_text_usertoken"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:theme="@style/mine_num"
+                                    android:text="0"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:theme="@style/mine_text"
+                                    android:text="我的零钱"/>
+                            </LinearLayout>
+
                         </LinearLayout>
 
-                        <LinearLayout
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:orientation="vertical"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content">
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="0"/>
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="现金"/>
-                        </LinearLayout>
-
-                    </LinearLayout>
+                    </RelativeLayout>
                 </LinearLayout>
 
                 <Button
@@ -145,7 +151,7 @@
                         android:layout_centerVertical="true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="17sp"
+                        android:theme="@style/mine_text"
                         android:text="@string/mine_item_0"/>
 
                     <TextView
@@ -181,7 +187,7 @@
                         android:layout_centerVertical="true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="17sp"
+                        android:theme="@style/mine_text"
                         android:text="@string/mine_item_1"/>
 
                     <TextView
@@ -217,7 +223,7 @@
                         android:layout_centerVertical="true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="17sp"
+                        android:theme="@style/mine_text"
                         android:text="@string/mine_item_2"/>
 
                     <TextView
@@ -252,7 +258,7 @@
                         android:layout_centerVertical="true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="17sp"
+                        android:theme="@style/mine_text"
                         android:text="@string/mine_item_3"/>
 
                     <TextView
@@ -287,7 +293,7 @@
                         android:layout_centerVertical="true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="17sp"
+                        android:theme="@style/mine_text"
                         android:text="@string/mine_item_4"/>
 
                     <TextView

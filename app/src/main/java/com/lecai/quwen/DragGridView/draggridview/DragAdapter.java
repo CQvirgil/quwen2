@@ -3,14 +3,12 @@ package com.lecai.quwen.DragGridView.draggridview;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
-import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.lecai.quwen.DragGridView.DragGridActivity;
 import com.lecai.quwen.DragGridView.base.BaseDragAdapter;
 import com.lecai.quwen.DragGridView.base.BaseItem;
 import com.lecai.quwen.DragGridView.bean.ProvinceItem;
@@ -43,6 +41,10 @@ public class DragAdapter extends BaseDragAdapter {
         this.provinceList = provinceList;
         mShared = context.getSharedPreferences(Constant.USER,0);
         mEditor = mShared.edit();
+        if(mShared.getString("province",null)==null){
+            mEditor.putString(Constant.PROVINCE, ListToJson.toJson(provinceList).toString());
+            mEditor.commit();
+        }
         selectItem = provinceList.get(0);
     }
 
@@ -98,8 +100,8 @@ public class DragAdapter extends BaseDragAdapter {
             }
             if (selectItem.getId() == provinceList.get(position).getId()){
                 //view.setBackgroundColor(Color.parseColor("#fbfbfb"));
-                textView.setTextColor(Color.parseColor("#ff604f"));
-                textView.setTextColor(Color.parseColor("#464646"));
+                //textView.setTextColor(Color.parseColor("#ff604f"));
+                textView.setTextColor(Color.parseColor("#ffffff"));
                 textView.setBackgroundResource(R.drawable.text_bg);
             }else {
                 //view.setBackgroundColor(Color.parseColor("#ffffff"));
