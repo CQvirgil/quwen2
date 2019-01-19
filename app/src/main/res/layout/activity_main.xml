@@ -23,7 +23,7 @@
         >
         <RadioButton
             android:id="@+id/radio_button_home"
-            android:drawableTop="@drawable/tab_home_selector"
+            android:drawableTop="@drawable/main_tab_news_selector"
             android:text="资讯"
             style="@style/RadioGroupButtonStyle"
             />
@@ -31,13 +31,13 @@
         <RadioButton
             android:id="@+id/radio_button_task"
             android:text="任务"
-            android:drawableTop="@drawable/tab_discovery_selector"
+            android:drawableTop="@drawable/main_tab_task_selector"
             style="@style/RadioGroupButtonStyle"
             />
         <RadioButton
             android:id="@+id/radio_button_mine"
             android:text="我"
-            android:drawableTop="@drawable/tab_profile_selector"
+            android:drawableTop="@drawable/main_tab_mine_selector"
             style="@style/RadioGroupButtonStyle"
             />
     </RadioGroup>

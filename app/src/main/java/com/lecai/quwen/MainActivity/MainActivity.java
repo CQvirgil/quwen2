@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.lecai.quwen.AndroidRX.RxBus;
 import com.lecai.quwen.Bean.WXUserBean;
+import com.lecai.quwen.DragGridView.tools.Util;
 import com.lecai.quwen.MainActivity.Fragment.HomepageFragment;
 import com.lecai.quwen.MainActivity.Fragment.MallFragment;
 import com.lecai.quwen.MainActivity.Fragment.MineFragment;
@@ -58,7 +59,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initView();
-        initRadioButtonDrawable();
+
+        initRadioButtonDrawable(rb_home,getResources().getDrawable(R.drawable.main_tab_news_selector));
+        initRadioButtonDrawable(rb_task,getResources().getDrawable(R.drawable.main_tab_task_selector));
+        initRadioButtonDrawable(rb_mine,getResources().getDrawable(R.drawable.main_tab_mine_selector));
         initTab();
         editor = this.getSharedPreferences("Setting", Context.MODE_PRIVATE).edit();
         read = this.getSharedPreferences("Setting", Context.MODE_PRIVATE);
@@ -238,28 +242,31 @@ public class MainActivity extends AppCompatActivity {
         mRadioGroup = findViewById(R.id.radio_group_button);
     }
 
-    private void initRadioButtonDrawable(){
+    private void initRadioButtonDrawable(RadioButton radioButton,Drawable drawable){
         //定义底部标签图片大小和位置
-        Drawable drawable_news = getResources().getDrawable(R.drawable.tab_home_selector);
+        Drawable drawable_news = drawable;
         //当这个图片被绘制时，给他绑定一个矩形 ltrb规定这个矩形
-        drawable_news.setBounds(0, 0, 40, 40);
+
+        float width = Util.dip2px(this,25.0f);
+        float height = Util.dip2px(this,25.0f);
+        drawable_news.setBounds(0, 0, (int) width, (int) height);
         //设置图片在文字的哪个方向
-        rb_home.setCompoundDrawables(null, drawable_news, null, null);
+        radioButton.setCompoundDrawables(null, drawable_news, null, null);
 
 
-        //定义底部标签图片大小和位置
-        Drawable drawable_task = getResources().getDrawable(R.drawable.tab_discovery_selector);
-        //当这个图片被绘制时，给他绑定一个矩形 ltrb规定这个矩形
-        drawable_task.setBounds(0, 0, 40, 40);
-        //设置图片在文字的哪个方向
-        rb_task.setCompoundDrawables(null, drawable_task, null, null);
-
-        //定义底部标签图片大小和位置
-        Drawable drawable_mine = getResources().getDrawable(R.drawable.tab_profile_selector);
-        //当这个图片被绘制时，给他绑定一个矩形 ltrb规定这个矩形
-        drawable_mine.setBounds(0, 0, 40, 40);
-        //设置图片在文字的哪个方向
-        rb_mine.setCompoundDrawables(null, drawable_mine, null, null);
+//        //定义底部标签图片大小和位置
+//        Drawable drawable_task = getResources().getDrawable(R.drawable.main_tab_task_selector);
+//        //当这个图片被绘制时，给他绑定一个矩形 ltrb规定这个矩形
+//        drawable_task.setBounds(0, 0, 40, 40);
+//        //设置图片在文字的哪个方向
+//        rb_task.setCompoundDrawables(null, drawable_task, null, null);
+//
+//        //定义底部标签图片大小和位置
+//        Drawable drawable_mine = getResources().getDrawable(R.drawable.main_tab_mine_selector);
+//        //当这个图片被绘制时，给他绑定一个矩形 ltrb规定这个矩形
+//        drawable_mine.setBounds(0, 0, 40, 40);
+//        //设置图片在文字的哪个方向
+//        rb_mine.setCompoundDrawables(null, drawable_mine, null, null);
 
     }
 

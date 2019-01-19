@@ -23,6 +23,7 @@ import android.widget.TextView;
 
 import com.lecai.quwen.DragGridView.DragGridActivity;
 import com.lecai.quwen.MyApplication;
+import com.lecai.quwen.MyVIew.CircleImage;
 import com.lecai.quwen.R;
 import com.lecai.quwen.SettingActivity.SettingActivity;
 import com.lecai.quwen.wxapi.WXUtil;
@@ -42,7 +43,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
     public static final int SET_fgm_Mine_LL_user_VISIABLE = 1001,SET_USER_ICON = 1002;
     private static MineFragment fragment;
     private TextView user_name;
-    private ImageView user_icon;
+    private CircleImage user_icon;
     private Bitmap bitmap;
     private SharedPreferences read;
 

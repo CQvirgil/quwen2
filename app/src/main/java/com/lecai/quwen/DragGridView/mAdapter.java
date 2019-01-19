@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.lecai.quwen.DragGridView.base.BaseItem;
 import com.lecai.quwen.DragGridView.bean.ProvinceItem;
+import com.lecai.quwen.DragGridView.tools.Util;
 import com.lecai.quwen.R;
 
 import java.util.List;
@@ -45,7 +46,9 @@ public class mAdapter extends BaseAdapter {
         //view.setBackgroundColor(Color.parseColor("#ffffff"));
         TextView textview = view.findViewById(R.id.title);
         textview.setBackgroundResource(R.drawable.textview_bg);
-        //textview.setPadding(20,10,20,10);
+        textview.setTextColor(Color.parseColor("#333333"));
+        textview.setTextSize(Util.dip2px(context,7));
+        //textview.setPadding(Util.dip2px(context,0),Util.dip2px(context,0),Util.dip2px(context,40),Util.dip2px(context,40));
         textview.setText("+"+list.get(position).getName());
         return view;
     }
