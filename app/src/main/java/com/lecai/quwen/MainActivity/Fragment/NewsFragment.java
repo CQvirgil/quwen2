@@ -3,6 +3,7 @@ package com.lecai.quwen.MainActivity.Fragment;
 import android.annotation.SuppressLint;
 import android.content.Context;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -14,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import com.lecai.quwen.Bean.Setting;
 import com.lecai.quwen.DragGridView.bean.ProvinceItem;
@@ -29,7 +31,7 @@ import static android.content.Context.MODE_PRIVATE;
 
 
 @SuppressLint("ValidFragment")
-public class HomepageFragment extends Fragment {
+public class NewsFragment extends Fragment {
     private Context context;
     private ViewPager viewPager;
     private TabLayout tab;
@@ -40,16 +42,17 @@ public class HomepageFragment extends Fragment {
     private ViewPagerAdapter viewPagerAdapter;
     private int tabsize = 0;
     public static boolean isChang = true;
-    private static volatile HomepageFragment instance;
+    private static volatile NewsFragment instance;
+    private ImageButton newsChannleAdd;
 
     @SuppressLint("ValidFragment")
-    public HomepageFragment(Context context) {
+    public NewsFragment(Context context) {
         this.context = context;
     }
 
-    public static HomepageFragment newInstance(Context context) {
+    public static NewsFragment newInstance(Context context) {
         if(instance == null){
-            instance = new HomepageFragment(context);
+            instance = new NewsFragment(context);
         }
         return instance;
     }
@@ -66,6 +69,7 @@ public class HomepageFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         initView(view);
+        initImgButton();
         initTabLayout();
 
         try {
@@ -96,6 +100,17 @@ public class HomepageFragment extends Fragment {
 
     }
 
+    private void initImgButton(){
+        newsChannleAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setAction("startDragGridActivity");
+                startActivity(intent);
+            }
+        });
+    }
+
     private void initTabTitle() throws JSONException {
         String province = read.getString("province",null);
         if(province == null){
@@ -122,6 +137,7 @@ public class HomepageFragment extends Fragment {
     private void initView(View view){
         tab = view.findViewById(R.id.tab);
         viewPager = view.findViewById(R.id.view_pager);
+        newsChannleAdd = view.findViewById(R.id.imgbtn_news_plus);
     }
 
     private void initViewPager(){

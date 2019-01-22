@@ -42,12 +42,12 @@ public class mAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item,parent,false);
+        View view = LayoutInflater.from(context).inflate(R.layout.item_add,parent,false);
         //view.setBackgroundColor(Color.parseColor("#ffffff"));
         TextView textview = view.findViewById(R.id.title);
         textview.setBackgroundResource(R.drawable.textview_bg);
         textview.setTextColor(Color.parseColor("#333333"));
-        textview.setTextSize(Util.dip2px(context,7));
+        //textview.setTextSize(Util.dip2px(context,7));
         //textview.setPadding(Util.dip2px(context,0),Util.dip2px(context,0),Util.dip2px(context,40),Util.dip2px(context,40));
         textview.setText("+"+list.get(position).getName());
         return view;

@@ -1,15 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:ignore="Orientation">
 
-   <android.support.design.widget.TabLayout
-       android:id="@+id/tab"
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tab"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:tabMaxWidth="200dp"
+            app:tabMinWidth="60dp"
+            app:tabIndicatorColor="@color/colorPrimary"
+            />
+
+        <ImageButton
+            android:id="@+id/imgbtn_news_plus"
+            android:background="@null"
+            android:layout_gravity="center"
+            android:padding="5dp"
+            android:src="@drawable/imgbtn_news_plus01"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            />
+
+    </LinearLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"

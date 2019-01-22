@@ -16,16 +16,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.lecai.quwen.DragGridView.DragGridActivity;
 import com.lecai.quwen.MyApplication;
-import com.lecai.quwen.MyVIew.CircleImage;
+import com.lecai.quwen.MyView.CircleImage;
 import com.lecai.quwen.R;
-import com.lecai.quwen.SettingActivity.SettingActivity;
 import com.lecai.quwen.wxapi.WXUtil;
 
 import java.io.InputStream;

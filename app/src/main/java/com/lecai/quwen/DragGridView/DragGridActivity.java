@@ -5,14 +5,12 @@ import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v7.app.AppCompatActivity;
+
 import android.os.Bundle;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.GridView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +20,7 @@ import com.lecai.quwen.DragGridView.draggridview.DragAdapter;
 import com.lecai.quwen.DragGridView.draggridview.DragGridView;
 import com.lecai.quwen.DragGridView.model.ProvinceModel;
 import com.lecai.quwen.DragGridView.tools.Constant;
+import com.lecai.quwen.MyView.mGridView;
 import com.lecai.quwen.R;
 
 import java.util.ArrayList;
@@ -32,7 +31,7 @@ import static android.view.KeyEvent.KEYCODE_BACK;
 public class DragGridActivity extends Activity implements DragAdapter.changeListener {
 
     private DragGridView gridView;
-    private GridView gridView_channle;
+    private mGridView gridView_channle;
 
     private List<ProvinceItem> items = new ArrayList<ProvinceItem>();
     private List<ProvinceItem> channles = new ArrayList<ProvinceItem>();
@@ -151,6 +150,11 @@ public class DragGridActivity extends Activity implements DragAdapter.changeList
                     Setting.getInstance().setChannleChang(false);
                     Setting.getInstance().setChannle(position);
                     finish();
+                }else if(position>1){
+                    dragAdapter_channles.addItem(items.get(position));
+                    dragAdapter.removePosition(position);
+                    Setting.getInstance().setChannle(1);
+                    Setting.getInstance().setChannleChang(false);
                 }
             }
         });
@@ -188,10 +192,10 @@ public class DragGridActivity extends Activity implements DragAdapter.changeList
 
     @Override
     public void onClearClick(int position) {
-        dragAdapter_channles.addItem(items.get(position));
-        dragAdapter.removePosition(position);
-        Setting.getInstance().setChannle(1);
-        Setting.getInstance().setChannleChang(false);
+//        dragAdapter_channles.addItem(items.get(position));
+////        dragAdapter.removePosition(position);
+////        Setting.getInstance().setChannle(1);
+////        Setting.getInstance().setChannleChang(false);
     }
 
 

@@ -14,6 +14,7 @@ import com.lecai.quwen.DragGridView.base.BaseItem;
 import com.lecai.quwen.DragGridView.bean.ProvinceItem;
 import com.lecai.quwen.DragGridView.tools.Constant;
 import com.lecai.quwen.DragGridView.tools.ListToJson;
+import com.lecai.quwen.MyView.mTextView;
 import com.lecai.quwen.R;
 
 import java.util.List;
@@ -29,8 +30,6 @@ public class DragAdapter extends BaseDragAdapter {
     private SharedPreferences.Editor mEditor;
     private ProvinceItem selectItem;
     private boolean CLEAR_ISVISIBLE = false;
-    private int TYPE = 1;
-    public static int TYPE_1 = 1,TYPE_2 = 2;
 
     private View view;
 
@@ -46,14 +45,6 @@ public class DragAdapter extends BaseDragAdapter {
             mEditor.commit();
         }
         selectItem = provinceList.get(0);
-    }
-
-    public int getTYPE() {
-        return TYPE;
-    }
-
-    public void setTYPE(int TYPE) {
-        this.TYPE = TYPE;
     }
 
     @Override
@@ -88,46 +79,28 @@ public class DragAdapter extends BaseDragAdapter {
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         // TODO: 16-3-26 控件的ｂｕｇ 不能使用convertView and holder
-        if(TYPE == TYPE_1){
-            view = LayoutInflater.from(context).inflate(R.layout.item,parent,false);
-            TextView textView = (TextView) view.findViewById(R.id.title);
-            ImageView clear = view.findViewById(R.id.clear);
+        view = LayoutInflater.from(context).inflate(R.layout.item,parent,false);
+        mTextView textView = view.findViewById(R.id.title);
+        final ProvinceItem item = provinceList.get(position);
+        textView.setText(item.getName()+"");
+        if (dropPosition == position){
+            view.setVisibility(View.GONE);
+        }
+        if (selectItem.getId() == provinceList.get(position).getId()){
+            //view.setBackgroundColor(Color.parseColor("#fbfbfb"));
+            //textView.setTextColor(Color.parseColor("#ff604f"));
+            textView.setTextColor(Color.parseColor("#ffffff"));
+            textView.setBackgroundResource(R.drawable.text_bg);
+        }else {
+            //view.setBackgroundColor(Color.parseColor("#ffffff"));
+            //view.setBackgroundResource(R.drawable.text_bg);
+            textView.setTextColor(Color.parseColor("#ffffff"));
+            textView.setBackgroundResource(R.drawable.text_bg);
 
-            final ProvinceItem item = provinceList.get(position);
-            textView.setText(item.getName()+"");
-            if (dropPosition == position){
-                view.setVisibility(View.GONE);
+            if(CLEAR_ISVISIBLE&&position>1){
+                textView.setDecorate(mTextView.Decorate.Close);
+            }else{
             }
-            if (selectItem.getId() == provinceList.get(position).getId()){
-                //view.setBackgroundColor(Color.parseColor("#fbfbfb"));
-                //textView.setTextColor(Color.parseColor("#ff604f"));
-                textView.setTextColor(Color.parseColor("#ffffff"));
-                textView.setBackgroundResource(R.drawable.text_bg);
-            }else {
-                //view.setBackgroundColor(Color.parseColor("#ffffff"));
-                //view.setBackgroundResource(R.drawable.text_bg);
-                textView.setTextColor(Color.parseColor("#ffffff"));
-                textView.setBackgroundResource(R.drawable.text_bg);
-
-                if(CLEAR_ISVISIBLE&&position>1){
-                    clear.setVisibility(View.VISIBLE);
-                    clear.setClickable(true);
-                    clear.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            listener.onClearClick(position);
-                        }
-                    });
-                }else{
-                    clear.setClickable(false);
-                }
-            }
-        }else if(TYPE == TYPE_2){
-            view = LayoutInflater.from(context).inflate(R.layout.item,parent,false);
-            final ProvinceItem item = provinceList.get(position);
-            TextView textView = view.findViewById(R.id.title);
-            textView.setTextColor(Color.parseColor("#7f7f7f"));
-            textView.setText("+"+item.getName());
         }
 
 

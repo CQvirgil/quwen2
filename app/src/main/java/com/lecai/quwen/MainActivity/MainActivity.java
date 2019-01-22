@@ -20,7 +20,7 @@ import android.widget.Toast;
 import com.lecai.quwen.AndroidRX.RxBus;
 import com.lecai.quwen.Bean.WXUserBean;
 import com.lecai.quwen.DragGridView.tools.Util;
-import com.lecai.quwen.MainActivity.Fragment.HomepageFragment;
+import com.lecai.quwen.MainActivity.Fragment.NewsFragment;
 import com.lecai.quwen.MainActivity.Fragment.MallFragment;
 import com.lecai.quwen.MainActivity.Fragment.MineFragment;
 import com.lecai.quwen.MainActivity.Fragment.TaskFragment;
@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
                 while(true){
-                    if(A_Currentfragment instanceof HomepageFragment||A_Currentfragment instanceof MallFragment){
+                    if(A_Currentfragment instanceof NewsFragment ||A_Currentfragment instanceof MallFragment){
                         time++;
                         try {
                             Thread.sleep(1000);
@@ -273,7 +273,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void initTab() {
         mfragments = new Fragment[5];
-        mfragments[0] = HomepageFragment.newInstance(this);
+        mfragments[0] = NewsFragment.newInstance(this);
         mfragments[1] = MineFragment.newInstance(this);
         mfragments[2] = TaskFragment.newInstance();
         mRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {

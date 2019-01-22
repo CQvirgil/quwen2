@@ -7,9 +7,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.view.ViewGroup;
 
-import com.yidian.newssdk.exportui.NewsListForViewPagerFragment;
-import com.yidian.newssdk.exportui.NewsListFragment;
-
 import java.util.List;
 
 public class ViewPagerAdapter extends FragmentPagerAdapter {
@@ -42,6 +39,6 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
     @Nullable
     @Override
     public CharSequence getPageTitle(int position) {
-        return HomepageFragment.tabTilte.get(position).getName();
+        return NewsFragment.tabTilte.get(position).getName();
     }
 }

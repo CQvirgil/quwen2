@@ -1,4 +1,4 @@
-package com.lecai.quwen.MyVIew;
+package com.lecai.quwen.MyView;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

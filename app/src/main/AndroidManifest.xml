@@ -34,7 +34,13 @@
             android:taskAffinity="net.sourceforge.simcpux"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity android:name=".SettingActivity.SettingActivity"></activity>
-        <activity android:name=".DragGridView.DragGridActivity"></activity>
+        <activity android:name=".DragGridView.DragGridActivity"
+            >
+            <intent-filter >
+                <action android:name="startDragGridActivity"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
