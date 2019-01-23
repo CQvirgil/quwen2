@@ -50,7 +50,9 @@ public class MyApplication extends Application {
                 .setDebugEnabled(true)
                 .build();
         Setting.getInstance();
-        instance = this;
+        if(instance == null){
+            instance = this;
+        }
     }
 
     @Override
