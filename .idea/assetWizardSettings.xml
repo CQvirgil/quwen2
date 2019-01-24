@@ -36,7 +36,7 @@
                                           <PersistentState>
                                             <option name="values">
                                               <map>
-                                                <entry key="color" value="7f7f7f" />
+                                                <entry key="color" value="555555" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -47,7 +47,7 @@
                                           <PersistentState>
                                             <option name="values">
                                               <map>
-                                                <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material_design_icons/content/ic_add_black_24dp.xml" />
+                                                <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material_design_icons/hardware/ic_keyboard_arrow_down_black_24dp.xml" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -58,7 +58,7 @@
                                   <option name="values">
                                     <map>
                                       <entry key="iconShape" value="NONE" />
-                                      <entry key="outputName" value="imgbtn_news_plus" />
+                                      <entry key="outputName" value="imgbtn_act_help_bottom" />
                                     </map>
                                   </option>
                                 </PersistentState>

@@ -19,7 +19,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".MainActivity.MainActivity" android:screenOrientation="portrait">
+        <activity
+            android:name=".MainActivity.MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -33,12 +35,27 @@
             android:launchMode="singleTask"
             android:taskAffinity="net.sourceforge.simcpux"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-        <activity android:name=".SettingActivity.SettingActivity"></activity>
-        <activity android:name=".DragGridView.DragGridActivity"
-            >
-            <intent-filter >
-                <action android:name="startDragGridActivity"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+        <activity android:name=".SettingActivity.SettingActivity" />
+        <activity android:name=".DragGridView.DragGridActivity">
+            <intent-filter>
+                <action android:name="startDragGridActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".MainActivity.Fragment.Mine.Help.HelpActivity">
+            <intent-filter>
+                <action android:name="startHelpActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".MainActivity.Fragment.Mine.Massage.MassageActivity">
+
+            <intent-filter>
+                <action android:name="startMassageActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
     </application>

@@ -56,7 +56,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:theme="@style/fgm_task_content_text"
-                        android:text="206个"
+                        android:text="0个"
                         />
 
                     <TextView
@@ -81,7 +81,7 @@
 
                 <com.lecai.quwen.MyView.mProgressBar
                     android:layout_width="250dp"
-                    android:layout_height="23dp" />
+                    android:layout_height="30dp" />
 
             </LinearLayout>
 
@@ -97,46 +97,107 @@
     </RelativeLayout>
 
     <LinearLayout
-        android:background="#fff"
-        android:layout_marginTop="16dp"
         android:orientation="vertical"
+        android:layout_marginTop="20dp"
+        android:background="#fff"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-
         <RelativeLayout
+            android:id="@+id/item_msg"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:gravity="center_vertical"
             android:layout_width="match_parent"
-            android:layout_height="44dp">
-            
+            android:layout_height="wrap_content">
+
             <ImageView
-                android:id="@+id/img_read"
+                android:id="@+id/fgm_Mine_icon_msg"
+                android:layout_width="25dp"
+                android:layout_height="24dp"
                 android:layout_centerVertical="true"
-                android:src="@drawable/img_task_use_icon"
-                android:layout_marginLeft="12dp"
-                android:layout_marginRight="15dp"
-                android:layout_width="15dp"
-                android:layout_height="19dp" />
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:src="@drawable/img_task_use_icon"/>
 
             <TextView
-                android:layout_toRightOf="@id/img_read"
+                android:id="@+id/text0"
+                android:layout_toRightOf="@id/fgm_Mine_icon_msg"
                 android:layout_centerVertical="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:theme="@style/fgm_task_item_text"
-                android:text="阅读资讯5分钟"
-                />
+                android:theme="@style/mine_text"
+                android:text="资讯阅读5分钟"/>
+
+            <ImageView
+                android:id="@+id/hint0"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/text0"
+                android:layout_marginLeft="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/img_task_hint_icon" />
 
             <Button
+                android:id="@+id/go0"
                 android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_width="60dp"
-                android:layout_height="22dp"
                 android:background="@drawable/task_btn_bg"
-                android:theme="@style/fgm_task_btn_text"
-                android:textColor="#ea3535"
-                android:text="去阅读"
+                android:layout_width="73dp"
+                android:layout_height="35dp"
                 android:layout_marginRight="12dp"
-                />
+                android:textColor="#ea3535"
+                android:text="去阅读"/>
+        </RelativeLayout>
 
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="41dp"
+            android:background="#d9d9d9"/>
+
+        <RelativeLayout
+            android:id="@+id/item_set"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/fgm_Mine_icon_setting"
+                android:layout_width="25dp"
+                android:layout_height="24dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:src="@drawable/img_task_position_icon"/>
+
+            <TextView
+                android:id="@+id/text2"
+                android:layout_toRightOf="@id/fgm_Mine_icon_setting"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:theme="@style/mine_text"
+                android:text="位置打卡"/>
+
+            <ImageView
+                android:id="@+id/hint2"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/text2"
+                android:layout_marginLeft="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/img_task_hint_icon" />
+
+            <Button
+                android:id="@+id/go2"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/task_btn_bg"
+                android:layout_width="73dp"
+                android:layout_height="35dp"
+                android:layout_marginRight="12dp"
+                android:textColor="#ea3535"
+                android:text="去打卡"/>
         </RelativeLayout>
 
         <View
@@ -146,49 +207,48 @@
             android:background="#d9d9d9"/>
 
         <RelativeLayout
+            android:id="@+id/item_help"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             android:layout_width="match_parent"
-            android:layout_height="44dp">
+            android:layout_height="wrap_content">
 
             <ImageView
-                android:id="@+id/img_task_position_icon"
+                android:id="@+id/fgm_Mine_icon_help"
+                android:layout_width="25dp"
+                android:layout_height="24dp"
                 android:layout_centerVertical="true"
-                android:src="@drawable/img_task_position_icon"
-                android:layout_marginLeft="12dp"
-                android:layout_marginRight="15dp"
-                android:layout_width="15dp"
-                android:layout_height="19dp" />
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:src="@drawable/img_task_assemble_icon"/>
 
             <TextView
-                android:id="@+id/text_task_position"
-                android:layout_toRightOf="@id/img_task_position_icon"
+                android:id="@+id/text3"
+                android:layout_toRightOf="@id/fgm_Mine_icon_help"
                 android:layout_centerVertical="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:theme="@style/fgm_task_item_text"
-                android:text="位置打卡"
-                />
-            
+                android:theme="@style/mine_text"
+                android:text="拼团获得奖励"/>
+
             <ImageView
-                android:layout_toRightOf="@id/text_task_position"
+                android:id="@+id/hint3"
                 android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/text3"
                 android:layout_marginLeft="10dp"
-                android:layout_width="13dp"
-                android:layout_height="13dp"
-                android:src="@drawable/img_task_hint_icon"
-                />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/img_task_hint_icon" />
 
             <Button
+                android:id="@+id/go3"
                 android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_width="60dp"
-                android:layout_height="22dp"
                 android:background="@drawable/task_btn_bg"
-                android:theme="@style/fgm_task_btn_text"
-                android:textColor="#ea3535"
-                android:text="去打卡"
+                android:layout_width="73dp"
+                android:layout_height="35dp"
                 android:layout_marginRight="12dp"
-                />
-
+                android:textColor="#ea3535"
+                android:text="去拼团"/>
         </RelativeLayout>
 
         <View
@@ -198,103 +258,49 @@
             android:background="#d9d9d9"/>
 
         <RelativeLayout
+            android:id="@+id/item_about"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             android:layout_width="match_parent"
-            android:layout_height="44dp">
+            android:layout_height="wrap_content">
 
             <ImageView
-                android:id="@+id/img_task_assemble_icon"
-                android:layout_centerVertical="true"
-                android:src="@drawable/img_task_assemble_icon"
-                android:layout_marginLeft="12dp"
-                android:layout_marginRight="15dp"
-                android:layout_width="15dp"
-                android:layout_height="19dp" />
-
-            <TextView
-                android:id="@+id/text_task_assemble_icon"
-                android:layout_toRightOf="@id/img_task_assemble_icon"
-                android:layout_centerVertical="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:theme="@style/fgm_task_item_text"
-                android:text="拼团获得奖励"
-                />
-
-            <ImageView
-                android:layout_toRightOf="@id/text_task_assemble_icon"
+                android:id="@+id/fgm_Mine_icon_updata"
+                android:layout_width="25dp"
+                android:layout_height="24dp"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
-                android:layout_width="13dp"
-                android:layout_height="13dp"
-                android:src="@drawable/img_task_hint_icon"
-                />
-
-            <Button
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_width="60dp"
-                android:layout_height="22dp"
-                android:background="@drawable/task_btn_bg"
-                android:textColor="#ea3535"
-                android:theme="@style/fgm_task_btn_text"
-                android:text="去拼团"
-                android:layout_marginRight="12dp"
-                />
-
-        </RelativeLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginLeft="41dp"
-            android:background="#d9d9d9"/>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="44dp">
-
-            <ImageView
-                android:id="@+id/img_task_disciple_icon"
-                android:layout_centerVertical="true"
-                android:src="@drawable/img_task_disciple_icon"
-                android:layout_marginLeft="12dp"
-                android:layout_marginRight="15dp"
-                android:layout_width="15dp"
-                android:layout_height="19dp" />
+                android:layout_marginRight="10dp"
+                android:src="@drawable/img_task_disciple_icon"/>
 
             <TextView
-                android:id="@+id/text_task_disciple_icon"
-                android:layout_toRightOf="@id/img_task_disciple_icon"
+                android:id="@+id/text4"
                 android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/fgm_Mine_icon_updata"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:theme="@style/fgm_task_item_text"
-                android:text="收徒弟"
-                />
+                android:theme="@style/mine_text"
+                android:text="收徒弟"/>
 
             <ImageView
-                android:layout_toRightOf="@id/text_task_disciple_icon"
+                android:id="@+id/hint4"
                 android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/text4"
                 android:layout_marginLeft="10dp"
-                android:layout_width="13dp"
-                android:layout_height="13dp"
-                android:src="@drawable/img_task_hint_icon"
-                />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/img_task_hint_icon" />
 
             <Button
+                android:id="@+id/go4"
                 android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_width="60dp"
-                android:layout_height="22dp"
                 android:background="@drawable/task_btn_bg"
-                android:theme="@style/fgm_task_btn_text"
-                android:textColor="#ea3535"
-                android:text="去收徒"
+                android:layout_width="73dp"
+                android:layout_height="35dp"
                 android:layout_marginRight="12dp"
-                />
-
+                android:textColor="#ea3535"
+                android:text="去收徒"/>
         </RelativeLayout>
-
 
     </LinearLayout>
 

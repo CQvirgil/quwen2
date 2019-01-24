@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:background="@drawable/dialog_update"
+        android:layout_width="256dp"
+        android:layout_height="146dp">
+
+        <LinearLayout
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="106dp">
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#333333"
+                android:textSize="17sp"
+                android:text="发现新版本：V1.2.0"
+                />
+
+        </LinearLayout>
+        
+
+
+        <RelativeLayout
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:background="@drawable/dialog_update_1"
+            android:layout_height="40dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:textColor="#fff"
+                android:text="去更新"
+                />
+
+            <!--<ImageView-->
+                <!--android:layout_width="7dp"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_alignParentRight="true"-->
+                <!--android:layout_marginRight="10dp"-->
+                <!--android:src="@drawable/imgbtn_act_help_right"-->
+                <!--/>-->
+            
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

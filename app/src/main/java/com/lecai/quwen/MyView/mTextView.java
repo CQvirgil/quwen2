@@ -47,6 +47,13 @@ public class mTextView extends TextView {
             case Close:
                 DrawableClose(canvas);
                 break;
+            case redpoint:
+                Paint paint = new Paint();
+                paint.setAntiAlias(true);
+                paint.setColor(Color.RED);
+                float CR = Util.dip2px(getContext(),2.5f);
+                canvas.drawCircle(getWidth()-CR,CR,CR,paint);
+                break;
         }
 
     }
@@ -73,6 +80,6 @@ public class mTextView extends TextView {
     }
 
     public enum Decorate{
-        None,Close,repoint
+        None,Close, redpoint
     }
 }
