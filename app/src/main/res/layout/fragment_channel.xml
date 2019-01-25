@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity.Fragment.ChannelFragment">
+    tools:context=".MainActivity.Fragment.Mine.Channle.ChannelFragment">
 
     <FrameLayout
         android:id="@+id/channel_root"

@@ -20,6 +20,7 @@ import android.widget.ImageButton;
 import com.lecai.quwen.Bean.Setting;
 import com.lecai.quwen.DragGridView.bean.ProvinceItem;
 import com.lecai.quwen.DragGridView.tools.JsonTOList;
+import com.lecai.quwen.MainActivity.Fragment.Mine.Channle.ChannelFragment;
 import com.lecai.quwen.R;
 
 import org.json.JSONException;

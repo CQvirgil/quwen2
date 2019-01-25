@@ -51,9 +51,22 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity.Fragment.Mine.Massage.MassageActivity">
-
             <intent-filter>
                 <action android:name="startMassageActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".MainActivity.Fragment.Task.Mentor.MentorActivity">
+            <intent-filter>
+                <action android:name="startMentorActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".MainActivity.Fragment.Task.Assemble.AssembleActivity">
+            <intent-filter>
+                <action android:name="startAssembleActivity" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>

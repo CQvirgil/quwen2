@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:background="@drawable/item_assemble_bg"
+        android:orientation="vertical"
+        android:layout_width="107dp"
+        android:layout_height="142dp">
+
+        <TextView
+            android:layout_width="45dp"
+            android:layout_height="16dp"
+            android:gravity="center"
+            android:background="@drawable/act_mentor_btn_bg2"
+            android:textSize="10sp"
+            android:textColor="#ea3535"
+            android:text="正在拼团"
+            />
+
+        <RelativeLayout
+            android:layout_gravity="center"
+            android:background="@drawable/item_assemble_headimg_bg"
+            android:layout_width="50dp"
+            android:layout_height="50dp">
+            
+            <com.lecai.quwen.MyView.CircleImage
+                android:id="@+id/item_act_assemble_headimg1"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:src="@drawable/default_headimg"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="1dp"/>
+
+
+            <RelativeLayout
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="6dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.lecai.quwen.MyView.CircleImage
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:src="@drawable/default_headimg"
+                    android:layout_marginLeft="2dp" />
+
+                <com.lecai.quwen.MyView.CircleImage
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="2dp"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:src="@drawable/default_headimg" />
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="8dp"
+            android:textSize="11sp"
+            android:textColor="#333"
+            android:text="团ID:1233456"/>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="6dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="13sp"
+                    android:textColor="#333"
+                    android:text="0"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#333"
+                    android:textSize="10sp"
+                    android:text="当前团员"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_alignParentRight="true"
+                android:orientation="vertical"
+                android:layout_marginTop="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="13sp"
+                    android:textColor="#333"
+                    android:text="0"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#333"
+                    android:textSize="10sp"
+                    android:text="已激活团员"/>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

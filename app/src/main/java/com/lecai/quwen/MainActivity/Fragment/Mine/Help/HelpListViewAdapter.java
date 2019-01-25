@@ -67,11 +67,11 @@ public class HelpListViewAdapter extends BaseAdapter {
                     LinearLayout.LayoutParams lp2 = new LinearLayout.LayoutParams(AWidth,0);
                     A.setLayoutParams(lp2);
                     isclick = false;
-                    imgbtn.setImageDrawable(context.getDrawable(R.drawable.imgbtn_act_help_right));
+                    imgbtn.setImageDrawable(context.getResources().getDrawable(R.drawable.imgbtn_act_help_right));
                 }else{
                     A.setLayoutParams(lp);
                     isclick = true;
-                    imgbtn.setImageDrawable(context.getDrawable(R.drawable.imgbtn_act_help_bottom));
+                    imgbtn.setImageDrawable(context.getResources().getDrawable(R.drawable.imgbtn_act_help_bottom));
                 }
             }
         });

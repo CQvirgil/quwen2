@@ -7,6 +7,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.view.ViewGroup;
 
+import com.lecai.quwen.MainActivity.Fragment.Mine.Channle.ChannelFragment;
+
 import java.util.List;
 
 public class ViewPagerAdapter extends FragmentPagerAdapter {

@@ -23,7 +23,7 @@ import com.lecai.quwen.DragGridView.tools.Util;
 import com.lecai.quwen.MainActivity.Fragment.NewsFragment;
 import com.lecai.quwen.MainActivity.Fragment.MallFragment;
 import com.lecai.quwen.MainActivity.Fragment.Mine.MineFragment;
-import com.lecai.quwen.MainActivity.Fragment.TaskFragment;
+import com.lecai.quwen.MainActivity.Fragment.Task.TaskFragment;
 import com.lecai.quwen.MyApplication;
 import com.lecai.quwen.NetWork.Client;
 import com.lecai.quwen.R;
