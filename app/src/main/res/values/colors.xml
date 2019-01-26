@@ -6,6 +6,7 @@
     <color name="colorAccent">#D81B60</color>
 
     <color name="background">#dfdfdf</color>
+    <color name="windowbackground">#ededed</color>
 
 
     <item name="subscribe_item_text_color_normal_night" type="color">@color/default_text_night</item>

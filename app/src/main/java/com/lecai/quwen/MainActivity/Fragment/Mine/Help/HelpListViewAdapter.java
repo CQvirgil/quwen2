@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.lecai.quwen.R;
@@ -48,6 +49,7 @@ public class HelpListViewAdapter extends BaseAdapter {
 
         View view = LayoutInflater.from(context).inflate(R.layout.item_act_help_listview,parent,false);
         TextView Q = view.findViewById(R.id.act_help_listview_item_title);
+        RelativeLayout item = view.findViewById(R.id.help_item);
         Q.setText(position+1+"."+list.get(position).getQuestion());
         final TextView A = view.findViewById(R.id.act_help_listview_item_text);
         final ViewGroup.LayoutParams lp = A.getLayoutParams();
@@ -59,7 +61,7 @@ public class HelpListViewAdapter extends BaseAdapter {
         }
         final ImageButton imgbtn = view.findViewById(R.id.act_help_listview_item_imgbtn);
 
-        imgbtn.setOnClickListener(new View.OnClickListener() {
+        item.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("NewApi")
             @Override
             public void onClick(View v) {

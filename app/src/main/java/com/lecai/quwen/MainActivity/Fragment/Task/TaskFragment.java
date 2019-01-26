@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import com.lecai.quwen.MainActivity.MainActivity;
 import com.lecai.quwen.R;
 
 
@@ -82,8 +83,11 @@ public class TaskFragment extends Fragment implements View.OnClickListener {
         Intent intent = new Intent();
         switch (v.getId()){
             case R.id.fgm_task_btn1:
+                MainActivity.handler.sendEmptyMessage(2100);
                 break;
             case R.id.fgm_task_btn2:
+                intent.setAction("startPunchTheClockActivity");
+                startActivity(intent);
                 break;
             case R.id.fgm_task_btn3:
                 intent.setAction("startAssembleActivity");

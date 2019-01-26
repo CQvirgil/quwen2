@@ -4,6 +4,8 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.IdRes;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -18,6 +20,7 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.lecai.quwen.AndroidRX.RxBus;
+import com.lecai.quwen.Bean.HandlerMsg;
 import com.lecai.quwen.Bean.WXUserBean;
 import com.lecai.quwen.DragGridView.tools.Util;
 import com.lecai.quwen.MainActivity.Fragment.NewsFragment;
@@ -52,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
     private String getWXuserURL;
     private Thread thread_timer;
     private int time;
+    public static Handler handler;
 
 
     @Override
@@ -69,12 +73,31 @@ public class MainActivity extends AppCompatActivity {
         Checkhaslogin();
         WXlogin();
         //initTimer();
+        initHandler();
+    }
+
+    @SuppressLint("HandlerLeak")
+    private void initHandler(){
+
+        handler = new Handler(){
+            @Override
+            public void handleMessage(Message msg) {
+                super.handleMessage(msg);
+
+                switch (msg.what){
+                    case 2100:
+                        rb_home.setChecked(true);
+                        break;
+                }
+
+            }
+        };
     }
 
     @Override
     protected void onRestart() {
         super.onRestart();
-        Log.i("asdasdasd","onRestart");
+        //Log.i("asdasdasd","onRestart");
     }
 
     //开辟线程用于计时
@@ -174,7 +197,7 @@ public class MainActivity extends AppCompatActivity {
                             String country = jsonObject.getString("country");
                             String privilege = jsonObject.getString("privilege");
                             String unionid = jsonObject.getString("unionid");
-                            getApp().setWXUser(new WXUserBean(WXusername, sex, province, city, headimgurl, country, privilege, unionid, 0));
+                            MyApplication.getInstance().setWXUser(new WXUserBean(WXusername, sex, province, city, headimgurl, country, privilege, unionid, 0));
                             if (MineFragment.handler != null) {
                                 MineFragment.handler.sendEmptyMessage(MineFragment.SET_fgm_Mine_LL_user_VISIABLE);
                             }
@@ -227,7 +250,7 @@ public class MainActivity extends AppCompatActivity {
                         JSONObject json = new JSONObject(value);
                         if (json.getInt("ret") == 0) {
                             jsonObject = json.getJSONObject("data");
-                            getApp().getWXUser().setTOKEN(jsonObject.getInt("token"));
+                            MyApplication.getInstance().getWXUser().setTOKEN(jsonObject.getInt("token"));
                         }
                         break;
                 }
@@ -343,7 +366,4 @@ public class MainActivity extends AppCompatActivity {
         return super.onKeyDown(keyCode, event);
     }
 
-    private MyApplication getApp() {
-        return (MyApplication) this.getApplicationContext();
-    }
 }

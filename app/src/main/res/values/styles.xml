@@ -11,6 +11,8 @@
         <item name="colorAccent">@color/colorAccent</item>
         <!--窗体无标题栏-->
         <item name="windowNoTitle">true</item>
+
+        <item name="android:windowBackground">@color/windowbackground</item>
         <!--无actionbar-->
         <item name="windowActionBar">false</item>
         <!--取消状态栏,也就是全屏显示-->

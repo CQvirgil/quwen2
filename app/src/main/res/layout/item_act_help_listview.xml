@@ -3,43 +3,51 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_marginBottom="18dp"
-        android:layout_marginRight="45dp"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:id="@+id/help_item"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/act_help_listview_item_title"
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_marginBottom="18dp"
+            android:layout_marginRight="45dp"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:theme="@style/act_help_item_title"
-            android:layout_marginTop="16dp"
-            android:layout_marginLeft="13dp"
-            android:text="1.权益份额是什么"
-            />
-        <TextView
-            android:id="@+id/act_help_listview_item_text"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="12dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:theme="@style/act_help_item_text"
-            android:text="权益份额是趣闻APP里的虚拟货币，可以兑换成现金提现。"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/act_help_listview_item_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:theme="@style/act_help_item_title"
+                android:layout_marginTop="16dp"
+                android:layout_marginLeft="13dp"
+                android:text="1.权益份额是什么"
+                />
+            <TextView
+                android:id="@+id/act_help_listview_item_text"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="12dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:theme="@style/act_help_item_text"
+                android:text="权益份额是趣闻APP里的虚拟货币，可以兑换成现金提现。"
+                />
+
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/act_help_listview_item_imgbtn"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@null"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="22dp"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/act_help_item_imgbtn_selector"
             />
 
-    </LinearLayout>
+    </RelativeLayout>
 
-    <ImageButton
-        android:id="@+id/act_help_listview_item_imgbtn"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:background="@null"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="22dp"
-        android:layout_alignParentRight="true"
-        android:src="@drawable/act_help_item_imgbtn_selector"
-        />
 
 </RelativeLayout>

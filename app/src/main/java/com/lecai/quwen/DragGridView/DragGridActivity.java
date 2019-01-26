@@ -79,6 +79,29 @@ public class DragGridActivity extends Activity implements DragAdapter.changeList
         channles.add(new ProvinceItem(5, "汽车"));
         channles.add(new ProvinceItem(6, "旅游"));
         channles.add(new ProvinceItem(7, "情感"));
+        channles.add(new ProvinceItem(8, "摄影"));
+        channles.add(new ProvinceItem(9, "国际"));
+        channles.add(new ProvinceItem(10, "恋爱"));
+        channles.add(new ProvinceItem(11, "婚姻"));
+        channles.add(new ProvinceItem(12, "健身"));
+        channles.add(new ProvinceItem(13, "化妆"));
+        channles.add(new ProvinceItem(14, "街拍"));
+        channles.add(new ProvinceItem(15, "时尚"));
+        channles.add(new ProvinceItem(16, "养生"));
+        channles.add(new ProvinceItem(17, "减肥"));
+        channles.add(new ProvinceItem(18, "中医"));
+        channles.add(new ProvinceItem(19, "环保"));
+        channles.add(new ProvinceItem(20, "农村"));
+        channles.add(new ProvinceItem(21, "NBA"));
+        channles.add(new ProvinceItem(22, "星座"));
+        channles.add(new ProvinceItem(23, "美食"));
+        channles.add(new ProvinceItem(24, "菜谱"));
+        channles.add(new ProvinceItem(25, "房产"));
+        channles.add(new ProvinceItem(26, "动漫"));
+        channles.add(new ProvinceItem(27, "教育"));
+        channles.add(new ProvinceItem(28, "健康"));
+        channles.add(new ProvinceItem(29, "电影"));
+        channles.add(new ProvinceItem(30, "游戏"));
         for(int i=0;i<items.size();i++){
             //Log.i("initChannles",items.get(i).getId()+" "+items.get(i).getName());
             for(int n=0;n<channles.size();n++){
