@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="71dp">
+
+    <com.lecai.quwen.MyView.CircleImage
+        android:id="@+id/item_act_binding_master_headimg"
+        android:layout_width="33dp"
+        android:layout_height="33dp"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="12dp"
+        android:src="@drawable/default_headimg"/>
+
+    <TextView
+        android:id="@+id/item_act_binding_master_name"
+        android:layout_toRightOf="@id/item_act_binding_master_headimg"
+        android:layout_centerVertical="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="11dp"
+        android:textSize="13sp"
+        android:text="name"/>
+
+    <Button
+        android:layout_width="75dp"
+        android:layout_height="28dp"
+        android:background="@drawable/act_mentor_btn_bg"
+        android:textColor="#fff"
+        android:textSize="13sp"
+        android:text="绑定"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="12dp"
+        />
+
+</RelativeLayout>

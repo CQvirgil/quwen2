@@ -79,8 +79,8 @@
                 android:gravity="center"
                 >
 
-                <com.lecai.quwen.MyView.mProgressBar
-                    android:layout_width="250dp"
+                <com.lecai.quwen.MyView.mProgressBar2
+                    android:layout_width="264dp"
                     android:layout_height="30dp" />
 
             </LinearLayout>
@@ -125,7 +125,7 @@
                 android:layout_centerVertical="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:theme="@style/mine_text"
+                android:theme="@style/task_item_text"
                 android:text="资讯阅读5分钟"/>
 
             <ImageView
@@ -177,7 +177,7 @@
                 android:layout_centerVertical="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:theme="@style/mine_text"
+                android:theme="@style/task_item_text"
                 android:text="位置打卡"/>
 
             <ImageView
@@ -228,7 +228,7 @@
                 android:layout_centerVertical="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:theme="@style/mine_text"
+                android:theme="@style/task_item_text"
                 android:text="拼团获得奖励"/>
 
             <ImageView
@@ -279,7 +279,7 @@
                 android:layout_toRightOf="@id/fgm_Mine_icon_updata"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:theme="@style/mine_text"
+                android:theme="@style/task_item_text"
                 android:text="收徒弟"/>
 
             <ImageView

@@ -142,7 +142,7 @@
                     android:textColor="#fff"
                     android:background="@drawable/act_assemble_icon"
                     android:layout_marginTop="10dp"
-                    android:text="去拼团"
+                    android:text="创建团"
                     />
 
                 <RelativeLayout
@@ -192,6 +192,8 @@
                         android:verticalSpacing="15dp"
                         android:numColumns="3"/>
 
+
+
                     <RelativeLayout
                         android:visibility="invisible"
                         android:layout_gravity="center"
@@ -217,6 +219,17 @@
                     </RelativeLayout>
 
                 </FrameLayout>
+
+                <Button
+                    android:layout_width="125dp"
+                    android:layout_height="33dp"
+                    android:textSize="16sp"
+                    android:textColor="#fff"
+                    android:background="@drawable/act_assemble_icon"
+                    android:layout_marginTop="10dp"
+                    android:text="加入团"
+                    android:layout_marginBottom="10dp"
+                    />
 
             </LinearLayout>
             

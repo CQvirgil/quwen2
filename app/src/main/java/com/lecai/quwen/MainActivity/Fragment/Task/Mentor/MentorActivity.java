@@ -1,5 +1,6 @@
 package com.lecai.quwen.MainActivity.Fragment.Task.Mentor;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -23,5 +24,11 @@ public class MentorActivity extends AppCompatActivity {
 
     public void Back(View view) {
         finish();
+    }
+
+    public void startBindingMasterActivity(View view) {
+        Intent intent = new Intent();
+        intent.setAction("startBindingMasterActivity");
+        startActivity(intent);
     }
 }

@@ -18,14 +18,14 @@
                 android:layout_height="wrap_content">
                 <LinearLayout
                     android:id="@+id/fgm_Mine_LL_user"
-                    android:visibility="invisible"
+                    android:visibility="visible"
                     android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
                     <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="235dp">
+                        android:layout_height="180dp">
 
                         <LinearLayout
                             android:orientation="vertical"
@@ -33,57 +33,70 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
                             <LinearLayout
+                                android:orientation="horizontal"
                                 android:gravity="center_horizontal"
-                                android:orientation="vertical"
                                 android:background="@drawable/img_mine_bg"
                                 android:layout_width="match_parent"
                                 android:layout_height="200dp">
 
-                                <com.lecai.quwen.MyView.CircleImage
-                                    android:id="@+id/user_icon"
-                                    android:layout_marginTop="25dp"
-                                    android:layout_width="71dp"
-                                    android:layout_height="71dp"
-                                    />
-
-                                <LinearLayout
-                                    android:orientation="vertical"
-                                    android:layout_gravity="center"
-                                    android:gravity="center"
+                                <RelativeLayout
+                                    android:layout_marginTop="23dp"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content">
-                                    <TextView
-                                        android:id="@+id/user_name"
-                                        android:padding="5dp"
+
+                                    <com.lecai.quwen.MyView.CircleImage
+                                        android:id="@+id/user_icon"
+
+                                        android:layout_width="71dp"
+                                        android:layout_height="71dp"
+                                        />
+
+                                    <LinearLayout
+                                        android:orientation="vertical"
+                                        android:gravity="center"
+                                        android:layout_toRightOf="@id/user_icon"
+                                        android:layout_centerVertical="true"
+                                        android:layout_marginLeft="10dp"
                                         android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:theme="@style/mine_user_name"
-                                        android:text="username"
-                                        android:textColor="#ffffff"/>
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:textColor="#ffffff"
-                                        android:theme="@style/mine_user_ID"
-                                        android:text="ID："/>
-                                </LinearLayout>
+                                        android:layout_height="wrap_content">
+
+                                        <TextView
+                                            android:id="@+id/user_name"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:padding="5dp"
+                                            android:text="username"
+                                            android:textColor="#ffffff"
+                                            android:theme="@style/mine_user_name" />
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:textColor="#ffffff"
+                                            android:theme="@style/mine_user_ID"
+                                            android:text="工号ID：502103"/>
+                                    </LinearLayout>
+
+                                </RelativeLayout>
+
 
                             </LinearLayout>
-                        </LinearLayout>
 
+
+                        </LinearLayout>
 
 
                         <LinearLayout
                             android:gravity="center"
+                            android:background="@drawable/fgm_mine_qyfe_bg"
                             android:layout_alignParentBottom="true"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginBottom="8dp"
+                            android:layout_width="351dp"
+                            android:layout_height="46dp">
 
                             <LinearLayout
                                 android:gravity="center"
                                 android:orientation="vertical"
-                                android:background="@drawable/mine_fillet_rectangle"
-                                android:layout_marginRight="5dp"
                                 android:layout_width="160dp"
                                 android:layout_height="70dp">
                                 <TextView
@@ -91,20 +104,26 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:theme="@style/mine_num"
-
+                                    android:textColor="#fff"
                                     android:text="0"/>
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:theme="@style/mine_text"
+                                    android:textColor="#fff"
+
                                     android:text="我的权益份额"/>
                             </LinearLayout>
+                            
+                            <View
+                                android:layout_width="1dp"
+                                android:layout_height="34dp"
+                                android:layout_marginTop="2dp"
+                                android:background="#2effffff"/>
 
                             <LinearLayout
                                 android:gravity="center"
                                 android:orientation="vertical"
-                                android:background="@drawable/mine_fillet_rectangle"
-                                android:layout_marginLeft="5dp"
                                 android:layout_width="160dp"
                                 android:layout_height="70dp">
                                 <TextView
@@ -112,16 +131,18 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:theme="@style/mine_num"
+                                    android:textColor="#fff"
                                     android:text="0"/>
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:theme="@style/mine_text"
-                                    android:text="我的零钱"/>
+                                    android:textColor="#fff"
+                                    android:text="我的权益份额排名"/>
                             </LinearLayout>
 
                         </LinearLayout>
-
+                        
                     </RelativeLayout>
                 </LinearLayout>
 
@@ -166,7 +187,7 @@
                         android:layout_centerVertical="true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:theme="@style/mine_text"
+                        android:theme="@style/mine_item_text"
                         android:text="@string/mine_item_0"/>
 
                     <TextView
@@ -216,7 +237,7 @@
                         android:layout_centerVertical="true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:theme="@style/mine_text"
+                        android:theme="@style/mine_item_text"
                         android:text="@string/mine_item_2"/>
 
                     <TextView
@@ -265,7 +286,7 @@
                         android:layout_centerVertical="true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:theme="@style/mine_text"
+                        android:theme="@style/mine_item_text"
                         android:text="@string/mine_item_3"/>
 
                     <TextView
@@ -314,7 +335,7 @@
                         android:layout_toRightOf="@id/fgm_Mine_icon_updata"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:theme="@style/mine_text"
+                        android:theme="@style/mine_item_text"
                         android:text="@string/mine_item_4"/>
 
                     <TextView

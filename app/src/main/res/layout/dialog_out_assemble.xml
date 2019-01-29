@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:background="@drawable/dialog_out_assemble_bg"
+        android:layout_width="256dp"
+        android:layout_height="146dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="17sp"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:textColor="#333"
+            android:text="确定退出此团吗？"/>
+        
+        <LinearLayout
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            
+            <Button
+                android:id="@+id/dialog_out_assemble_btn1"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:background="@drawable/btn_dialog_out_assemble_bg"
+                android:textSize="15sp"
+                android:textColor="#ea3535"
+                android:text="确定"/>
+            <Button
+                android:id="@+id/dialog_out_assemble_btn2"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:background="@drawable/btn_dialog_out_assemble_bg"
+                android:textSize="15sp"
+                android:textColor="#333"
+                android:text="取消"/>
+            
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>
