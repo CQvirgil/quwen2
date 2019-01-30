@@ -36,6 +36,16 @@
     </LinearLayout>
 
 
+    <ImageView
+        android:id="@+id/item_act_member_highest"
+        android:visibility="invisible"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:src="@drawable/img_highest"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        />
+
     <LinearLayout
         android:layout_alignParentRight="true"
         android:layout_marginRight="20dp"

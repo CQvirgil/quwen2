@@ -36,7 +36,7 @@ import java.net.URL;
 public class MineFragment extends Fragment implements View.OnClickListener {
     private Context context;
     private Button login;
-    private LinearLayout fgm_Mine_LL_user;
+    private LinearLayout fgm_Mine_LL_user,QYFE;
     private RelativeLayout Setting,Help,Msg,Update;
     public static Handler handler;
     public static final int SET_fgm_Mine_LL_user_VISIABLE = 1001,SET_USER_ICON = 1002;
@@ -156,6 +156,8 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         Help = view.findViewById(R.id.item_help);
         Msg = view.findViewById(R.id.item_msg);
         Update = view.findViewById(R.id.item_update);
+        QYFE = view.findViewById(R.id.fgm_Mine_ll_QYFE);
+        QYFE.setOnClickListener(this);
     }
 
     private void initSetting(){
@@ -201,6 +203,10 @@ public class MineFragment extends Fragment implements View.OnClickListener {
             case R.id.item_update:
                 UpDate dialog = new UpDate(getContext());
                 dialog.show();
+                break;
+            case R.id.fgm_Mine_ll_QYFE:
+                intent.setAction("startQYFEActivity");
+                startActivity(intent);
                 break;
         }
     }

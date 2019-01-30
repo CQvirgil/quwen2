@@ -113,6 +113,22 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <activity android:name=".MainActivity.Fragment.Mine.QYFE.QYFEActivity">
+            <intent-filter>
+                <action android:name="startQYFEActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".MainActivity.Fragment.Mine.QYFE.DirectionalGift.DirectionalGiftActivity">
+
+            <intent-filter>
+                <action android:name="startDirectionalGiftActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+        </activity>
     </application>
 
 </manifest>

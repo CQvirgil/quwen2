@@ -9,6 +9,7 @@
         android:layout_height="146dp">
 
         <TextView
+            android:id="@+id/dialog_outassemble_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="17sp"

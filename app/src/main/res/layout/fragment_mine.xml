@@ -18,7 +18,7 @@
                 android:layout_height="wrap_content">
                 <LinearLayout
                     android:id="@+id/fgm_Mine_LL_user"
-                    android:visibility="visible"
+                    android:visibility="invisible"
                     android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
@@ -86,6 +86,7 @@
 
 
                         <LinearLayout
+                            android:id="@+id/fgm_Mine_ll_QYFE"
                             android:gravity="center"
                             android:background="@drawable/fgm_mine_qyfe_bg"
                             android:layout_alignParentBottom="true"

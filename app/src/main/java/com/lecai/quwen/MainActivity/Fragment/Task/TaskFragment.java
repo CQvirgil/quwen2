@@ -49,7 +49,6 @@ public class TaskFragment extends Fragment implements View.OnClickListener {
     }
 
     private void initView(View view){
-        hit1 = view.findViewById(R.id.hint0);
         hit2 = view.findViewById(R.id.hint2);
         hit3 = view.findViewById(R.id.hint3);
         hit4 = view.findViewById(R.id.hint4);
@@ -61,7 +60,6 @@ public class TaskFragment extends Fragment implements View.OnClickListener {
         btn_2.setOnClickListener(this);
         btn_3.setOnClickListener(this);
         btn_4.setOnClickListener(this);
-        hit1.setOnClickListener(this);
         hit2.setOnClickListener(this);
         hit3.setOnClickListener(this);
         hit4.setOnClickListener(this);
