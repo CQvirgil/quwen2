@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/dialog_go_assemble_root"
+        android:background="#fff"
+        android:layout_width="match_parent"
+        android:layout_height="150dp">
+
+        <LinearLayout
+            android:id="@+id/icons"
+            android:weightSum="3"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="104dp">
+
+            <LinearLayout
+                android:gravity="center"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/icon_dialog_goassemble_wx"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="10sp"
+                    android:textColor="#888888"
+                    android:layout_marginTop="8dp"
+                    android:text="微信好友"/>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:gravity="center"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/icon_dialog_goassemble_pyq"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="10sp"
+                    android:textColor="#888888"
+                    android:layout_marginTop="8dp"
+                    android:text="朋友圈"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:gravity="center"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/icon_dialog_goassemble_wxq"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="10sp"
+                    android:textColor="#888888"
+                    android:layout_marginTop="8dp"
+                    android:text="微信群"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+        
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#ccc"
+            android:layout_marginRight="38dp"
+            android:layout_marginLeft="38dp"
+            android:layout_alignBottom="@id/icons"
+            android:layout_centerHorizontal="true"
+            />
+
+        <Button
+            android:id="@+id/btn_dialog_go_assemble_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:textSize="15sp"
+            android:textColor="#888"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="15dp"
+            android:text="取消"/>
+    </RelativeLayout>
+    
+</LinearLayout>

@@ -9,16 +9,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.lecai.quwen.DaiLog.GotoReadDiaLog;
 import com.lecai.quwen.MainActivity.MainActivity;
 import com.lecai.quwen.R;
 
 
 
 public class TaskFragment extends Fragment implements View.OnClickListener {
-    ImageView hit1,hit2,hit3,hit4;
-    Button btn_1,btn_2,btn_3,btn_4;
-
+    private ImageView hit1,hit2,hit3,hit4;
+    private Button btn_1,btn_2,btn_3,btn_4,btn_5,btn_6,btn_7;
+    private TextView text_Ranking;
 
 
     private static volatile TaskFragment instance;
@@ -56,13 +58,21 @@ public class TaskFragment extends Fragment implements View.OnClickListener {
         btn_2 = view.findViewById(R.id.fgm_task_btn2);
         btn_3 = view.findViewById(R.id.fgm_task_btn3);
         btn_4 = view.findViewById(R.id.fgm_task_btn4);
+        btn_5 = view.findViewById(R.id.fgm_task_btn5);
+        btn_6 = view.findViewById(R.id.fgm_task_btn6);
+        btn_7 = view.findViewById(R.id.fgm_task_btn7);
+        text_Ranking = view.findViewById(R.id.fgm_task_text_Ranking);
         btn_1.setOnClickListener(this);
         btn_2.setOnClickListener(this);
         btn_3.setOnClickListener(this);
         btn_4.setOnClickListener(this);
+        btn_5.setOnClickListener(this);
+        btn_6.setOnClickListener(this);
+        btn_7.setOnClickListener(this);
         hit2.setOnClickListener(this);
         hit3.setOnClickListener(this);
         hit4.setOnClickListener(this);
+        text_Ranking.setOnClickListener(this);
     }
 
 
@@ -81,7 +91,8 @@ public class TaskFragment extends Fragment implements View.OnClickListener {
         Intent intent = new Intent();
         switch (v.getId()){
             case R.id.fgm_task_btn1:
-                MainActivity.handler.sendEmptyMessage(2100);
+                GotoReadDiaLog diaLog = new GotoReadDiaLog(getContext());
+                diaLog.show();
                 break;
             case R.id.fgm_task_btn2:
                 intent.setAction("startPunchTheClockActivity");
@@ -89,10 +100,29 @@ public class TaskFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.fgm_task_btn3:
                 intent.setAction("startAssembleActivity");
+                intent.putExtra("show_dialog",0);
                 startActivity(intent);
                 break;
             case R.id.fgm_task_btn4:
                 intent.setAction("startMentorActivity");
+                startActivity(intent);
+                break;
+            case R.id.fgm_task_btn5:
+                intent.putExtra("show_dialog",1);
+                intent.setAction("startAssembleActivity");
+                startActivity(intent);
+                break;
+            case R.id.fgm_task_btn6:
+                intent.putExtra("show_dialog",2);
+                intent.setAction("startAssembleActivity");
+                startActivity(intent);
+                break;
+            case R.id.fgm_task_btn7:
+                intent.setAction("startBindingMasterActivity");
+                startActivity(intent);
+                break;
+            case R.id.fgm_task_text_Ranking:
+                intent.setAction("startRankingActivity");
                 startActivity(intent);
                 break;
                 default:

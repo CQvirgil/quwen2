@@ -121,9 +121,23 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity.Fragment.Mine.QYFE.DirectionalGift.DirectionalGiftActivity">
-
             <intent-filter>
                 <action android:name="startDirectionalGiftActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".MainActivity.Fragment.Mine.QYFE.Realize.RealizeActivity">
+            <intent-filter>
+                <action android:name="startRealizeActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".MainActivity.Fragment.Task.Ranking.RankingActivity">
+
+            <intent-filter>
+                <action android:name="startRankingActivity" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>

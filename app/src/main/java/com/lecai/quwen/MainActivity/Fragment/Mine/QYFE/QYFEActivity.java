@@ -24,4 +24,10 @@ public class QYFEActivity extends AppCompatActivity {
     public void GoBack(View view) {
         finish();
     }
+
+    public void startRealizeActivity(View view) {
+        Intent intent = new Intent();
+        intent.setAction("startRealizeActivity");
+        startActivity(intent);
+    }
 }

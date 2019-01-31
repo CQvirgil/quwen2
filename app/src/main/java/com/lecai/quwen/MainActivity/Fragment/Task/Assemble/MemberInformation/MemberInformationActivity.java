@@ -9,7 +9,7 @@ import android.view.Window;
 import android.widget.AbsListView;
 import android.widget.ListView;
 
-import com.lecai.quwen.DaiLog.GoAssembleDiaLog;
+import com.lecai.quwen.DaiLog.GotoAssembleDiaLog;
 import com.lecai.quwen.DaiLog.OutAssembleDiaLog;
 import com.lecai.quwen.R;
 
@@ -73,7 +73,7 @@ public class MemberInformationActivity extends Activity {
     }
 
     public void goAssemble(View view) {
-        GoAssembleDiaLog diaLog = new GoAssembleDiaLog(this);
+        GotoAssembleDiaLog diaLog = new GotoAssembleDiaLog(this);
         Window window = diaLog.getWindow();
         window.setGravity(Gravity.BOTTOM);
         window.setWindowAnimations(R.style.mydialogstyle);

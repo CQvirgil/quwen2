@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:gravity="center_horizontal"
+        android:background="@drawable/dialog_out_assemble_bg"
+        android:orientation="vertical"
+        android:layout_width="256dp"
+        android:layout_height="164dp">
+
+        <LinearLayout
+            android:layout_marginTop="35dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="#333333"
+                android:text="团ID"/>
+            
+            <EditText
+                android:layout_width="118dp"
+                android:layout_height="wrap_content"
+                android:textSize="13sp"
+                android:background="@drawable/act_directional_gift_editor_bg"
+                android:paddingLeft="6dp"
+                android:paddingTop="6dp"
+                android:paddingBottom="6dp"
+                android:layout_marginLeft="10dp"
+                android:hint="不长于8个字符"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#ea3535"
+            android:textSize="10sp"
+            android:text="*请重新输入"/>
+
+        <Button
+            android:layout_width="75dp"
+            android:layout_height="28dp"
+            android:textSize="13sp"
+            android:textColor="#fff"
+            android:background="@drawable/fgm_task_btn_bg_finish"
+            android:layout_marginTop="18dp"
+            android:layout_marginBottom="18dp"
+            android:text="创建"/>
+
+    </LinearLayout>
+    
+</LinearLayout>

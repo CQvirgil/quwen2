@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="90dp">
+
+    <GridLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:rowCount="1"
+        android:columnCount="3">
+
+        <TextView
+            android:layout_gravity="center"
+            android:id="@+id/item_act_ranking_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:layout_centerVertical="true"
+            android:textColor="#333333"
+            android:textStyle="bold"
+            android:layout_marginLeft="27dp"
+            android:text="1"/>
+
+        <com.lecai.quwen.MyView.CircleImage
+            android:layout_toRightOf="@id/item_act_ranking_num"
+            android:id="@+id/item_act_member_headimg"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/default_headimg"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"/>
+
+        <LinearLayout
+            android:layout_toRightOf="@id/item_act_member_headimg"
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            android:layout_marginLeft="8dp"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="#555555"
+                android:text="name"/>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:textColor="#555555"
+                android:text="ID:548611"/>
+        </LinearLayout>
+
+    </GridLayout>
+
+    <LinearLayout
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="28dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_marginLeft="8dp"
+        android:layout_centerVertical="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="#555555"
+            android:text="25个"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

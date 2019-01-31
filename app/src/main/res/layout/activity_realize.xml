@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity.Fragment.Mine.QYFE.Realize.RealizeActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="47dp">
+
+        <ImageButton
+            android:layout_width="30dp"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="12dp"
+            android:background="@null"
+            android:onClick="Back"
+            android:src="@mipmap/img_channle_goback" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="竞价变现"
+            android:theme="@style/act_help_head_text" />
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="75dp"
+                android:background="#fff">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginTop="15dp"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="我的权益份额"
+                        android:textColor="#333333"
+                        android:textSize="11sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="1506"
+                        android:textColor="#555"
+                        android:textSize="25sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="13dp"
+                    android:textSize="11sp"
+                    android:text="约等于1.5元"
+                    android:textColor="#888" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="#fff"
+                android:padding="12dp"
+                android:text="竞价变现是用户可以用权益份额兑换现金的地方。用户可以根据官方给出的参考价格衡量并出售自己的权益份额，同样的变现金额，出售的权益份额数量越多，越有可能交易成功哦！"
+                android:textSize="11sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="#fff"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="13dp"
+                    android:layout_marginTop="15dp"
+                    android:text="变现方式"
+                    android:textColor="#333333"
+                    android:textSize="11sp" />
+
+                <RadioGroup
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="15dp">
+
+                    <RadioButton
+                        android:paddingLeft="55dp"
+                        android:layout_width="165dp"
+                        android:layout_height="45dp"
+                        android:drawableLeft="@drawable/img_act_realize_radio_icon_wx"
+                        android:text="微信"
+                        android:background="@drawable/act_realize_radiobtn_selector"
+                        android:textColor="#555555"
+                        android:button="@null"
+                        android:drawablePadding="10dp"
+                        android:textSize="13dp" />
+
+                    <RadioButton
+                        android:paddingLeft="53dp"
+                        android:layout_width="165dp"
+                        android:layout_height="45dp"
+                        android:text="支付宝"
+                        android:layout_marginLeft="20dp"
+                        android:textColor="#555555"
+                        android:background="@drawable/act_realize_radiobtn_selector"
+                        android:drawableLeft="@drawable/img_act_realize_radio_icon_zfb"
+                        android:drawablePadding="10dp"
+                        android:button="@null"
+                        android:textSize="13dp" />
+
+                </RadioGroup>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:background="#fff"
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="13dp"
+                    android:layout_marginTop="15dp"
+                    android:text="变现金额"
+                    android:textColor="#333333"
+                    android:textSize="11sp" />
+
+                <com.lecai.quwen.MyView.GridRadioGroup
+                    android:orientation="vertical"
+                    android:columnCount="2"
+                    android:rowCount="3"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="19dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <RadioButton
+                        android:gravity="center"
+                        android:layout_width="165dp"
+                        android:layout_height="45dp"
+                        android:text="1元"
+                        android:background="@drawable/act_realize_radiobtn_selector"
+                        android:textColor="#555555"
+                        android:button="@null"
+                        android:textSize="13dp" />
+
+                    <RadioButton
+                        android:gravity="center"
+                        android:layout_width="165dp"
+                        android:layout_height="45dp"
+                        android:text="5元"
+                        android:background="@drawable/act_realize_radiobtn_selector"
+                        android:textColor="#555555"
+                        android:layout_marginTop="11dp"
+                        android:button="@null"
+                        android:textSize="13dp" />
+
+                    <RadioButton
+                        android:gravity="center"
+                        android:layout_width="165dp"
+                        android:layout_height="45dp"
+                        android:text="20元"
+                        android:background="@drawable/act_realize_radiobtn_selector"
+                        android:textColor="#555555"
+                        android:button="@null"
+                        android:layout_marginTop="11dp"
+                        android:textSize="13dp" />
+
+                    <RadioButton
+                        android:gravity="center"
+                        android:layout_width="165dp"
+                        android:layout_height="45dp"
+                        android:text="3元"
+                        android:background="@drawable/act_realize_radiobtn_selector"
+                        android:textColor="#555555"
+                        android:button="@null"
+                        android:layout_marginLeft="20dp"
+                        android:textSize="13dp" />
+
+                    <RadioButton
+                        android:gravity="center"
+                        android:layout_width="165dp"
+                        android:layout_height="45dp"
+                        android:text="10元"
+                        android:background="@drawable/act_realize_radiobtn_selector"
+                        android:textColor="#555555"
+                        android:button="@null"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="11dp"
+                        android:textSize="13dp" />
+
+                    <RadioButton
+                        android:gravity="center"
+                        android:layout_width="165dp"
+                        android:layout_height="45dp"
+                        android:text="50元"
+                        android:background="@drawable/act_realize_radiobtn_selector"
+                        android:textColor="#555555"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="11dp"
+                        android:button="@null"
+                        android:textSize="13dp" />
+
+
+                </com.lecai.quwen.MyView.GridRadioGroup>
+
+                <Button
+                    android:layout_gravity="center"
+                    android:layout_width="200dp"
+                    android:layout_height="39dp"
+                    android:layout_marginTop="50dp"
+                    android:layout_marginBottom="47dp"
+                    android:background="@drawable/act_realize_btn_bg"
+                    android:textColor="#fff"
+                    android:text="确定"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+</LinearLayout>

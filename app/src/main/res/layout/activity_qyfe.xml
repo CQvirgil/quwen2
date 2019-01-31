@@ -186,6 +186,7 @@
                 android:layout_height="35dp"
                 android:textSize="13sp"
                 android:textColor="#ea3535"
+                android:onClick="startRealizeActivity"
                 android:text="竞价变现"/>
 
             <TextView
