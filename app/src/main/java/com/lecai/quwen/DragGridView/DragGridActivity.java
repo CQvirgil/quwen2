@@ -222,7 +222,7 @@ public class DragGridActivity extends Activity implements DragAdapter.changeList
     }
 
 
-    public void Close(View view) {
+    public void Back(View view) {
         finish();
     }
 
