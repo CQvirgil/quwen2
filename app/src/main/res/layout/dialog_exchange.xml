@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:background="@drawable/dialog_out_assemble_bg"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:layout_width="256dp"
+        android:layout_height="146dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:textSize="14sp"
+            android:textColor="#333"
+            android:text="兑换数量"/>
+        
+        <EditText
+            android:id="@+id/dialog_exchange_edit_text"
+            android:layout_width="118dp"
+            android:layout_height="25dp"
+            android:padding="6dp"
+            android:textSize="11sp"
+            android:background="@drawable/act_directional_gift_editor_bg"
+            android:inputType="number"
+            android:hint="请输入兑换的数量"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="10sp"
+            android:textColor="#ea3535"
+            android:layout_marginRight="15dp"
+            android:text="*请输入>0的数值"/>
+        
+        <Button
+            android:id="@+id/dialog_exchange_btn"
+            android:layout_width="75dp"
+            android:layout_height="28dp"
+            android:textSize="13sp"
+            android:textColor="#fff"
+            android:background="@drawable/fgm_task_btn_bg_finish"
+            android:layout_marginTop="10dp"
+            android:text="申请"/>
+
+
+    </LinearLayout>
+    
+</LinearLayout>

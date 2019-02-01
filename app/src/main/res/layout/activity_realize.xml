@@ -27,6 +27,30 @@
             android:layout_centerVertical="true"
             android:text="竞价变现"
             android:theme="@style/act_help_head_text" />
+        
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:layout_marginRight="12dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="20dp"
+                android:src="@drawable/img_act_realize_record_icon"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:textSize="9sp"
+                android:textColor="#555"
+                android:text="记录"/>
+            
+        </LinearLayout>
 
     </RelativeLayout>
 
@@ -115,6 +139,7 @@
                     android:layout_marginBottom="15dp">
 
                     <RadioButton
+                        android:id="@+id/act_realize_radio_btn_wx"
                         android:paddingLeft="55dp"
                         android:layout_width="165dp"
                         android:layout_height="45dp"
@@ -127,6 +152,7 @@
                         android:textSize="13dp" />
 
                     <RadioButton
+                        android:id="@+id/act_realize_radio_btn_zfb"
                         android:paddingLeft="53dp"
                         android:layout_width="165dp"
                         android:layout_height="45dp"
@@ -160,6 +186,7 @@
                     android:textSize="11sp" />
 
                 <com.lecai.quwen.MyView.GridRadioGroup
+                    android:id="@+id/act_realize_radio_group"
                     android:orientation="vertical"
                     android:columnCount="2"
                     android:rowCount="3"
@@ -169,6 +196,7 @@
                     android:layout_height="wrap_content">
 
                     <RadioButton
+                        android:id="@+id/act_realize_radio_btn1"
                         android:gravity="center"
                         android:layout_width="165dp"
                         android:layout_height="45dp"
@@ -179,6 +207,7 @@
                         android:textSize="13dp" />
 
                     <RadioButton
+                        android:id="@+id/act_realize_radio_btn2"
                         android:gravity="center"
                         android:layout_width="165dp"
                         android:layout_height="45dp"
@@ -190,6 +219,7 @@
                         android:textSize="13dp" />
 
                     <RadioButton
+                        android:id="@+id/act_realize_radio_btn3"
                         android:gravity="center"
                         android:layout_width="165dp"
                         android:layout_height="45dp"
@@ -201,6 +231,7 @@
                         android:textSize="13dp" />
 
                     <RadioButton
+                        android:id="@+id/act_realize_radio_btn4"
                         android:gravity="center"
                         android:layout_width="165dp"
                         android:layout_height="45dp"
@@ -212,6 +243,7 @@
                         android:textSize="13dp" />
 
                     <RadioButton
+                        android:id="@+id/act_realize_radio_btn5"
                         android:gravity="center"
                         android:layout_width="165dp"
                         android:layout_height="45dp"
@@ -224,6 +256,7 @@
                         android:textSize="13dp" />
 
                     <RadioButton
+                        android:id="@+id/act_realize_radio_btn6"
                         android:gravity="center"
                         android:layout_width="165dp"
                         android:layout_height="45dp"
@@ -246,6 +279,7 @@
                     android:layout_marginBottom="47dp"
                     android:background="@drawable/act_realize_btn_bg"
                     android:textColor="#fff"
+                    android:onClick="OK"
                     android:text="确定"/>
 
             </LinearLayout>

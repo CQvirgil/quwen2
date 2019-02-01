@@ -107,6 +107,7 @@
                     android:textSize="14sp"
                     android:paddingTop="8dp"
                     android:paddingBottom="8dp"
+                    android:inputType="number"
                     android:hint="请输入赠送份额" />
 
             </LinearLayout>

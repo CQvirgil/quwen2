@@ -22,6 +22,7 @@
         android:text="name"/>
 
     <Button
+        android:id="@+id/item_act_binding_master_btn"
         android:layout_width="75dp"
         android:layout_height="28dp"
         android:background="@drawable/act_mentor_btn_bg"

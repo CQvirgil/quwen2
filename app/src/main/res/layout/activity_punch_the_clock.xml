@@ -27,6 +27,7 @@
             android:textSize="18sp"
             android:textColor="#fff"
             android:background="@drawable/act_punch_the_clock_btn_bg"
+            android:onClick="PunchTheClock"
             android:text="打卡"
             />
 

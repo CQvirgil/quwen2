@@ -21,6 +21,7 @@
             />
 
         <TextView
+            android:id="@+id/act_binding_master_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:theme="@style/act_help_head_text"

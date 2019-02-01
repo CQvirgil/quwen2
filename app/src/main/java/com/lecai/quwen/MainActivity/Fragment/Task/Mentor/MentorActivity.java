@@ -42,4 +42,11 @@ public class MentorActivity extends AppCompatActivity {
         window.setWindowAnimations(R.style.mydialogstyle);
         diaLog.show();
     }
+
+    public void addApprentice(View view) {
+        Intent intent = new Intent();
+        intent.setAction("startBindingMasterActivity");
+        intent.putExtra("addApprentice",1);
+        startActivity(intent);
+    }
 }

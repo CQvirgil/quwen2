@@ -2,6 +2,7 @@ package com.lecai.quwen.MainActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.Handler;
@@ -311,8 +312,15 @@ public class MainActivity extends AppCompatActivity {
                         loadFragment(0);
                         break;
                     case R.id.radio_button_mine:
-                        Currentfragment = mfragments[1];
-                        loadFragment(1);
+                        if(read.getBoolean("haslogin",false)){
+                            Currentfragment = mfragments[1];
+                            loadFragment(1);
+                        }else{
+                            Intent intent = new Intent();
+                            intent.setAction("startLogInActivity");
+                            rb_home.setChecked(true);
+                            startActivity(intent);
+                        }
                         break;
                     case R.id.radio_button_task:
                         Currentfragment = mfragments[2];

@@ -21,9 +21,9 @@
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/logo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
@@ -135,9 +135,16 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity.Fragment.Task.Ranking.RankingActivity">
-
             <intent-filter>
                 <action android:name="startRankingActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".MainActivity.Fragment.Mine.LogInActivity">
+
+            <intent-filter>
+                <action android:name="startLogInActivity" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>

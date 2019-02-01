@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity.Fragment.Mine.LogInActivity">
+
+    <ImageButton
+        android:layout_width="30dp"
+        android:layout_height="24dp"
+        android:src="@mipmap/img_channle_goback"
+        android:background="@null"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="17dp"
+        android:onClick="Back"
+        />
+
+
+    <LinearLayout
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/logo"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="31dp"
+            android:textSize="13sp"
+            android:textColor="#555555"
+            android:text="趣闻APP"/>
+        
+        <Button
+            android:layout_width="225dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="80dp"
+            android:textColor="#fff"
+            android:textSize="16sp"
+            android:background="@drawable/act_login_btn_wx"
+            android:onClick="LoginWX"
+            android:text="微信登陆"/>
+
+        <Button
+            android:layout_width="225dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:textColor="#555"
+            android:textSize="16sp"
+            android:background="@drawable/act_login_sj"
+            android:text="手机登陆"/>
+
+
+    </LinearLayout>
+
+</RelativeLayout>

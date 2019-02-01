@@ -7,6 +7,8 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Toast;
 
 import com.baidu.location.BDAbstractLocationListener;
 import com.baidu.location.BDLocation;
@@ -26,6 +28,7 @@ public class PunchTheClockActivity extends AppCompatActivity {
     public LocationClient mLocationClient;
     public MyLocationListener myLocationListener= new MyLocationListener();
     private boolean isFirstLocate = true;
+    private double latitude = 0,longitude = 0;
 
 
     @Override
@@ -169,6 +172,12 @@ public class PunchTheClockActivity extends AppCompatActivity {
         mBaiduMap.setMyLocationEnabled(false);
     }
 
+    public void PunchTheClock(View view) {
+        if(longitude != 0 && latitude != 0){
+            Toast.makeText(this, "经度："+longitude+" 纬度："+latitude, Toast.LENGTH_SHORT).show();
+        }
+    }
+
     public class MyLocationListener extends BDAbstractLocationListener {
         @Override
         public void onReceiveLocation(BDLocation bdLocation) {
@@ -176,8 +185,8 @@ public class PunchTheClockActivity extends AppCompatActivity {
             //以下只列举部分获取经纬度相关（常用）的结果信息
             //更多结果信息获取说明，请参照类参考中BDLocation类中的说明
 
-            double latitude = bdLocation.getLatitude();    //获取纬度信息
-            double longitude = bdLocation.getLongitude();    //获取经度信息
+            latitude = bdLocation.getLatitude();    //获取纬度信息
+            longitude = bdLocation.getLongitude();    //获取经度信息
             float radius = bdLocation.getRadius();    //获取定位精度，默认值为0.0f
 
             String coorType = bdLocation.getCoorType();

@@ -63,7 +63,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         WXUtil.getInstance().regToWx(getContext(), MyApplication.getWxAppId());
-    }
+}
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
