@@ -12,6 +12,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.lecai.quwen.DaiLog.GotoReadDiaLog;
+import com.lecai.quwen.MainActivity.Fragment.Task.Assemble.AssembleActivity;
+import com.lecai.quwen.MainActivity.Fragment.Task.Mentor.MentorActivity;
 import com.lecai.quwen.MainActivity.MainActivity;
 import com.lecai.quwen.R;
 
@@ -99,22 +101,22 @@ public class TaskFragment extends Fragment implements View.OnClickListener {
                 startActivity(intent);
                 break;
             case R.id.fgm_task_btn3:
-                intent.setAction("startAssembleActivity");
+                intent.setClass(getContext(),AssembleActivity.class);
                 intent.putExtra("show_dialog",0);
                 startActivity(intent);
                 break;
             case R.id.fgm_task_btn4:
-                intent.setAction("startMentorActivity");
+                intent.setClass(getContext(),MentorActivity.class);
                 startActivity(intent);
                 break;
             case R.id.fgm_task_btn5:
                 intent.putExtra("show_dialog",1);
-                intent.setAction("startAssembleActivity");
+                intent.setClass(getContext(),AssembleActivity.class);
                 startActivity(intent);
                 break;
             case R.id.fgm_task_btn6:
                 intent.putExtra("show_dialog",2);
-                intent.setAction("startAssembleActivity");
+                intent.setClass(getContext(),AssembleActivity.class);
                 startActivity(intent);
                 break;
             case R.id.fgm_task_btn7:
@@ -122,7 +124,7 @@ public class TaskFragment extends Fragment implements View.OnClickListener {
                 startActivity(intent);
                 break;
             case R.id.fgm_task_text_Ranking:
-                intent.setAction("startRankingActivity");
+                intent.setClass(getContext(),MentorActivity.class);
                 startActivity(intent);
                 break;
                 default:

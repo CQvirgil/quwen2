@@ -80,16 +80,34 @@
         </activity>
         <activity android:name=".MainActivity.Fragment.Task.Mentor.MentorActivity">
             <intent-filter>
-                <action android:name="startMentorActivity" />
+                <data
+                    android:host="task"
+                    android:path="/Mentor"
+                    android:port="8888"
+                    android:scheme="quwen" />
 
+                <action android:name="startMentorActivity" />
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.BROWSABLE" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity.Fragment.Task.Assemble.AssembleActivity">
             <intent-filter>
+                <data
+                    android:host="task"
+                    android:path="/assemble"
+                    android:port="8888"
+                    android:scheme="quwen" />
+
                 <action android:name="startAssembleActivity" />
 
                 <category android:name="android.intent.category.DEFAULT" />
+
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.BROWSABLE" />
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity.Fragment.Task.PunchTheClock.PunchTheClockActivity">
@@ -142,9 +160,23 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity.Fragment.Mine.LogInActivity">
-
             <intent-filter>
                 <action android:name="startLogInActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".MainActivity.Fragment.Mine.QYFE.Realize.Record.RecordActivity">
+            <intent-filter>
+                <action android:name="startRecordActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".MainActivity.Fragment.Mine.Massage.MessageDetail.MessageDetailActivity">
+
+            <intent-filter>
+                <action android:name="startMessageDetailActivity" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>

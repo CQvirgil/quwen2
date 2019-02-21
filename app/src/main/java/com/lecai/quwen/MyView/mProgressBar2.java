@@ -33,12 +33,6 @@ public class mProgressBar2 extends View {
     private Paint linePaint;
     private Paint textPaint;
 
-    private float Arc_left;
-    private float Arc_right;
-    private float Arc_top;
-    private float Arc_bottom;
-    private float Arc_size;
-
     private float Circle_radius;
 
     private PorterDuffXfermode xfermode;

@@ -27,7 +27,7 @@
             android:theme="@style/act_help_head_text"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:text="师徒列表"
+            android:text="拼团"
             />
     </RelativeLayout>
 

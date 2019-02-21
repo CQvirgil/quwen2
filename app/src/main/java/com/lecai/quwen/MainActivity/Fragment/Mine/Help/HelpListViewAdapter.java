@@ -61,6 +61,23 @@ public class HelpListViewAdapter extends BaseAdapter {
         }
         final ImageButton imgbtn = view.findViewById(R.id.act_help_listview_item_imgbtn);
 
+        imgbtn.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("NewApi")
+            @Override
+            public void onClick(View v) {
+                if(isclick){
+                    LinearLayout.LayoutParams lp2 = new LinearLayout.LayoutParams(AWidth,0);
+                    A.setLayoutParams(lp2);
+                    isclick = false;
+                    imgbtn.setImageDrawable(context.getResources().getDrawable(R.drawable.imgbtn_act_help_right));
+                }else{
+                    A.setLayoutParams(lp);
+                    isclick = true;
+                    imgbtn.setImageDrawable(context.getResources().getDrawable(R.drawable.imgbtn_act_help_bottom));
+                }
+            }
+        });
+
         item.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("NewApi")
             @Override

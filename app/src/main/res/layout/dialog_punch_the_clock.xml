@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:background="@drawable/dialog_out_assemble_bg"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_width="251dp"
+        android:layout_height="144dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="17sp"
+            android:textColor="#333333"
+            android:text="打卡成功！"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#ea3535"
+            android:textSize="12sp"
+            android:layout_marginTop="10dp"
+            android:text="进入20分钟阅读加成状态"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:textColor="#333333"
+            android:layout_marginTop="8dp"
+            android:text="再打卡1次完成今日打卡任务"/>
+
+    </LinearLayout>
+</LinearLayout>

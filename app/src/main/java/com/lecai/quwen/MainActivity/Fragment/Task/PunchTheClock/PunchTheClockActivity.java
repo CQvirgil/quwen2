@@ -20,6 +20,7 @@ import com.baidu.mapapi.map.MapStatusUpdateFactory;
 import com.baidu.mapapi.map.MapView;
 import com.baidu.mapapi.map.MyLocationData;
 import com.baidu.mapapi.model.LatLng;
+import com.lecai.quwen.DaiLog.PunchTheClockDiaLog;
 import com.lecai.quwen.R;
 
 public class PunchTheClockActivity extends AppCompatActivity {
@@ -176,6 +177,8 @@ public class PunchTheClockActivity extends AppCompatActivity {
         if(longitude != 0 && latitude != 0){
             Toast.makeText(this, "经度："+longitude+" 纬度："+latitude, Toast.LENGTH_SHORT).show();
         }
+        PunchTheClockDiaLog diaLog = new PunchTheClockDiaLog(this);
+        diaLog.show();
     }
 
     public class MyLocationListener extends BDAbstractLocationListener {

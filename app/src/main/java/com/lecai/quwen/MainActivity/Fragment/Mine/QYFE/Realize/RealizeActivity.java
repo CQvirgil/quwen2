@@ -1,5 +1,6 @@
 package com.lecai.quwen.MainActivity.Fragment.Mine.QYFE.Realize;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MotionEvent;
@@ -39,5 +40,11 @@ public class RealizeActivity extends AppCompatActivity {
 
     public void OK(View view) {
         exchangeDiaLog.show();
+    }
+
+    public void startRecord(View view) {
+        Intent intent = new Intent();
+        intent.setAction("startRecordActivity");
+        startActivity(intent);
     }
 }

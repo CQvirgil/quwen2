@@ -11,7 +11,7 @@
         android:layout_height="164dp">
 
         <LinearLayout
-            android:layout_marginTop="35dp"
+            android:layout_marginTop="40dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
@@ -31,6 +31,8 @@
                 android:paddingTop="6dp"
                 android:paddingBottom="6dp"
                 android:layout_marginLeft="10dp"
+                android:maxLength="8"
+                android:textColor="#666666"
                 android:hint="不长于8个字符"/>
 
         </LinearLayout>
@@ -40,7 +42,8 @@
             android:layout_height="wrap_content"
             android:textColor="#ea3535"
             android:textSize="10sp"
-            android:text="*请重新输入"/>
+            android:text="*请重新输入"
+            android:layout_marginRight="12dp"/>
 
         <Button
             android:layout_width="75dp"

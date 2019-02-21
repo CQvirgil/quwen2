@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity.Fragment.Mine.Massage.MessageDetail.MessageDetailActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="47dp">
+
+        <ImageButton
+            android:layout_width="30dp"
+            android:layout_height="match_parent"
+            android:src="@mipmap/img_channle_goback"
+            android:layout_centerVertical="true"
+            android:background="@null"
+            android:layout_marginLeft="12dp"
+            android:onClick="Back"
+            />
+
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/act_message_detail_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="来赚取你的权益份额！"
+            android:textSize="17sp"
+            android:textColor="#333333"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="19dp"
+            android:layout_marginBottom="15dp"
+            />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:background="#cccccc"/>
+
+
+        <TextView
+            android:id="@+id/act_message_detail_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="今天你领取了吗？为你准备了多个权益份额：阅读资讯，每阅读5分钟可以获得5个权益份额，边阅读边赚取权益份额，还等什么呢？快去阅读吧！"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginTop="25dp"
+            android:textSize="14sp"
+            android:textColor="#666666"/>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_gravity="right"
+            android:gravity="center"
+            android:layout_marginTop="65dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/act_message_detail_username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="#666666"
+                android:text="趣闻APP"/>
+
+            <TextView
+                android:id="@+id/act_message_detail_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="#666666"
+                android:text="2019-01-17  09:41"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
