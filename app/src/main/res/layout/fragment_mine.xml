@@ -69,6 +69,7 @@
                                             android:textColor="#ffffff"
                                             android:theme="@style/mine_user_name" />
                                         <TextView
+                                            android:id="@+id/fgm_mine_text_useru_id"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:textColor="#ffffff"

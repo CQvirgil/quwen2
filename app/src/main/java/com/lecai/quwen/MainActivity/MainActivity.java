@@ -21,7 +21,8 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.lecai.quwen.AndroidRX.RxBus;
-import com.lecai.quwen.Bean.HandlerMsg;
+import com.lecai.quwen.AndroidRX.Rxid;
+import com.lecai.quwen.Bean.User;
 import com.lecai.quwen.Bean.WXUserBean;
 import com.lecai.quwen.DragGridView.tools.Util;
 import com.lecai.quwen.MainActivity.Fragment.NewsFragment;
@@ -32,7 +33,10 @@ import com.lecai.quwen.MyApplication;
 import com.lecai.quwen.NetWork.Client;
 import com.lecai.quwen.R;
 
+import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.Map;
 
 import io.reactivex.functions.Consumer;
 
@@ -71,10 +75,70 @@ public class MainActivity extends AppCompatActivity {
         initTab();
         editor = this.getSharedPreferences("Setting", Context.MODE_PRIVATE).edit();
         read = this.getSharedPreferences("Setting", Context.MODE_PRIVATE);
-        Checkhaslogin();
-        WXlogin();
+        //Checkhaslogin();
+        //WXlogin();
         //initTimer();
         initHandler();
+        try {
+            isLogin();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        login();
+    }
+
+    private void isLogin() throws JSONException {
+        if(read.getBoolean("haslogin",false)){
+            User user = new User(read.getString("u_unionid",null),read.getString("token",null));
+            MyApplication.getInstance().setUser(user);
+            getUser();
+        }
+    }
+
+    private void login(){
+        RxBus.getInstance().subscribe(String.class, new Consumer() {
+            @Override
+            public void accept(Object o) throws Exception {
+                String object = (String) o;
+                Log.i("WXEntryActivity_TAG", object);
+                String rxid = object.substring(0,5);
+                String data = object.substring(5);
+                if(rxid.equals(Rxid.GET_UUID)){
+                    if(MyApplication.getInstance().getUser()==null){
+                        JSONObject json = new JSONObject(data);
+                        User user = new User(json.getString("u_unionid"),json.getString("token"));
+                        MyApplication.getInstance().setUser(user);
+                    }
+                    if(MyApplication.getInstance().getUser()!=null){
+                        getUser();
+                    }
+                }else if(rxid.equals(Rxid.GET_USER)){
+
+                    JSONObject json_user = new JSONObject(data);
+                    if(json_user.getInt("return_code") == 1){
+                        JSONObject json_user_data = json_user.getJSONObject("data");
+                        if(MyApplication.getInstance().getUser()!=null){
+                            MyApplication.getInstance().getUser().setUid(json_user_data.getString("uid"));
+                            MyApplication.getInstance().getUser().setName(json_user_data.getString("name"));
+                            MyApplication.getInstance().getUser().setGold(json_user_data.getInt("gold"));
+                            MyApplication.getInstance().getUser().setHead_img_url(json_user_data.getString("headimg"));
+                            editor.putBoolean("haslogin",true);
+                            editor.putString("u_unionid",MyApplication.getInstance().getUser().getU_unionid());
+                            editor.putString("token",MyApplication.getInstance().getUser().getToken());
+                            editor.commit();
+
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    private void getUser() throws JSONException {
+        String url = "http://www.lecaigogo.com:4999/api/v1/user/user_info";
+        JSONObject uuid = new JSONObject();
+        uuid.put("u_unionid",MyApplication.getInstance().getUser().getU_unionid());
+        Client.getInstance().PostServer(url,uuid, Rxid.GET_USER);
     }
 
     @SuppressLint("HandlerLeak")

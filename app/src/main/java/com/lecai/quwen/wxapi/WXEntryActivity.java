@@ -4,14 +4,16 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-
-import com.lecai.quwen.AndroidRX.RxBus;
+import com.lecai.quwen.AndroidRX.Rxid;
 import com.lecai.quwen.MyApplication;
 import com.lecai.quwen.NetWork.Client;
 import com.tencent.mm.opensdk.modelbase.BaseReq;
 import com.tencent.mm.opensdk.modelbase.BaseResp;
 import com.tencent.mm.opensdk.modelmsg.SendAuth;
 import com.tencent.mm.opensdk.openapi.IWXAPIEventHandler;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
     private Bundle bundle;
@@ -49,8 +51,17 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
                     SendAuth.Resp newResp = (SendAuth.Resp) baseResp;
                     //获取微信传回的code
                     String code = newResp.code;
-                    RxBus.getInstance().send("WXcode:_"+code);
+                    //RxBus.getInstance().send("WXcode:_"+code);
+                    String url = "http://www.lecaigogo.com:4999/api/v1/user/wxlogin";
+                    JSONObject jsonObject = new JSONObject();
+                    try {
+                        jsonObject.put("code",code);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    Client.getInstance().PostServer(url,jsonObject,Rxid.GET_UUID);
                     Log.i(TAG,"onResp code = "+code);
+                    Log.i(TAG,"onResp code = "+jsonObject.toString());
                 }
                 break;
             case BaseResp.ErrCode.ERR_USER_CANCEL:

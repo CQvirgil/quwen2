@@ -12,6 +12,7 @@ import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,16 +21,32 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.lecai.quwen.AndroidRX.RxBus;
+import com.lecai.quwen.AndroidRX.Rxid;
 import com.lecai.quwen.DaiLog.UpDate;
 import com.lecai.quwen.DragGridView.DragGridActivity;
 import com.lecai.quwen.MyApplication;
 import com.lecai.quwen.MyView.CircleImage;
+import com.lecai.quwen.NetWork.Client;
 import com.lecai.quwen.R;
 import com.lecai.quwen.wxapi.WXUtil;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+
+import io.reactivex.functions.Consumer;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 
 @SuppressLint("ValidFragment")
@@ -41,7 +58,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
     public static Handler handler;
     public static final int SET_fgm_Mine_LL_user_VISIABLE = 1001,SET_USER_ICON = 1002;
     private static MineFragment fragment;
-    private TextView user_name;
+    private TextView user_name,user_u_id,user_gold;
     private CircleImage user_icon;
     private Bitmap bitmap;
     private SharedPreferences read;
@@ -76,14 +93,12 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         initSetting();
         initHelp();
         initMsg();
+        initHandler();
         initUpDate();
-
-        if(handler == null){
-            initHandler();
-        }
         read = getContext().getSharedPreferences("Setting", Context.MODE_PRIVATE);
-        if(read.getBoolean("haslogin",false)&&MyApplication.getInstance().getWXUser()!=null){
-            handler.sendEmptyMessage(SET_fgm_Mine_LL_user_VISIABLE);
+        if(MyApplication.getInstance().getUser()!=null){
+            handler.sendEmptyMessage(1003);
+            handler.sendEmptyMessage(1001);
         }
         return view;
     }
@@ -100,15 +115,11 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                 super.handleMessage(msg);
                 switch (msg.what) {
                     case 1001:
-                        login.setVisibility(View.INVISIBLE);
-                        fgm_Mine_LL_user.setVisibility(View.VISIBLE);
-                        user_name.setText(MyApplication.getInstance().getWXUser().getNickname());
-
                         Thread getHeadImage = new Thread(new Runnable() {
                             @Override
                             public void run() {
                                 if(MyApplication.getInstance()!=null){
-                                    bitmap = getURLimage(MyApplication.getInstance().getWXUser().getHeadimgurl());
+                                    bitmap = getURLimage(MyApplication.getInstance().getUser().getHead_img_url());
                                     handler.sendEmptyMessage(1002);
                                 }
                             }
@@ -116,7 +127,18 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                         getHeadImage.start();
                         break;
                     case 1002:
-                        user_icon.setImageBitmap(bitmap);
+                        if(bitmap!=null){
+                            user_icon.setImageBitmap(bitmap);
+                        }
+                        break;
+                    case 1003:
+                        if(MyApplication.getInstance().getUser()!=null){
+                            login.setVisibility(View.INVISIBLE);
+                            fgm_Mine_LL_user.setVisibility(View.VISIBLE);
+                            user_name.setText(MyApplication.getInstance().getUser().getName());
+                            user_u_id.setText("工号id："+MyApplication.getInstance().getUser().getUid());
+                            user_gold.setText((int) MyApplication.getInstance().getUser().getGold()+"");
+                        }
                         break;
                 }
             }
@@ -146,6 +168,12 @@ public class MineFragment extends Fragment implements View.OnClickListener {
     private void setLoginDiaLog() {
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        //handler.sendEmptyMessage(1003);
+    }
+
     @SuppressLint("HandlerLeak")
     private void initView(View view) {
         login = view.findViewById(R.id.fgm_Mine_btn_login);
@@ -157,6 +185,8 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         Msg = view.findViewById(R.id.item_msg);
         Update = view.findViewById(R.id.item_update);
         QYFE = view.findViewById(R.id.fgm_Mine_ll_QYFE);
+        user_u_id = view.findViewById(R.id.fgm_mine_text_useru_id);
+        user_gold = view.findViewById(R.id.fgm_Mine_text_usertoken2);
         QYFE.setOnClickListener(this);
     }
 

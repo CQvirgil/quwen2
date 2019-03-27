@@ -1,8 +1,14 @@
 package com.lecai.quwen.NetWork;
 
+import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.lecai.quwen.AndroidRX.RxBus;
+import com.lecai.quwen.AndroidRX.Rxid;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -11,8 +17,10 @@ import java.util.Map;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.FormBody;
+import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class Client {
@@ -37,14 +45,27 @@ public class Client {
         return mInstance;
     }
 
-    public void PostServer(String url,Callback callback){
+    public void PostServer(String url, JSONObject jsonObject, final String Rxid){
         OkHttpClient okhttpClient = new OkHttpClient();
-        FormBody.Builder formbodyBuiler = new FormBody.Builder();
-        String str = "okhttpdemo";
-        formbodyBuiler.add("demo",str);
-        Request request = new Request.Builder().url(url).post(formbodyBuiler.build()).build();
+        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; charset=utf-8"),jsonObject.toString());
+        Request request = new Request.Builder().url(url).post(requestBody).build();
         Call call = okhttpClient.newCall(request);
-        call.enqueue(callback);
+        call.enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                Log.i(Tag,"网络连接失败");
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                String res = response.body().string();
+                if(response.isSuccessful()){
+                    if(res!=null) {
+                        RxBus.getInstance().send(Rxid+res);
+                    }
+                }
+            }
+        });
     }
 
     public void getServer(String url, final String key){

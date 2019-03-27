@@ -6,6 +6,7 @@ import android.util.Log;
 import com.baidu.mapapi.CoordType;
 import com.baidu.mapapi.SDKInitializer;
 import com.lecai.quwen.Bean.Setting;
+import com.lecai.quwen.Bean.User;
 import com.lecai.quwen.Bean.WXUserBean;
 import com.lecai.quwen.wxapi.WXUtil;
 import com.yidian.newssdk.NewsFeedsSDK;
@@ -18,12 +19,21 @@ public class MyApplication extends Application {
     private static final String WX_AppSecret="511cfe2f9d2cbf742dfcb2eab24d4bab";
     private NewsFeedsSDK newsFeedsSDK;
     private WXUserBean WXUser;
+    private User user;
 
     public static MyApplication getInstance(){
         if(instance!=null){
             return instance;
         }
         return null;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public WXUserBean getWXUser() {

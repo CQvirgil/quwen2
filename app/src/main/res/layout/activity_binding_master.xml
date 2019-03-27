@@ -48,6 +48,7 @@
 
 
         <EditText
+            android:id="@+id/act_binding_master_edittext"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:background="@null"
@@ -56,8 +57,14 @@
             android:textSize="14sp"
             android:textColor="#333333"
             android:layout_marginLeft="14dp"
+            android:maxLength="10"
+            android:singleLine="true"
             android:layout_height="match_parent" />
-
+        <Button
+            android:id="@+id/act_binding_master_btn_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="搜索"/>
     </LinearLayout>
 
     <ListView
