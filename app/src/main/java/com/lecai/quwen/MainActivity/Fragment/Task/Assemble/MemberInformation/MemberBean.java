@@ -1,47 +1,63 @@
 package com.lecai.quwen.MainActivity.Fragment.Task.Assemble.MemberInformation;
 
 public class MemberBean {
-    private String HeadImgURL;
-    private String Name;
-    private int ID;
-    private int QYFE;
+   private String m_name;
+   private String m_unionid;
+   private String m_uid;
+   private String m_headimg;
+   private int gold;
 
-    public MemberBean(String headImgURL, String name, int ID, int QYFE) {
-        HeadImgURL = headImgURL;
-        Name = name;
-        this.ID = ID;
-        this.QYFE = QYFE;
+    public MemberBean(String m_name, String m_unionid) {
+        this.m_name = m_name;
+        this.m_unionid = m_unionid;
     }
 
-    public int getID() {
-        return ID;
+
+    public MemberBean(String m_name, String m_unionid, String m_uid, String m_headimg, int gold) {
+        this.m_name = m_name;
+        this.m_unionid = m_unionid;
+        this.m_uid = m_uid;
+        this.m_headimg = m_headimg;
+        this.gold = gold;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
+    public String getM_name() {
+        return m_name;
     }
 
-    public String getHeadImgURL() {
-        return HeadImgURL;
+    public void setM_name(String m_name) {
+        this.m_name = m_name;
     }
 
-    public void setHeadImgURL(String headImgURL) {
-        HeadImgURL = headImgURL;
+    public String getM_unionid() {
+        return m_unionid;
     }
 
-    public String getName() {
-        return Name;
+    public void setM_unionid(String m_unionid) {
+        this.m_unionid = m_unionid;
     }
 
-    public void setName(String name) {
-        Name = name;
+    public String getM_uid() {
+        return m_uid;
     }
 
-    public int getQYFE() {
-        return QYFE;
+    public void setM_uid(String m_uid) {
+        this.m_uid = m_uid;
     }
 
-    public void setQYFE(int QYFE) {
-        this.QYFE = QYFE;
+    public String getM_headimg() {
+        return m_headimg;
+    }
+
+    public void setM_headimg(String m_headimg) {
+        this.m_headimg = m_headimg;
+    }
+
+    public int getGold() {
+        return gold;
+    }
+
+    public void setGold(int gold) {
+        this.gold = gold;
     }
 }

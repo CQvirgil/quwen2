@@ -8,28 +8,45 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.lecai.quwen.Bean.Team;
 import com.lecai.quwen.R;
+
+import java.util.List;
 
 public class AssembleAdapter extends BaseAdapter {
     Context context;
+    private List<Team> list;
 
     public AssembleAdapter(Context context) {
         this.context = context;
     }
 
+    public AssembleAdapter(Context context, List<Team> list) {
+        this.context = context;
+        this.list = list;
+    }
+
+    public List<Team> getList() {
+        return list;
+    }
+
+    public void setList(List<Team> list) {
+        this.list = list;
+    }
+
     @Override
     public int getCount() {
-        return 4;
+        return list.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return null;
+        return list.get(position);
     }
 
     @Override
     public long getItemId(int position) {
-        return 0;
+        return position;
     }
 
     @Override
@@ -48,7 +65,12 @@ public class AssembleAdapter extends BaseAdapter {
             status.setTextColor(Color.WHITE);
             status.setText("拼团成功");
         }
-
+        TextView team_id = view.findViewById(R.id.item_act_assemble_id);
+        team_id.setText("团ID:"+list.get(position).getTid());
+        TextView team_name = view.findViewById(R.id.item_act_assemble_name);
+        team_name.setText(list.get(position).getName());
+        TextView team_num = view.findViewById(R.id.item_act_assemble_num);
+        team_num.setText("激活进度:"+"0"+"/"+list.get(position).getNumber()+"(人)");
         return view;
     }
 }

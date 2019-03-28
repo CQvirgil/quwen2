@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.lecai.quwen.R;
 
@@ -39,11 +40,14 @@ public class MemberAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View view = LayoutInflater.from(context).inflate(R.layout.item_act_member_information,parent,false);
-        if(position == 0){
-            ImageView highest = view.findViewById(R.id.item_act_member_highest);
-            highest.setVisibility(View.VISIBLE);
-        }
-
+//        if(position == 0){
+//            ImageView highest = view.findViewById(R.id.item_act_member_highest);
+//            highest.setVisibility(View.VISIBLE);
+//        }
+        TextView name = view.findViewById(R.id.item_act_member_name);
+        TextView id = view.findViewById(R.id.item_act_member_id);
+        id.setText("id:"+list.get(position).getM_uid());
+        name.setText(list.get(position).getM_name());
         return view;
     }
 

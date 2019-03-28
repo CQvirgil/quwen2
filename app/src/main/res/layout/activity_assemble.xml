@@ -97,6 +97,7 @@
                         />
 
                     <RelativeLayout
+                        android:id="@+id/act_assemble_listnone"
                         android:visibility="invisible"
                         android:layout_gravity="center"
                         android:layout_width="243dp"
@@ -185,6 +186,7 @@
 
 
                     <RelativeLayout
+                        android:id="@+id/act_assemble_listnone2"
                         android:visibility="invisible"
                         android:layout_gravity="center"
                         android:layout_width="243dp"

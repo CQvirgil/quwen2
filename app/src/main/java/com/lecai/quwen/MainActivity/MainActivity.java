@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void accept(Object o) throws Exception {
                 String object = (String) o;
-                Log.i("WXEntryActivity_TAG", object);
+                //Log.i("WXEntryActivity_TAG", object);
                 String rxid = object.substring(0,5);
                 String data = object.substring(5);
                 if(rxid.equals(Rxid.GET_UUID)){
@@ -126,7 +126,6 @@ public class MainActivity extends AppCompatActivity {
                             editor.putString("u_unionid",MyApplication.getInstance().getUser().getU_unionid());
                             editor.putString("token",MyApplication.getInstance().getUser().getToken());
                             editor.commit();
-
                         }
                     }
                 }

@@ -60,6 +60,7 @@
         </RelativeLayout>
 
         <TextView
+            android:id="@+id/item_act_assemble_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -69,6 +70,7 @@
             android:text="团ID:1233456"/>
 
         <TextView
+            android:id="@+id/item_act_assemble_name"
             android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -78,6 +80,7 @@
             android:text="name"/>
 
         <TextView
+            android:id="@+id/item_act_assemble_num"
             android:layout_gravity="center_horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

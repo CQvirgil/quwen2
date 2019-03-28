@@ -47,7 +47,7 @@ public class Client {
 
     public void PostServer(String url, JSONObject jsonObject, final String Rxid){
         OkHttpClient okhttpClient = new OkHttpClient();
-        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; charset=utf-8"),jsonObject.toString());
+        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json;"),jsonObject.toString());
         Request request = new Request.Builder().url(url).post(requestBody).build();
         Call call = okhttpClient.newCall(request);
         call.enqueue(new Callback() {
