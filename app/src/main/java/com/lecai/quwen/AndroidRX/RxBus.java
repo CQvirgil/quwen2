@@ -1,5 +1,7 @@
 package com.lecai.quwen.AndroidRX;
 
+import android.util.Log;
+
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
@@ -62,8 +64,10 @@ public class RxBus {
      * 取消订阅
      */
     public void unSubcribe() {
-        if (dispoable != null && dispoable.isDisposed()) {
+        if (dispoable != null && !dispoable.isDisposed()) {
             dispoable.dispose();
+            // subject.onComplete();
+            Log.i("WXEntryActivity_TAG", "unSubcribe");
         }
 
     }

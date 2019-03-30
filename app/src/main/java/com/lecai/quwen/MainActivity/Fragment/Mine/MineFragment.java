@@ -21,32 +21,16 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.lecai.quwen.AndroidRX.RxBus;
-import com.lecai.quwen.AndroidRX.Rxid;
 import com.lecai.quwen.DaiLog.UpDate;
-import com.lecai.quwen.DragGridView.DragGridActivity;
 import com.lecai.quwen.MyApplication;
 import com.lecai.quwen.MyView.CircleImage;
-import com.lecai.quwen.NetWork.Client;
 import com.lecai.quwen.R;
 import com.lecai.quwen.wxapi.WXUtil;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-import io.reactivex.functions.Consumer;
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.MediaType;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
 
 
 @SuppressLint("ValidFragment")

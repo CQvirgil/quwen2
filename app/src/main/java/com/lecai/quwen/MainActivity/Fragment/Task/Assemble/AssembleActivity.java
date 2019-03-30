@@ -68,6 +68,7 @@ public class AssembleActivity extends AppCompatActivity implements Consumer {
         mGridView1.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                diaLog.setT_unionid(dom_team.get(position).getT_unionid());
                 diaLog.show();
                 return true;
             }
@@ -144,6 +145,20 @@ public class AssembleActivity extends AppCompatActivity implements Consumer {
 
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        RxBus.getInstance().unSubcribe();
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.i("WXEntryActivity_TAG","onPause");
+        RxBus.getInstance().unSubcribe();
+    }
+
     public void JoinAssemble(View view) {
         diaLog2.show();
     }
@@ -155,6 +170,9 @@ public class AssembleActivity extends AppCompatActivity implements Consumer {
         String data = object.substring(5);
         if(rxid.equals(Rxid.GET_TEAM_LIST)){
             HandListData(data);
+            Log.i("WXEntryActivity_TAG", data);
+        }else if(rxid.equals(Rxid.DEL_TEAM)){
+
         }
     }
 
@@ -192,7 +210,6 @@ public class AssembleActivity extends AppCompatActivity implements Consumer {
             }else{
                 handler.sendEmptyMessage(2005);
             }
-            Log.i("WXEntryActivity_TAG", json_teamlist_data.toString());
         }
     }
 }

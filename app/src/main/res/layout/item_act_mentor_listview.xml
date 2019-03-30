@@ -21,11 +21,13 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
         <TextView
+            android:id="@+id/item_act_mentor_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="name"
             />
         <TextView
+            android:id="@+id/item_act_mentor_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="ID:"

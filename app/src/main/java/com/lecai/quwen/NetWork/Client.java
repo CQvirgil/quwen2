@@ -1,11 +1,9 @@
 package com.lecai.quwen.NetWork;
 
-import android.content.Context;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.lecai.quwen.AndroidRX.RxBus;
-import com.lecai.quwen.AndroidRX.Rxid;
+import com.lecai.quwen.MyApplication;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -16,7 +14,6 @@ import java.util.Map;
 
 import okhttp3.Call;
 import okhttp3.Callback;
-import okhttp3.FormBody;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -53,7 +50,98 @@ public class Client {
         call.enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                Log.i(Tag,"网络连接失败");
+                Log.i("WXEntryActivity_TAG","网络连接失败");
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                String res = response.body().string();
+                if(response.isSuccessful()){
+                    if(res!=null) {
+                        RxBus.getInstance().send(Rxid+res);
+                    }
+                }
+            }
+        });
+    }
+
+    public void PostServerJ(String url, final JSONObject jsonObject, final String Rxid){
+        OkHttpClient okhttpClient = new OkHttpClient();
+        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json;"),jsonObject.toString());
+        Request request = new Request.Builder().url(url).post(requestBody).build();
+        Call call = okhttpClient.newCall(request);
+        call.enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                Log.i("WXEntryActivity_TAG","网络连接失败");
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                String res = response.body().string();
+                try {
+                    JSONObject json_res = new JSONObject(res);
+                    json_res.put("Rxid",Rxid);
+                    if(response.isSuccessful()){
+                        if(res!=null) {
+                            RxBus.getInstance().send(json_res);
+                        }
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    public void PostServerHeader(String url, JSONObject jsonObject, final String Rxid){
+        OkHttpClient okhttpClient = new OkHttpClient();
+        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json;"),jsonObject.toString());
+        Request request = new Request.Builder()
+                .url(url)
+                .addHeader("Authorization",MyApplication.getInstance().getUser().getToken())
+                .post(requestBody).build();
+        Call call = okhttpClient.newCall(request);
+        call.enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                Log.i("WXEntryActivity_TAG","网络连接失败");
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                String res = response.body().string();
+                if(response.isSuccessful()){
+                    if(res!=null) {
+                        try {
+                            JSONObject json_res = new JSONObject(res);
+                            json_res.put("Rxid",Rxid);
+                            if(response.isSuccessful()){
+                                if(res!=null) {
+                                    RxBus.getInstance().send(json_res);
+                                }
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    public void PostServerHeaderJ(String url, JSONObject jsonObject, final String Rxid){
+        OkHttpClient okhttpClient = new OkHttpClient();
+        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json;"),jsonObject.toString());
+        Request request = new Request.Builder()
+                .url(url)
+                .addHeader("Authorization",MyApplication.getInstance().getUser().getToken())
+                .post(requestBody).build();
+        Call call = okhttpClient.newCall(request);
+        call.enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                Log.i("WXEntryActivity_TAG","网络连接失败");
             }
 
             @Override
@@ -74,7 +162,7 @@ public class Client {
         call.enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                Log.i(Tag,"网络连接失败");
+                Log.i("WXEntryActivity_TAG","网络连接失败");
             }
 
             @Override

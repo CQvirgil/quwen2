@@ -1,17 +1,24 @@
 package com.lecai.quwen;
 
 import android.app.Application;
+import android.content.Intent;
 import android.util.Log;
 
 import com.baidu.mapapi.CoordType;
 import com.baidu.mapapi.SDKInitializer;
+import com.lecai.quwen.AndroidRX.RxBus;
 import com.lecai.quwen.Bean.Setting;
 import com.lecai.quwen.Bean.User;
 import com.lecai.quwen.Bean.WXUserBean;
+import com.lecai.quwen.Service.MessageService;
 import com.lecai.quwen.wxapi.WXUtil;
 import com.yidian.newssdk.NewsFeedsSDK;
 
-public class MyApplication extends Application {
+import org.json.JSONObject;
+
+import io.reactivex.functions.Consumer;
+
+public class MyApplication extends Application implements Consumer<JSONObject> {
     private static MyApplication instance;
     private static final String YI_DIAN_SDK_APP_ID = "j3cWV57eJ09MMfsiSgZOlw65";
     private static final String YI_DIAN_SDK_APP_KEY = "7YUK7x6ImqGXKpgQweB3ZsE2KdiXShcn";
@@ -71,12 +78,21 @@ public class MyApplication extends Application {
         //自4.3.0起，百度地图SDK所有接口均支持百度坐标和国测局坐标，用此方法设置您使用的坐标类型.
         //包括BD09LL和GCJ02两种坐标，默认是BD09LL坐标。
         SDKInitializer.setCoordType(CoordType.BD09LL);
+
+        //RxBus.getInstance().subscribe(JSONObject.class,this);
     }
+
+
 
     @Override
     public void onTerminate() {
         super.onTerminate();
+        RxBus.getInstance().unSubcribe();
         Log.i("MyApplication","onTerminate");
     }
 
+    @Override
+    public void accept(JSONObject jsonObject) throws Exception {
+        Log.i("WXEntryActivity_TAG","app  "+jsonObject.toString());
+    }
 }

@@ -86,4 +86,29 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/act_message_detail_btn_accept"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:onClick="accept"
+            android:text="接受"/>
+
+        <Button
+            android:id="@+id/act_message_detail_btn_reject"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:onClick="reject"
+            android:text="拒绝"/>
+
+    </LinearLayout>
 </LinearLayout>

@@ -5,30 +5,36 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.TextView;
 
+import com.lecai.quwen.Bean.Message;
 import com.lecai.quwen.MyView.mTextView;
 import com.lecai.quwen.R;
 
+import java.util.List;
+
 public class MassageAdapter extends BaseAdapter {
     Context context;
+    List<Message> list;
 
-    public MassageAdapter(Context context) {
+    public MassageAdapter(Context context, List<Message> list) {
         this.context = context;
+        this.list = list;
     }
 
     @Override
     public int getCount() {
-        return 6;
+        return list.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return null;
+        return list.get(position);
     }
 
     @Override
     public long getItemId(int position) {
-        return 0;
+        return position;
     }
 
     @Override
@@ -38,6 +44,9 @@ public class MassageAdapter extends BaseAdapter {
         if(position == 0){
             title.setDecorate(mTextView.Decorate.redpoint);
         }
+        TextView textView = view.findViewById(R.id.act_msg_text);
+        title.setText(list.get(position).getSub_name());
+        textView.setText(list.get(position).getText());
         return view;
     }
 }

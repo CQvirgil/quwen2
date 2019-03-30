@@ -32,6 +32,7 @@ import com.lecai.quwen.MainActivity.Fragment.Task.TaskFragment;
 import com.lecai.quwen.MyApplication;
 import com.lecai.quwen.NetWork.Client;
 import com.lecai.quwen.R;
+import com.lecai.quwen.Service.MessageService;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -85,6 +86,10 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         login();
+
+        //启动消息服务
+//        Intent intent = new Intent(this,MessageService.class);
+//        startService(intent);
     }
 
     private void isLogin() throws JSONException {
@@ -93,6 +98,12 @@ public class MainActivity extends AppCompatActivity {
             MyApplication.getInstance().setUser(user);
             getUser();
         }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        //RxBus.getInstance().unSubcribe();
     }
 
     private void login(){

@@ -39,6 +39,8 @@ public class MemberInformationActivity extends Activity implements Consumer {
         mListView = findViewById(R.id.act_member_mlistview);
         TextView title_id = findViewById(R.id.act_member_title_id);
         members = new ArrayList<>();
+        adapter = new MemberAdapter(this);
+        mListView.setAdapter(adapter);
         Intent intent = getIntent();
         String teamid = intent.getStringExtra("teamid");
         title_id.setText("团ID:"+teamid);
@@ -105,9 +107,16 @@ public class MemberInformationActivity extends Activity implements Consumer {
     }
 
     @Override
+    protected void onPause() {
+        super.onPause();
+        members.clear();
+        Log.i("WXEntryActivity_TAG","onPause");
+        RxBus.getInstance().unSubcribe();
+    }
+
+    @Override
     protected void onStop() {
         super.onStop();
-
     }
 
     @Override
@@ -117,45 +126,27 @@ public class MemberInformationActivity extends Activity implements Consumer {
         String data = object.substring(5);
         if(rxid.equals(Rxid.GET_TEAM_ALL)){
             HandListData(data);
-        }else if(rxid.equals(Rxid.GET_TEAM_ALL_USER)){
-            HandAllUser(data);
+            //Log.i("WXEntryActivity_TAG",object);
         }
-    }
-
-    private void HandAllUser(String data) throws JSONException {
-        JSONObject json_data = new JSONObject(data);
-        if(json_data.getInt("return_code") == 1){
-            JSONObject json_user_data = json_data.getJSONObject("data");
-            String u_unionid = json_user_data.getString("u_unionid");
-            String uid = json_user_data.getString("uid");
-            String name = json_user_data.getString("name");
-            String headimg = json_user_data.getString("headimg");
-            int gold = json_user_data.getInt("gold");
-            members.add(new MemberBean(name,u_unionid,uid,headimg,gold));
-            adapter = new MemberAdapter(this,members);
-            mListView.setAdapter(adapter);
-        }
-        Log.i("WXEntryActivity_TAG",data);
     }
 
     private void HandListData(String data) throws JSONException {
         JSONObject json_data = new JSONObject(data);
+        members.clear();
         if(json_data.getInt("return_code")==1){
             JSONArray json_members = json_data.getJSONObject("data").getJSONArray("members");
             String m_unionid,m_name;
+            Log.i("WXEntryActivity_TAG",json_members.toString());
             for (int i = 0; i<json_members.length(); i++){
                 m_unionid = json_members.getJSONObject(i).getString("m_unionid");
                 m_name = json_members.getJSONObject(i).getString("m_name");
-                getUser(m_unionid);
+                //getUser(m_unionid);
+                members.add(new MemberBean(m_name,m_unionid,"","",0));
             }
+            adapter.setList(members);
+            mListView.setAdapter(adapter);
         }
 
     }
 
-    private void getUser(String m_unionid) throws JSONException {
-        String url = "http://www.lecaigogo.com:4999/api/v1/user/user_info";
-        JSONObject json_post = new JSONObject();
-        json_post.put("u_unionid",m_unionid);
-        Client.getInstance().PostServer(url,json_post,Rxid.GET_TEAM_ALL_USER);
-    }
 }
