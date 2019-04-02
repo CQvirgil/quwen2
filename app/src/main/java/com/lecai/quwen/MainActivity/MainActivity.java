@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        //RxBus.getInstance().unSubcribe();
+        RxBus.getInstance().unSubcribe();
     }
 
     private void login(){

@@ -108,9 +108,9 @@ public class BindingMasterActivity extends AppCompatActivity implements Consumer
             JSONObject json_data = new JSONObject(data);
             int return_code = json_data.getInt("return_code");
             if(return_code == 1){
-                Toast.makeText(this, "绑定成功", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "已发送信息对方接受后成为你的师傅获徒弟", Toast.LENGTH_SHORT).show();
             }else{
-                Toast.makeText(this, "绑定失败", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "发送失败", Toast.LENGTH_SHORT).show();
             }
         }
     }

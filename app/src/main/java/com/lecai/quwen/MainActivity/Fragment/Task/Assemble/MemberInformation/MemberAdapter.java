@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.lecai.quwen.AndroidRX.RxBus;
 import com.lecai.quwen.AndroidRX.Rxid;
+import com.lecai.quwen.MyView.CircleImage;
 import com.lecai.quwen.NetWork.Client;
 import com.lecai.quwen.R;
 
@@ -37,6 +38,7 @@ public class MemberAdapter extends BaseAdapter implements Consumer {
 
     public void setList(List<MemberBean> list) {
         this.list = list;
+        notifyDataSetInvalidated();
     }
 
     @Override
@@ -65,6 +67,8 @@ public class MemberAdapter extends BaseAdapter implements Consumer {
         name = view.findViewById(R.id.item_act_member_name);
         id = view.findViewById(R.id.item_act_member_id);
         name.setText(list.get(position).getM_name());
+        CircleImage headimg = view.findViewById(R.id.item_act_member_headimg);
+        headimg.setImageURL(list.get(position).getM_headimg());
         return view;
     }
 

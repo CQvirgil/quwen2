@@ -5,12 +5,29 @@ public class Apprentice {
     private String uid;
     private String name;
     private int gold;
+    private String url;
 
     public Apprentice(String sub_unionid, String uid, String name, int gold) {
         this.sub_unionid = sub_unionid;
         this.uid = uid;
         this.name = name;
         this.gold = gold;
+    }
+
+    public Apprentice(String sub_unionid, String uid, String name, int gold, String url) {
+        this.sub_unionid = sub_unionid;
+        this.uid = uid;
+        this.name = name;
+        this.gold = gold;
+        this.url = url;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     public String getName() {

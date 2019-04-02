@@ -82,7 +82,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         read = getContext().getSharedPreferences("Setting", Context.MODE_PRIVATE);
         if(MyApplication.getInstance().getUser()!=null){
             handler.sendEmptyMessage(1003);
-            handler.sendEmptyMessage(1001);
+            user_icon.setImageURL(MyApplication.getInstance().getUser().getHead_img_url());
         }
         return view;
     }
@@ -99,21 +99,10 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                 super.handleMessage(msg);
                 switch (msg.what) {
                     case 1001:
-                        Thread getHeadImage = new Thread(new Runnable() {
-                            @Override
-                            public void run() {
-                                if(MyApplication.getInstance()!=null){
-                                    bitmap = getURLimage(MyApplication.getInstance().getUser().getHead_img_url());
-                                    handler.sendEmptyMessage(1002);
-                                }
-                            }
-                        });
-                        getHeadImage.start();
+
                         break;
                     case 1002:
-                        if(bitmap!=null){
-                            user_icon.setImageBitmap(bitmap);
-                        }
+
                         break;
                     case 1003:
                         if(MyApplication.getInstance().getUser()!=null){
@@ -127,26 +116,6 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                 }
             }
         };
-    }
-
-    //加载图片
-    public Bitmap getURLimage(String url) {
-        Bitmap bmp = null;
-        try {
-            URL myurl = new URL(url);
-            // 获得连接
-            HttpURLConnection conn = (HttpURLConnection) myurl.openConnection();
-            conn.setConnectTimeout(6000);//设置超时
-            conn.setDoInput(true);
-            conn.setUseCaches(false);//不缓存
-            conn.connect();
-            InputStream is = conn.getInputStream();//获得图片的数据流
-            bmp = BitmapFactory.decodeStream(is);
-            is.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return bmp;
     }
 
     private void setLoginDiaLog() {

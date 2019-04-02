@@ -32,11 +32,17 @@ public class MentorActivity extends AppCompatActivity implements Consumer {
     private ListView listView;
     private CircleImage headimg;
     private TextView mentor_name,mentor_id;
+    private List<Apprentice> list;
+    private boolean isEnd = false;
+    MentorAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mentor);
+        list = new ArrayList<>();
         initView();
+        adapter = new MentorAdapter(this,list);
+        listView.setAdapter(adapter);
         RxBus.getInstance().subscribe(String.class,this);
         try {
             getMasterList(MyApplication.getInstance().getUser().getU_unionid());
@@ -49,6 +55,7 @@ public class MentorActivity extends AppCompatActivity implements Consumer {
         mentor_name = findViewById(R.id.act_mentor_name);
         mentor_id = findViewById(R.id.act_mentor_id);
         listView = findViewById(R.id.act_mentor_list_view);
+        headimg = findViewById(R.id.act_mentor_headimg);
     }
 
     public void Back(View view) {
@@ -81,7 +88,7 @@ public class MentorActivity extends AppCompatActivity implements Consumer {
         JSONObject json_post = new JSONObject();
         json_post.put("u_unionid",u_unionid);
         Client.getInstance().PostServer(url,json_post,Rxid.GET_MASTER_LIST);
-        Log.i("WXEntryActivity_TAG",u_unionid);
+        Log.i("WXEntryActivity_TAG",MyApplication.getInstance().getUser().getU_unionid());
     }
 
     @Override
@@ -95,36 +102,94 @@ public class MentorActivity extends AppCompatActivity implements Consumer {
             if(return_code == 1){
                 JSONObject json_list = json_data.getJSONObject("data");
                 JSONArray sub_list = json_list.getJSONArray("sub_list");
-                List<Apprentice> list = new ArrayList<>();
+                String[] sub_unionids = new String[sub_list.length()];
+                list.clear();
                 for (int i = 0; i < sub_list.length(); i++){
                     JSONObject json_item = sub_list.getJSONObject(i);
                     String sub_unionid = json_item.getString("sub_unionid");
                     String uid = json_item.getString("uid");
                     String name = json_item.getString("name");
                     int gold = json_item.getInt("gold");
-                    list.add(new Apprentice(sub_unionid, uid, name, gold));
+                    //list.add(new Apprentice(sub_unionid, uid, name, gold));
+                    sub_unionids[i] = sub_unionid;
                 }
+                if(sub_unionids.length > 0){
+                    for(int i = 0; i < sub_unionids.length; i++ ){
+                        getUserInfo(sub_unionids[i]);
+                        if(i == sub_unionids.length -1){
+                            isEnd = true;
+                        }
+                    }
+                }
+                JSONObject dom_info = json_list.getJSONObject("dom_info");
+                String dom_name = dom_info.getString("name");
+                String uid = dom_info.getString("uid");
+                String dom_unionid = dom_info.getString("dom_unionid");
+                mentor_name.setText(dom_name);
+                mentor_id.setText("ID:"+uid);
+                getMentorInfo(dom_unionid);
 
-//                JSONObject dom_info = json_list.getJSONObject("dom_info");
-//                String dom_name = dom_info.getString("name");
-//                String uid = dom_info.getString("uid");
-//                mentor_name.setText(dom_name);
-//                mentor_id.setText("ID:"+uid);
-                steListView(list);
-                Log.i("WXEntryActivity_TAG",json_list.toString());
+                // steListView(list);
+
             }
 
+        }else if (rxid.equals(Rxid.GET_USER_INFO)){
+            JSONObject json_data = new JSONObject(data);
+            JSONObject json_info = json_data.getJSONObject("data");
+            String u_unionid = json_info.getString("u_unionid");
+            String uid = json_info.getString("uid");
+            String name = json_info.getString("name");
+            String headimg = json_info.getString("headimg");
+            int gold = json_info.getInt("gold");
+            list.add(new Apprentice(u_unionid,uid,name,gold,headimg));
+            if(isEnd){
+                adapter.setList(list);
+            }
+        }else if(rxid.equals(Rxid.GET_MENTOR_INFO)){
+            JSONObject json_data = new JSONObject(data);
+            if(json_data.getInt("return_code") == 1){
+                JSONObject json_mentor = json_data.getJSONObject("data");
+                String headimgurl = json_mentor.getString("headimg");
+                headimg.setImageURL(headimgurl);
+            }
+            Log.i("WXEntryActivity_TAG",data);
         }
     }
 
-    private void steListView(List<Apprentice> list){
-        MentorAdapter adapter = new MentorAdapter(this,list);
-        listView.setAdapter(adapter);
+    private void getUserInfo(String u_unionid) throws JSONException {
+        String url = "http://www.lecaigogo.com:4999/api/v1/user/user_info";
+        JSONObject json_post = new JSONObject();
+        json_post.put("u_unionid", u_unionid);
+        Client.getInstance().PostServer(url,json_post,Rxid.GET_USER_INFO);
+    }
+
+    private void getMentorInfo(String u_unionid) throws JSONException {
+        String url = "http://www.lecaigogo.com:4999/api/v1/user/user_info";
+        JSONObject json_post = new JSONObject();
+        json_post.put("u_unionid", u_unionid);
+        Client.getInstance().PostServer(url,json_post,Rxid.GET_MENTOR_INFO);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        RxBus.getInstance().unSubcribe();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        RxBus.getInstance().unSubcribe();
+
     }
 }

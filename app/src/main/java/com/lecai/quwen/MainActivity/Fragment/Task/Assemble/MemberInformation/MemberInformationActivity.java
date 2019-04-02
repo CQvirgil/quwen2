@@ -32,6 +32,7 @@ public class MemberInformationActivity extends Activity implements Consumer {
     private ListView mListView;
     private List<MemberBean> members;
     private MemberAdapter adapter;
+    private boolean isEnd = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -109,8 +110,6 @@ public class MemberInformationActivity extends Activity implements Consumer {
     @Override
     protected void onPause() {
         super.onPause();
-        members.clear();
-        Log.i("WXEntryActivity_TAG","onPause");
         RxBus.getInstance().unSubcribe();
     }
 
@@ -127,6 +126,8 @@ public class MemberInformationActivity extends Activity implements Consumer {
         if(rxid.equals(Rxid.GET_TEAM_ALL)){
             HandListData(data);
             //Log.i("WXEntryActivity_TAG",object);
+        }else if(rxid.equals(Rxid.GET_MEMBER_INFO)){
+            HandMemberInfo(data);
         }
     }
 
@@ -136,17 +137,49 @@ public class MemberInformationActivity extends Activity implements Consumer {
         if(json_data.getInt("return_code")==1){
             JSONArray json_members = json_data.getJSONObject("data").getJSONArray("members");
             String m_unionid,m_name;
+            String[] m_unionids = new String[json_members.length()];
             Log.i("WXEntryActivity_TAG",json_members.toString());
             for (int i = 0; i<json_members.length(); i++){
                 m_unionid = json_members.getJSONObject(i).getString("m_unionid");
                 m_name = json_members.getJSONObject(i).getString("m_name");
                 //getUser(m_unionid);
-                members.add(new MemberBean(m_name,m_unionid,"","",0));
+                //members.add(new MemberBean(m_name,m_unionid,"","",0));
+                m_unionids[i] = m_unionid;
             }
-            adapter.setList(members);
-            mListView.setAdapter(adapter);
-        }
 
+            for(int i = 0; i < m_unionids.length; i++){
+                getMemberInfo(m_unionids[i]);
+                Log.i("WXEntryActivity_TAG",m_unionids.length+"");
+                if (m_unionids.length-1 == i){
+                    isEnd = true;
+                }
+            }
+        }
     }
 
+    private void HandMemberInfo(String data) throws JSONException {
+        JSONObject json_data = new JSONObject(data);
+        Log.i("WXEntryActivity_TAG",data);
+        if(json_data.getInt("return_code") == 1){
+            JSONObject json_user = json_data.getJSONObject("data");
+            String u_unionid = json_user.getString("u_unionid");
+            String uid = json_user.getString("uid");
+            String name = json_user.getString("name");
+            String headimg = json_user.getString("headimg");
+            int gold = json_user.getInt("gold");
+            members.add(new MemberBean(name,u_unionid,uid,headimg,gold));
+            if(isEnd){
+                adapter.setList(members);
+                //mListView.setAdapter(adapter);
+            }
+        }
+    }
+
+
+    private void getMemberInfo(String u_unionid) throws JSONException {
+        String url = "http://www.lecaigogo.com:4999/api/v1/user/user_info";
+        JSONObject json_post = new JSONObject();
+        json_post.put("u_unionid", u_unionid);
+        Client.getInstance().PostServer(url,json_post,Rxid.GET_MEMBER_INFO);
+    }
 }

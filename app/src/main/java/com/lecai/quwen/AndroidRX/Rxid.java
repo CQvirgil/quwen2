@@ -16,4 +16,7 @@ public class Rxid {
     public static String GET_MASTER_LIST = "45012";
     public static String GET_MESSAGE = "45013";
     public static String POST_AGRESS = "45014";
+    public static String GET_USER_INFO = "45015";
+    public static String GET_MENTOR_INFO = "45016";
+    public static String GET_MEMBER_INFO = "45017";
 }

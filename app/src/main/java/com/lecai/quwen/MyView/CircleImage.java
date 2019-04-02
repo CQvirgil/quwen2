@@ -3,9 +3,9 @@ package com.lecai.quwen.MyView;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.BitmapShader;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
@@ -15,28 +15,60 @@ import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
+import android.os.Handler;
+import android.os.Message;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.widget.ImageView;
+
+import com.lecai.quwen.MyApplication;
+
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URL;
+
+
 
 @SuppressLint("AppCompatCustomView")
 public class CircleImage extends ImageView {
     Bitmap bitmap;
+    public static Handler handler;
+    private String url;
 
     public CircleImage(Context context) {
         super(context);
+        initHandler();
     }
 
     public CircleImage(Context context, AttributeSet attrs) {
         super(context, attrs);
+        initHandler();
     }
 
     public CircleImage(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        initHandler();
     }
 
     @Override
     public void setImageBitmap(Bitmap bm) {
         super.setImageBitmap(bm);
+        //initHandler();
+    }
+
+    public void setImageURL(final String url){
+        this.url = url;
+        handler.sendEmptyMessage(1101);
+        //getURLimage(url);
+        Log.i("handlermsg","testlog");
+    }
+
+    @Override
+    public void setImageURI(Uri uri) {
+        super.setImageURI(uri);
     }
 
     @Override
@@ -53,6 +85,60 @@ public class CircleImage extends ImageView {
 //            canvas.drawBitmap(cbitmap,rectSrc,rectDest,paint);
 //        }
         DrawCircleImage(canvas);
+    }
+
+    private Drawable Bitmap2Drawable(Bitmap bitmap){
+        return new BitmapDrawable(bitmap);
+    }
+
+    @SuppressLint("HandlerLeak")
+    private void initHandler(){
+        handler = new Handler() {
+            @Override
+            public void handleMessage(Message msg) {
+                super.handleMessage(msg);
+                switch (msg.what){
+                    case 1101:
+                        Thread getHeadImage = new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                if(MyApplication.getInstance()!=null){
+                                    bitmap = getURLimage(url);
+                                    handler.sendEmptyMessage(1102);
+                                }
+                            }
+                        });
+                        getHeadImage.start();
+                        break;
+                    case 1102:
+                        if(bitmap!=null){
+                            setImageBitmap(bitmap);
+
+                        }
+                        break;
+                }
+            }
+        };
+    }
+
+    //加载图片
+    public Bitmap getURLimage(String url) {
+        Bitmap bmp = null;
+        try {
+            URL myurl = new URL(url);
+            // 获得连接
+            HttpURLConnection conn = (HttpURLConnection) myurl.openConnection();
+            conn.setConnectTimeout(6000);//设置超时
+            conn.setDoInput(true);
+            conn.setUseCaches(false);//不缓存
+            conn.connect();
+            InputStream is = conn.getInputStream();//获得图片的数据流
+            bmp = BitmapFactory.decodeStream(is);
+            is.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return bmp;
     }
 
     private void DrawCircleImage(Canvas canvas){

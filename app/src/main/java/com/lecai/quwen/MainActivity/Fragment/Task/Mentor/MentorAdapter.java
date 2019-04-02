@@ -8,6 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.lecai.quwen.Bean.Apprentice;
+import com.lecai.quwen.MyView.CircleImage;
 import com.lecai.quwen.R;
 
 import java.util.List;
@@ -19,6 +20,11 @@ public class MentorAdapter extends BaseAdapter {
     public MentorAdapter(Context context, List<Apprentice> list) {
         this.context = context;
         this.list = list;
+    }
+
+    public void setList(List<Apprentice> list){
+        this.list = list;
+        notifyDataSetInvalidated();
     }
 
     @Override
@@ -44,6 +50,8 @@ public class MentorAdapter extends BaseAdapter {
         id = view.findViewById(R.id.item_act_mentor_id);
         name.setText(list.get(position).getName());
         id.setText("ID:"+list.get(position).getUid());
+        CircleImage headimg = view.findViewById(R.id.act_mentor_listview_item_headimg);
+        headimg.setImageURL(list.get(position).getUrl());
         return view;
     }
 }
