@@ -1,5 +1,7 @@
 package com.lecai.quwen.NetWork;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.util.Log;
 
 import com.lecai.quwen.AndroidRX.RxBus;
@@ -9,6 +11,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.charset.Charset;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -42,10 +46,17 @@ public class Client {
         return mInstance;
     }
 
-    public void PostServer(String url, JSONObject jsonObject, final String Rxid){
+    public void PostServer(String url, JSONObject jsonObject, final String Rxid) throws JSONException {
+        jsonObject.put("access_token",MyApplication.getInstance().getAccess_token());
         OkHttpClient okhttpClient = new OkHttpClient();
-        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json;"),jsonObject.toString());
-        Request request = new Request.Builder().url(url).post(requestBody).build();
+        MediaType mediaType = MediaType.parse("application/json");
+        RequestBody requestBody = RequestBody.create(null,jsonObject.toString());
+        //Log.i("WXEntryActivity_TAG",requestBody.contentType().toString());
+        Request request = new Request.Builder()
+                .url(url)
+                .addHeader("content-type","application/json")
+                .post(requestBody)
+                .build();
         Call call = okhttpClient.newCall(request);
         call.enqueue(new Callback() {
             @Override
@@ -67,8 +78,11 @@ public class Client {
 
     public void PostServerJ(String url, final JSONObject jsonObject, final String Rxid){
         OkHttpClient okhttpClient = new OkHttpClient();
-        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json;"),jsonObject.toString());
-        Request request = new Request.Builder().url(url).post(requestBody).build();
+        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"),jsonObject.toString());
+        Request request = new Request.Builder()
+                .url(url)
+                .addHeader("content-type","application/json")
+                .post(requestBody).build();
         Call call = okhttpClient.newCall(request);
         call.enqueue(new Callback() {
             @Override
@@ -96,11 +110,12 @@ public class Client {
 
     public void PostServerHeader(String url, JSONObject jsonObject, final String Rxid){
         OkHttpClient okhttpClient = new OkHttpClient();
-        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json;"),jsonObject.toString());
+        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"),jsonObject.toString());
         Request request = new Request.Builder()
                 .url(url)
                 .addHeader("Authorization",MyApplication.getInstance().getUser().getToken())
                 .post(requestBody).build();
+        Log.i("WXEntryActivity_TAG",request.url().toString());
         Call call = okhttpClient.newCall(request);
         call.enqueue(new Callback() {
             @Override
@@ -132,7 +147,7 @@ public class Client {
 
     public void PostServerHeaderJ(String url, JSONObject jsonObject, final String Rxid){
         OkHttpClient okhttpClient = new OkHttpClient();
-        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json;"),jsonObject.toString());
+        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"),jsonObject.toString());
         Request request = new Request.Builder()
                 .url(url)
                 .addHeader("Authorization",MyApplication.getInstance().getUser().getToken())
@@ -173,6 +188,28 @@ public class Client {
                         Map<String,String> map = new HashMap<>();
                         map.put(key,res);
                         RxBus.getInstance().send(key+":_"+res);
+                    }
+                }
+            }
+        });
+    }
+
+    public void getBitmap(String url, final String key){
+        request = new Request.Builder().url(url).get().build();
+        Call call = client.newCall(request);
+        call.enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                Log.i("WXEntryActivity_TAG","网络连接失败");
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                InputStream res = response.body().byteStream();
+                Bitmap bitmap = BitmapFactory.decodeStream(res);
+                if(response.isSuccessful()){
+                    if(res!=null){
+                        RxBus.getInstance().send(bitmap);
                     }
                 }
             }

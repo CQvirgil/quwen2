@@ -116,7 +116,7 @@ public class AssembleActivity extends AppCompatActivity implements Consumer {
     private void getTeamList() throws JSONException {
         String url = "http://www.lecaigogo.com:4999/api/v1/team/team_list";
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put("u_unionid", MyApplication.getInstance().getUser().getU_unionid());
+        jsonObject.put("u_unionid", MyApplication.getInstance().getU_unionid());
         Client.getInstance().PostServer(url,jsonObject,Rxid.GET_TEAM_LIST);
     }
 

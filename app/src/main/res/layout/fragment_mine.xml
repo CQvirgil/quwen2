@@ -18,7 +18,7 @@
                 android:layout_height="wrap_content">
                 <LinearLayout
                     android:id="@+id/fgm_Mine_LL_user"
-                    android:visibility="invisible"
+                    android:visibility="visible"
                     android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
@@ -148,15 +148,6 @@
                     </RelativeLayout>
                 </LinearLayout>
 
-                <Button
-                    android:id="@+id/fgm_Mine_btn_login"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:textSize="20sp"
-                    android:background="@drawable/yuanjiao"
-                    android:text="登陆"/>
             </FrameLayout>
 
 

@@ -22,21 +22,38 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.widget.ImageView;
 
+import com.lecai.quwen.AndroidRX.RxBus;
 import com.lecai.quwen.MyApplication;
+import com.lecai.quwen.NetWork.Client;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URI;
 import java.net.URL;
 
+import javax.security.auth.Subject;
+
+import io.reactivex.Observable;
+import io.reactivex.Observer;
+import io.reactivex.Scheduler;
+import io.reactivex.android.MainThreadDisposable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 
 @SuppressLint("AppCompatCustomView")
-public class CircleImage extends ImageView {
-    Bitmap bitmap;
+public class CircleImage extends ImageView implements Callback {
+    Bitmap mybitmap;
     public static Handler handler;
     private String url;
+    private OkHttpClient client;
 
     public CircleImage(Context context) {
         super(context);
@@ -53,17 +70,28 @@ public class CircleImage extends ImageView {
         initHandler();
     }
 
+    public void getBitmap(String url){
+        client = new OkHttpClient();
+        Request request = new Request.Builder().url(url).get().build();
+        Call call = client.newCall(request);
+        call.enqueue(this);
+    }
+
     @Override
     public void setImageBitmap(Bitmap bm) {
         super.setImageBitmap(bm);
         //initHandler();
     }
 
+    @SuppressLint("CheckResult")
     public void setImageURL(final String url){
         this.url = url;
-        handler.sendEmptyMessage(1101);
-        //getURLimage(url);
-        Log.i("handlermsg","testlog");
+        //handler.sendEmptyMessage(1101);
+//        mybitmap = getURLimage(url);
+//        setImageBitmap(mybitmap);
+//        RxBus.getInstance().subscribe(Bitmap.class,this);
+//        Client.getInstance().getBitmap(url,"bitmap");
+        getBitmap(url);
     }
 
     @Override
@@ -84,11 +112,9 @@ public class CircleImage extends ImageView {
 //            paint.setAntiAlias(true);
 //            canvas.drawBitmap(cbitmap,rectSrc,rectDest,paint);
 //        }
-        DrawCircleImage(canvas);
-    }
-
-    private Drawable Bitmap2Drawable(Bitmap bitmap){
-        return new BitmapDrawable(bitmap);
+        if(mybitmap != null){
+            DrawCircleImage(canvas);
+        }
     }
 
     @SuppressLint("HandlerLeak")
@@ -103,7 +129,7 @@ public class CircleImage extends ImageView {
                             @Override
                             public void run() {
                                 if(MyApplication.getInstance()!=null){
-                                    bitmap = getURLimage(url);
+                                    mybitmap = getURLimage(url);
                                     handler.sendEmptyMessage(1102);
                                 }
                             }
@@ -111,9 +137,8 @@ public class CircleImage extends ImageView {
                         getHeadImage.start();
                         break;
                     case 1102:
-                        if(bitmap!=null){
-                            setImageBitmap(bitmap);
-
+                        if(mybitmap!=null){
+                            setImageBitmap(mybitmap);
                         }
                         break;
                 }
@@ -147,12 +172,9 @@ public class CircleImage extends ImageView {
         paint.setAntiAlias(true);
         if(drawable !=null){
             Bitmap mbitmap = ((BitmapDrawable)drawable).getBitmap();
-            bitmap = resizeBitmap(mbitmap,getWidth(),getHeight());
-            Rect rect = new Rect(0,0,bitmap.getWidth(),bitmap.getHeight());
-            Rect rectDest = new Rect(0,0,getWidth(),getHeight());
-//            paint.setColor(Color.parseColor("#7f7f7f"));
-//            canvas.drawCircle(getWidth()/2,getHeight()/2,getWidth()/2,paint);
-            BitmapShader bitmapShader = new BitmapShader(bitmap, Shader.TileMode.REPEAT,Shader.TileMode.REPEAT);
+            mybitmap = resizeBitmap(mbitmap,getWidth(),getHeight());
+
+            BitmapShader bitmapShader = new BitmapShader(mybitmap, Shader.TileMode.REPEAT,Shader.TileMode.REPEAT);
             paint.setShader(bitmapShader);
             canvas.drawCircle(getWidth()/2,getHeight()/2,getWidth()/2,paint);
         }
@@ -233,4 +255,22 @@ public class CircleImage extends ImageView {
         return resizedBitmap;
     }
 
+    @Override
+    public void onFailure(Call call, IOException e) {
+        Log.i("WXEntryActivity_TAG","网络连接失败");
+    }
+
+    @Override
+    public void onResponse(Call call, Response response) throws IOException {
+        InputStream res = response.body().byteStream();
+        Bitmap bitmap = BitmapFactory.decodeStream(res);
+        if(response.isSuccessful()){
+            if(res!=null){
+                mybitmap = bitmap;
+                handler.sendEmptyMessage(1102);
+                postInvalidate();
+                Log.i("WXEntryActivity_TAG","5445");
+            }
+        }
+    }
 }

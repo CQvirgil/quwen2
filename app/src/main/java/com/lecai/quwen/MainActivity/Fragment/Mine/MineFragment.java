@@ -27,16 +27,11 @@ import com.lecai.quwen.MyView.CircleImage;
 import com.lecai.quwen.R;
 import com.lecai.quwen.wxapi.WXUtil;
 
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
-
 
 
 @SuppressLint("ValidFragment")
 public class MineFragment extends Fragment implements View.OnClickListener {
     private Context context;
-    private Button login;
     private LinearLayout fgm_Mine_LL_user,QYFE;
     private RelativeLayout Setting,Help,Msg,Update;
     public static Handler handler;
@@ -73,7 +68,6 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         View view = inflater.inflate(R.layout.fragment_mine, container, false);
         initView(view);
         setLoginDiaLog();
-        initLoginBtn();
         initSetting();
         initHelp();
         initMsg();
@@ -106,7 +100,6 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                         break;
                     case 1003:
                         if(MyApplication.getInstance().getUser()!=null){
-                            login.setVisibility(View.INVISIBLE);
                             fgm_Mine_LL_user.setVisibility(View.VISIBLE);
                             user_name.setText(MyApplication.getInstance().getUser().getName());
                             user_u_id.setText("工号id："+MyApplication.getInstance().getUser().getUid());
@@ -129,7 +122,6 @@ public class MineFragment extends Fragment implements View.OnClickListener {
 
     @SuppressLint("HandlerLeak")
     private void initView(View view) {
-        login = view.findViewById(R.id.fgm_Mine_btn_login);
         fgm_Mine_LL_user = view.findViewById(R.id.fgm_Mine_LL_user);
         user_name = view.findViewById(R.id.user_name);
         user_icon = view.findViewById(R.id.user_icon);
@@ -151,10 +143,6 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         Help.setOnClickListener(this);
     }
 
-    private void initLoginBtn() {
-        login.setOnClickListener(this);
-    }
-
     private void initUpDate(){
         Update.setOnClickListener(this);
     }
@@ -168,9 +156,6 @@ public class MineFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         Intent intent = new Intent();
         switch (v.getId()) {
-            case R.id.fgm_Mine_btn_login:
-                WXUtil.getInstance().loginToWX();
-                break;
             case R.id.item_set:
                 intent.setAction("startDragGridActivity");
                 startActivity(intent);

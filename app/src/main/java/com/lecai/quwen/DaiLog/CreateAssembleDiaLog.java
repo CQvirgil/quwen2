@@ -52,10 +52,10 @@ public class CreateAssembleDiaLog extends BaseDiaLog implements Consumer {
                 try {
                     json_post.put("u_unionid",MyApplication.getInstance().getUser().getU_unionid());
                     json_post.put("t_name",team_name);
+                    Client.getInstance().PostServer(url,json_post,Rxid.CREATE_TEAM);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                Client.getInstance().PostServer(url,json_post,Rxid.CREATE_TEAM);
             }
         });
     }

@@ -94,8 +94,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void isLogin() throws JSONException {
         if(read.getBoolean("haslogin",false)){
-            User user = new User(read.getString("u_unionid",null),read.getString("token",null));
-            MyApplication.getInstance().setUser(user);
+            MyApplication.getInstance().setAccess_token(read.getString("access_token",null));
+            MyApplication.getInstance().setRefresh_token(read.getString("refresh_token",null));
+            MyApplication.getInstance().setU_unionid(read.getString("u_unionid",null));
             getUser();
         }
     }
@@ -103,7 +104,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        RxBus.getInstance().unSubcribe();
     }
 
     private void login(){
@@ -117,27 +117,35 @@ public class MainActivity extends AppCompatActivity {
                 if(rxid.equals(Rxid.GET_UUID)){
                     if(MyApplication.getInstance().getUser()==null){
                         JSONObject json = new JSONObject(data);
-                        User user = new User(json.getString("u_unionid"),json.getString("token"));
-                        MyApplication.getInstance().setUser(user);
+                        MyApplication.getInstance().setAccess_token(json.getString("access_token"));
+                        MyApplication.getInstance().setRefresh_token(json.getString("refresh_token"));
+                        MyApplication.getInstance().setU_unionid(json.getString("u_unionid"));
+                        editor.putBoolean("haslogin",true);
+                        editor.putString("access_token",MyApplication.getInstance().getAccess_token());
+                        editor.putString("refresh_token",MyApplication.getInstance().getRefresh_token());
+                        editor.putString("u_unionid",MyApplication.getInstance().getU_unionid());
+                        editor.commit();
                     }
-                    if(MyApplication.getInstance().getUser()!=null){
+                    if(MyApplication.getInstance().getAccess_token()!=null){
                         getUser();
                     }
                 }else if(rxid.equals(Rxid.GET_USER)){
-
                     JSONObject json_user = new JSONObject(data);
+                    Log.i("WXEntryActivity_TAG",data);
                     if(json_user.getInt("return_code") == 1){
                         JSONObject json_user_data = json_user.getJSONObject("data");
-                        if(MyApplication.getInstance().getUser()!=null){
-                            MyApplication.getInstance().getUser().setUid(json_user_data.getString("uid"));
-                            MyApplication.getInstance().getUser().setName(json_user_data.getString("name"));
-                            MyApplication.getInstance().getUser().setGold(json_user_data.getInt("gold"));
-                            MyApplication.getInstance().getUser().setHead_img_url(json_user_data.getString("headimg"));
-                            editor.putBoolean("haslogin",true);
-                            editor.putString("u_unionid",MyApplication.getInstance().getUser().getU_unionid());
-                            editor.putString("token",MyApplication.getInstance().getUser().getToken());
-                            editor.commit();
-                        }
+                        String u_unionid = json_user_data.getString("u_unionid");
+                        String uid = json_user_data.getString("uid");
+                        String name = json_user_data.getString("name");
+                        String headimg = json_user_data.getString("headimg");
+                        int gold = json_user_data.getInt("gold");
+                        User user = new User(u_unionid,"");
+                        MyApplication.getInstance().setUser(user);
+                        MyApplication.getInstance().setU_unionid(u_unionid);
+                        MyApplication.getInstance().getUser().setUid(uid);
+                        MyApplication.getInstance().getUser().setName(name);
+                        MyApplication.getInstance().getUser().setGold(gold);
+                        MyApplication.getInstance().getUser().setHead_img_url(headimg);
                     }
                 }
             }
@@ -147,8 +155,10 @@ public class MainActivity extends AppCompatActivity {
     private void getUser() throws JSONException {
         String url = "http://www.lecaigogo.com:4999/api/v1/user/user_info";
         JSONObject uuid = new JSONObject();
-        uuid.put("u_unionid",MyApplication.getInstance().getUser().getU_unionid());
+        uuid.put("u_unionid",MyApplication.getInstance().getU_unionid());
         Client.getInstance().PostServer(url,uuid, Rxid.GET_USER);
+        Log.i("WXEntryActivity_TAG",MyApplication.getInstance().getU_unionid());
+        Log.i("WXEntryActivity_TAG",MyApplication.getInstance().getAccess_token());
     }
 
     @SuppressLint("HandlerLeak")
@@ -434,7 +444,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        RxBus.getInstance().unSubcribe();
+        //RxBus.getInstance().unSubcribe();
         editor.commit();
     }
 

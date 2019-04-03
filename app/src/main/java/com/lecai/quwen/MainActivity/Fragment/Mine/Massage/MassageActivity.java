@@ -58,8 +58,8 @@ public class MassageActivity extends AppCompatActivity implements Consumer<JSONO
     private void getMessage() throws JSONException {
         String url = "http://www.lecaigogo.com:4999/api/v1/news/disciple_news";
         JSONObject json_post = new JSONObject();
-        json_post.put("u_unionid",MyApplication.getInstance().getUser().getU_unionid());
-        Client.getInstance().PostServerHeader(url,json_post,Rxid.GET_MESSAGE);
+        json_post.put("u_unionid",MyApplication.getInstance().getU_unionid());
+        Client.getInstance().PostServer(url,json_post,Rxid.GET_MESSAGE);
     }
 
     public void Back(View view) {

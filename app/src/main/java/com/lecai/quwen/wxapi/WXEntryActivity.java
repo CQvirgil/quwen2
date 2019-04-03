@@ -56,10 +56,10 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
                     JSONObject jsonObject = new JSONObject();
                     try {
                         jsonObject.put("code",code);
+                        Client.getInstance().PostServer(url,jsonObject,Rxid.GET_UUID);
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-                    Client.getInstance().PostServer(url,jsonObject,Rxid.GET_UUID);
                     Log.i(TAG,"onResp code = "+code);
                     Log.i(TAG,"onResp code = "+jsonObject.toString());
                 }

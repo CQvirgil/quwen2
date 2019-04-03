@@ -54,10 +54,10 @@ public class JoinAssembleDiaLog extends BaseDiaLog implements Consumer {
                 JSONObject json_post = new JSONObject();
                 try {
                     json_post.put("name_or_tid",str);
+                    Client.getInstance().PostServer(url,json_post,Rxid.GET_TEAM);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                Client.getInstance().PostServer(url,json_post,Rxid.GET_TEAM);
             }
         });
     }

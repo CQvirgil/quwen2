@@ -27,6 +27,9 @@ public class MyApplication extends Application implements Consumer<JSONObject> {
     private NewsFeedsSDK newsFeedsSDK;
     private WXUserBean WXUser;
     private User user;
+    private String access_token;
+    private String refresh_token;
+    private String u_unionid;
 
     public static MyApplication getInstance(){
         if(instance!=null){
@@ -57,6 +60,30 @@ public class MyApplication extends Application implements Consumer<JSONObject> {
 
     public static String getWX_AppSecret() {
         return WX_AppSecret;
+    }
+
+    public String getAccess_token() {
+        return access_token;
+    }
+
+    public void setAccess_token(String access_token) {
+        this.access_token = access_token;
+    }
+
+    public String getRefresh_token() {
+        return refresh_token;
+    }
+
+    public void setRefresh_token(String refresh_token) {
+        this.refresh_token = refresh_token;
+    }
+
+    public String getU_unionid() {
+        return u_unionid;
+    }
+
+    public void setU_unionid(String u_unionid) {
+        this.u_unionid = u_unionid;
     }
 
     @Override

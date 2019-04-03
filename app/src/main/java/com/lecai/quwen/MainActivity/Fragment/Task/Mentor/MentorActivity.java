@@ -45,7 +45,7 @@ public class MentorActivity extends AppCompatActivity implements Consumer {
         listView.setAdapter(adapter);
         RxBus.getInstance().subscribe(String.class,this);
         try {
-            getMasterList(MyApplication.getInstance().getUser().getU_unionid());
+            getMasterList(MyApplication.getInstance().getU_unionid());
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -88,7 +88,6 @@ public class MentorActivity extends AppCompatActivity implements Consumer {
         JSONObject json_post = new JSONObject();
         json_post.put("u_unionid",u_unionid);
         Client.getInstance().PostServer(url,json_post,Rxid.GET_MASTER_LIST);
-        Log.i("WXEntryActivity_TAG",MyApplication.getInstance().getUser().getU_unionid());
     }
 
     @Override
