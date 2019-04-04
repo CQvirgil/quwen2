@@ -51,7 +51,6 @@ public class Client {
         OkHttpClient okhttpClient = new OkHttpClient();
         MediaType mediaType = MediaType.parse("application/json");
         RequestBody requestBody = RequestBody.create(null,jsonObject.toString());
-        //Log.i("WXEntryActivity_TAG",requestBody.contentType().toString());
         Request request = new Request.Builder()
                 .url(url)
                 .addHeader("content-type","application/json")
@@ -67,18 +66,17 @@ public class Client {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 String res = response.body().string();
-                if(response.isSuccessful()){
-                    if(res!=null) {
-                        RxBus.getInstance().send(Rxid+res);
-                    }
+                if(res!=null) {
+                    RxBus.getInstance().send(Rxid+res);
                 }
             }
         });
     }
 
-    public void PostServerJ(String url, final JSONObject jsonObject, final String Rxid){
+    public void PostServerJ(String url, final JSONObject jsonObject, final String Rxid) throws JSONException {
+        jsonObject.put("access_token",MyApplication.getInstance().getAccess_token());
         OkHttpClient okhttpClient = new OkHttpClient();
-        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"),jsonObject.toString());
+        RequestBody requestBody = RequestBody.create(null,jsonObject.toString());
         Request request = new Request.Builder()
                 .url(url)
                 .addHeader("content-type","application/json")
@@ -96,10 +94,8 @@ public class Client {
                 try {
                     JSONObject json_res = new JSONObject(res);
                     json_res.put("Rxid",Rxid);
-                    if(response.isSuccessful()){
-                        if(res!=null) {
-                            RxBus.getInstance().send(json_res);
-                        }
+                    if(res!=null) {
+                        RxBus.getInstance().send(json_res);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

@@ -98,6 +98,7 @@ public class MainActivity extends AppCompatActivity {
             MyApplication.getInstance().setRefresh_token(read.getString("refresh_token",null));
             MyApplication.getInstance().setU_unionid(read.getString("u_unionid",null));
             getUser();
+            getTokens(MyApplication.getInstance().getAccess_token());
         }
     }
 
@@ -131,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }else if(rxid.equals(Rxid.GET_USER)){
                     JSONObject json_user = new JSONObject(data);
-                    Log.i("WXEntryActivity_TAG",data);
+                    Log.i("WXEntryActivity_TAG","GET_USER  "+data);
                     if(json_user.getInt("return_code") == 1){
                         JSONObject json_user_data = json_user.getJSONObject("data");
                         String u_unionid = json_user_data.getString("u_unionid");
@@ -146,10 +147,36 @@ public class MainActivity extends AppCompatActivity {
                         MyApplication.getInstance().getUser().setName(name);
                         MyApplication.getInstance().getUser().setGold(gold);
                         MyApplication.getInstance().getUser().setHead_img_url(headimg);
+                    }else{
+                        resetAccessToken();
                     }
+                }else if(rxid.equals(Rxid.RESET_ACCESS_TOKEN)){
+                    JSONObject json_data = new JSONObject(data);
+                    String access_token = json_data.getString("access_token");
+                    MyApplication.getInstance().setAccess_token(access_token);
+                    editor.putString("access_token",access_token);
+                    editor.commit();
+                    Log.i("WXEntryActivity_TAG","RESET_ACCESS_TOKEN  "+access_token);
+                    getUser();
+                }else if(rxid.equals(Rxid.GET_TOKENS)){
+                    Log.i("WXEntryActivity_TAG","GET_TOKENS  "+data);
                 }
             }
         });
+    }
+
+    private void resetAccessToken() throws JSONException {
+        String url = "http://www.lecaigogo.com:4999/api/v1/auth/refresh";
+        JSONObject json_post = new JSONObject();
+        json_post.put("refresh_token", read.getString("refresh_token",null));
+        Client.getInstance().PostServer(url,json_post,Rxid.RESET_ACCESS_TOKEN);
+    }
+
+    private void getTokens(String access_token) throws JSONException {
+        String url = "http://www.lecaigogo.com:4999/api/v1/auth/tokens";
+        JSONObject json_post = new JSONObject();
+        json_post.put("access_token",access_token);
+        Client.getInstance().PostServer(url,json_post,Rxid.GET_TOKENS);
     }
 
     private void getUser() throws JSONException {
@@ -157,8 +184,6 @@ public class MainActivity extends AppCompatActivity {
         JSONObject uuid = new JSONObject();
         uuid.put("u_unionid",MyApplication.getInstance().getU_unionid());
         Client.getInstance().PostServer(url,uuid, Rxid.GET_USER);
-        Log.i("WXEntryActivity_TAG",MyApplication.getInstance().getU_unionid());
-        Log.i("WXEntryActivity_TAG",MyApplication.getInstance().getAccess_token());
     }
 
     @SuppressLint("HandlerLeak")

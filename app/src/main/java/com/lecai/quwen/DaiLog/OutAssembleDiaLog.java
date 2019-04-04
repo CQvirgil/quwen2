@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.lecai.quwen.AndroidRX.RxBus;
 import com.lecai.quwen.AndroidRX.Rxid;
@@ -73,19 +74,12 @@ public class OutAssembleDiaLog extends BaseDiaLog implements View.OnClickListene
 
     }
 
-    private void getTeamList() throws JSONException {
-        String url = "http://www.lecaigogo.com:4999/api/v1/team/team_list";
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("u_unionid", MyApplication.getInstance().getUser().getU_unionid());
-        Client.getInstance().PostServer(url,jsonObject,Rxid.DEL_TEAM);
-    }
-
     private void OutAssemble() throws JSONException {
         String url = "http://www.lecaigogo.com:4999/api/v1/team/team_del";
         JSONObject json_post = new JSONObject();
         json_post.put("t_unionid",t_unionid);
-        json_post.put("u_unionid",MyApplication.getInstance().getUser().getU_unionid());
-        Client.getInstance().PostServerHeader(url,json_post,Rxid.DEL_TEAM);
+        json_post.put("u_unionid",MyApplication.getInstance().getU_unionid());
+        Client.getInstance().PostServer(url,json_post,Rxid.DEL_TEAM);
         Log.i("WXEntryActivity_TAG","OutAssemble");
     }
 
@@ -96,6 +90,12 @@ public class OutAssembleDiaLog extends BaseDiaLog implements View.OnClickListene
         String data = object.substring(5);
         if(rxid.equals(Rxid.DEL_TEAM)){
             Log.i("WXEntryActivity_TAG",data);
+            JSONObject json_data = new JSONObject(data);
+            if(json_data.getInt("return_code") == 1){
+                Toast.makeText(context, "退出成功", Toast.LENGTH_SHORT).show();
+                dismiss();
+            }
         }
     }
+
 }

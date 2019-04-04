@@ -29,6 +29,7 @@ public class BindingMasterActivity extends AppCompatActivity implements Consumer
     private EditText editText;
     private Button btn_search;
     private BindingMasterAdapter adapter;
+    private  List<MasterBean> list;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,7 +65,7 @@ public class BindingMasterActivity extends AppCompatActivity implements Consumer
             public void onClick(View v) {
                 String name = editText.getText().toString();
                 try {
-                    SearchMaster(MyApplication.getInstance().getUser().getU_unionid(),name);
+                    SearchMaster(MyApplication.getInstance().getU_unionid(),name);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -98,22 +99,37 @@ public class BindingMasterActivity extends AppCompatActivity implements Consumer
                 String u_unionid = json_user.getString("u_unionid");
                 int  is_follow = json_user.getInt("is_follow");
                 MasterBean master = new MasterBean(uid,name,u_unionid,is_follow);
-                List<MasterBean> list = new ArrayList<>();
+                list = new ArrayList<>();
                 list.add(master);
                 adapter.setList(list);
                 adapter.notifyDataSetChanged();
                 Log.i("WXEntryActivity_TAG",master.getUid());
+                getHeadImage(u_unionid);
             }
         }else if(rxid.equals(Rxid.BINDING_MASTER)){
             JSONObject json_data = new JSONObject(data);
             int return_code = json_data.getInt("return_code");
             if(return_code == 1){
-                Toast.makeText(this, "已发送信息对方接受后成为你的师傅获徒弟", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "已发送信息对方接受后成为你的师傅或徒弟", Toast.LENGTH_SHORT).show();
             }else{
                 Toast.makeText(this, "发送失败", Toast.LENGTH_SHORT).show();
+            }
+        }else if(rxid.equals(Rxid.GET_HEAD_IMAGE)){
+            Log.i("WXEntryActivity_TAG",data);
+            JSONObject json_data = new JSONObject(data);
+            if(json_data.getInt("return_code") == 1){
+                String headimg = json_data.getString("headimg");
+                list.get(0).setHeadimg_url(headimg);
+                adapter.setList(list);
+                adapter.notifyDataSetChanged();
             }
         }
     }
 
-
+    private void getHeadImage(String u_unionid) throws JSONException {
+        String url = "http://www.lecaigogo.com:4999/api/v1/user/user_img";
+        JSONObject json_post = new JSONObject();
+        json_post.put("u_unionid",u_unionid);
+        Client.getInstance().PostServer(url,json_post,Rxid.GET_HEAD_IMAGE);
+    }
 }

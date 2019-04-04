@@ -17,7 +17,6 @@ import com.lecai.quwen.Bean.Team;
 import com.lecai.quwen.DaiLog.CreateAssembleDiaLog;
 import com.lecai.quwen.DaiLog.JoinAssembleDiaLog;
 import com.lecai.quwen.DaiLog.OutAssembleDiaLog;
-import com.lecai.quwen.DaiLog.OutAssembleSuccessDiaLog;
 import com.lecai.quwen.MyApplication;
 import com.lecai.quwen.MyView.mGridView;
 import com.lecai.quwen.NetWork.Client;
@@ -71,6 +70,15 @@ public class AssembleActivity extends AppCompatActivity implements Consumer {
                 diaLog.setT_unionid(dom_team.get(position).getT_unionid());
                 diaLog.show();
                 return true;
+            }
+        });
+        mGridView2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent();
+                intent.setAction("startMemberInformationActivity");
+                intent.putExtra("teamid",sub_team.get(position).getTid());
+                startActivity(intent);
             }
         });
         try {
@@ -172,7 +180,7 @@ public class AssembleActivity extends AppCompatActivity implements Consumer {
             HandListData(data);
             Log.i("WXEntryActivity_TAG", data);
         }else if(rxid.equals(Rxid.DEL_TEAM)){
-
+            getTeamList();
         }
     }
 
@@ -195,7 +203,7 @@ public class AssembleActivity extends AppCompatActivity implements Consumer {
             }else{
                 handler.sendEmptyMessage(2003);
             }
-            if(json_teamlist_data.getInt("dom_count") > 0){
+            if(json_teamlist_data.getInt("dom_count") >= 0){
                 handler.sendEmptyMessage(2006);
                 dom_team.clear();
                 for(int i=0;i<json_teamlist_data.getJSONArray("dom_team").length();i++){
@@ -207,8 +215,11 @@ public class AssembleActivity extends AppCompatActivity implements Consumer {
                     dom_team.add(new Team(t_unionid,name,tid,number));
                 }
                 handler.sendEmptyMessage(2002);
+                if(json_teamlist_data.getInt("dom_count") == 0){
+                    handler.sendEmptyMessage(2005);
+                }
             }else{
-                handler.sendEmptyMessage(2005);
+
             }
         }
     }

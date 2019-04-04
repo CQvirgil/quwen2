@@ -59,7 +59,7 @@ public class MassageActivity extends AppCompatActivity implements Consumer<JSONO
         String url = "http://www.lecaigogo.com:4999/api/v1/news/disciple_news";
         JSONObject json_post = new JSONObject();
         json_post.put("u_unionid",MyApplication.getInstance().getU_unionid());
-        Client.getInstance().PostServer(url,json_post,Rxid.GET_MESSAGE);
+        Client.getInstance().PostServerJ(url,json_post,Rxid.GET_MESSAGE);
     }
 
     public void Back(View view) {
@@ -75,6 +75,7 @@ public class MassageActivity extends AppCompatActivity implements Consumer<JSONO
     @Override
     public void accept(JSONObject jsonObject) throws Exception {
         String rxid = jsonObject.getString("Rxid");
+        Log.i("WXEntryActivity_TAG",jsonObject.toString());
         if(rxid == Rxid.GET_MESSAGE && jsonObject.getInt("return_code") == 1){
             JSONObject json_data = jsonObject.getJSONObject("data");
             JSONArray json_news_list = json_data.getJSONArray("news_list");
@@ -89,7 +90,6 @@ public class MassageActivity extends AppCompatActivity implements Consumer<JSONO
                 list.add(message);
             }
             setListView(list);
-            Log.i("WXEntryActivity_TAG",jsonObject.toString());
         }
     }
 }

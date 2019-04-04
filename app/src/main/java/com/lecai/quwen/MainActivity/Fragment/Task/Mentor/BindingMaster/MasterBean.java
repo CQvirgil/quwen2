@@ -5,12 +5,21 @@ public class MasterBean {
     private String name;
     private String u_unionid;
     private int is_follow;
+    private String headimg_url;
 
     public MasterBean(String uid, String name, String u_unionid, int is_follow) {
         this.uid = uid;
         this.name = name;
         this.u_unionid = u_unionid;
         this.is_follow = is_follow;
+    }
+
+    public String getHeadimg_url() {
+        return headimg_url;
+    }
+
+    public void setHeadimg_url(String headimg_url) {
+        this.headimg_url = headimg_url;
     }
 
     public String getUid() {

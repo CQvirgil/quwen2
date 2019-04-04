@@ -21,26 +21,18 @@ import android.os.Message;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.widget.ImageView;
-
-import com.lecai.quwen.AndroidRX.RxBus;
 import com.lecai.quwen.MyApplication;
-import com.lecai.quwen.NetWork.Client;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-import javax.security.auth.Subject;
-
-import io.reactivex.Observable;
-import io.reactivex.Observer;
-import io.reactivex.Scheduler;
-import io.reactivex.android.MainThreadDisposable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
-import io.reactivex.schedulers.Schedulers;
+import io.reactivex.subjects.PublishSubject;
+import io.reactivex.subjects.Subject;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
@@ -54,20 +46,25 @@ public class CircleImage extends ImageView implements Callback {
     public static Handler handler;
     private String url;
     private OkHttpClient client;
+    private Subject<Object> subject;
+    private Disposable dispoable;
 
     public CircleImage(Context context) {
         super(context);
         initHandler();
+        initSubject();
     }
 
     public CircleImage(Context context, AttributeSet attrs) {
         super(context, attrs);
         initHandler();
+        initSubject();
     }
 
     public CircleImage(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         initHandler();
+        initSubject();
     }
 
     public void getBitmap(String url){
@@ -144,6 +141,19 @@ public class CircleImage extends ImageView implements Callback {
                 }
             }
         };
+    }
+
+    private void initSubject(){
+        subject = PublishSubject.create().toSerialized();
+        dispoable = subject.ofType(String.class).observeOn(AndroidSchedulers.mainThread()).subscribe(new Consumer<String>() {
+            @Override
+            public void accept(String s) throws Exception {
+                if(s.equals("1102")){
+                    setImageBitmap(mybitmap);
+                    dispoable.dispose();
+                }
+            }
+        });
     }
 
     //加载图片
@@ -267,9 +277,9 @@ public class CircleImage extends ImageView implements Callback {
         if(response.isSuccessful()){
             if(res!=null){
                 mybitmap = bitmap;
-                handler.sendEmptyMessage(1102);
+                //handler.sendEmptyMessage(1102);
+                subject.onNext("1102");
                 postInvalidate();
-                Log.i("WXEntryActivity_TAG","5445");
             }
         }
     }

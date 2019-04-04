@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.lecai.quwen.AndroidRX.Rxid;
 import com.lecai.quwen.MyApplication;
+import com.lecai.quwen.MyView.CircleImage;
 import com.lecai.quwen.NetWork.Client;
 import com.lecai.quwen.R;
 
@@ -75,7 +76,7 @@ public class BindingMasterAdapter extends BaseAdapter {
                 String sub_unionid = MyApplication.getInstance().getUser().getU_unionid();
                 String dom_unionid = list.get(position).getU_unionid();
                 String sub_name = MyApplication.getInstance().getUser().getName();
-                String text = "爸爸";
+                String text = "收我做徒弟吧!以后有钱一起赚!";
                 try {
                     disciple_apply(sub_unionid,dom_unionid,sub_name,text);
                 } catch (JSONException e) {
@@ -83,6 +84,10 @@ public class BindingMasterAdapter extends BaseAdapter {
                 }
             }
         });
+        CircleImage headimg = view.findViewById(R.id.item_act_binding_master_headimg);
+        if(list.get(position).getHeadimg_url()!=null){
+            headimg.setImageURL(list.get(position).getHeadimg_url());
+        }
         return view;
     }
 
