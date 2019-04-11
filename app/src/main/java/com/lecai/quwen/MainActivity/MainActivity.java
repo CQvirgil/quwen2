@@ -32,12 +32,10 @@ import com.lecai.quwen.MainActivity.Fragment.Task.TaskFragment;
 import com.lecai.quwen.MyApplication;
 import com.lecai.quwen.NetWork.Client;
 import com.lecai.quwen.R;
-import com.lecai.quwen.Service.MessageService;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.Map;
 
 import io.reactivex.functions.Consumer;
 
@@ -98,7 +96,6 @@ public class MainActivity extends AppCompatActivity {
             MyApplication.getInstance().setRefresh_token(read.getString("refresh_token",null));
             MyApplication.getInstance().setU_unionid(read.getString("u_unionid",null));
             getUser();
-            getTokens(MyApplication.getInstance().getAccess_token());
         }
     }
 
@@ -140,13 +137,8 @@ public class MainActivity extends AppCompatActivity {
                         String name = json_user_data.getString("name");
                         String headimg = json_user_data.getString("headimg");
                         int gold = json_user_data.getInt("gold");
-                        User user = new User(u_unionid,"");
+                        User user = new User(u_unionid,"",uid,name,gold,headimg);
                         MyApplication.getInstance().setUser(user);
-                        MyApplication.getInstance().setU_unionid(u_unionid);
-                        MyApplication.getInstance().getUser().setUid(uid);
-                        MyApplication.getInstance().getUser().setName(name);
-                        MyApplication.getInstance().getUser().setGold(gold);
-                        MyApplication.getInstance().getUser().setHead_img_url(headimg);
                     }else{
                         resetAccessToken();
                     }
@@ -156,10 +148,21 @@ public class MainActivity extends AppCompatActivity {
                     MyApplication.getInstance().setAccess_token(access_token);
                     editor.putString("access_token",access_token);
                     editor.commit();
-                    Log.i("WXEntryActivity_TAG","RESET_ACCESS_TOKEN  "+access_token);
+                    Log.i("WXEntryActivity_TAG","RESET_ACCESS_TOKEN  "+data);
                     getUser();
                 }else if(rxid.equals(Rxid.GET_TOKENS)){
                     Log.i("WXEntryActivity_TAG","GET_TOKENS  "+data);
+                    JSONObject json_data = new JSONObject(data);
+                    JSONArray tokens = json_data.getJSONArray("tokens");
+                    JSONObject access = tokens.getJSONObject(0);
+                    JSONObject refresh = tokens.getJSONObject(1);
+                    if(refresh.getString("revoked").equals("False")){
+                        //getUser();
+                    }else{
+                        Toast.makeText(MainActivity.this, "登陆超时请重新授权登陆", Toast.LENGTH_SHORT).show();
+                        editor.putBoolean("haslogin",false);
+                        editor.commit();
+                    }
                 }
             }
         });
@@ -188,18 +191,15 @@ public class MainActivity extends AppCompatActivity {
 
     @SuppressLint("HandlerLeak")
     private void initHandler(){
-
         handler = new Handler(){
             @Override
             public void handleMessage(Message msg) {
                 super.handleMessage(msg);
-
                 switch (msg.what){
                     case 2100:
                         rb_home.setChecked(true);
                         break;
                 }
-
             }
         };
     }
@@ -207,7 +207,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onRestart() {
         super.onRestart();
-        //Log.i("asdasdasd","onRestart");
     }
 
     //开辟线程用于计时
@@ -360,7 +359,7 @@ public class MainActivity extends AppCompatActivity {
                         JSONObject json = new JSONObject(value);
                         if (json.getInt("ret") == 0) {
                             jsonObject = json.getJSONObject("data");
-                            MyApplication.getInstance().getWXUser().setTOKEN(jsonObject.getInt("token"));
+                            //MyApplication.getInstance().getWXUser().setTOKEN(jsonObject.getInt("token"));
                         }
                         break;
                 }
@@ -377,14 +376,13 @@ public class MainActivity extends AppCompatActivity {
 
     private void initRadioButtonDrawable(RadioButton radioButton,Drawable drawable){
         //定义底部标签图片大小和位置
-        Drawable drawable_news = drawable;
         //当这个图片被绘制时，给他绑定一个矩形 ltrb规定这个矩形
 
         float width = Util.dip2px(this,25.0f);
         float height = Util.dip2px(this,25.0f);
-        drawable_news.setBounds(0, 0, (int) width, (int) height);
+        drawable.setBounds(0, 0, (int) width, (int) height);
         //设置图片在文字的哪个方向
-        radioButton.setCompoundDrawables(null, drawable_news, null, null);
+        radioButton.setCompoundDrawables(null, drawable, null, null);
 
 
 //        //定义底部标签图片大小和位置
@@ -432,8 +430,15 @@ public class MainActivity extends AppCompatActivity {
                         }
                         break;
                     case R.id.radio_button_task:
-                        Currentfragment = mfragments[2];
-                        loadFragment(2);
+                        if(read.getBoolean("haslogin",false)){
+                            Currentfragment = mfragments[2];
+                            loadFragment(2);
+                        }else{
+                            Intent intent = new Intent();
+                            intent.setAction("startLogInActivity");
+                            rb_home.setChecked(true);
+                            startActivity(intent);
+                        }
                         break;
                 }
                 if (Currentfragment != null) {

@@ -13,6 +13,15 @@ public class User {
         this.token = token;
     }
 
+    public User(String u_unionid, String token, String uid, String name, float gold, String head_img_url) {
+        this.u_unionid = u_unionid;
+        this.token = token;
+        this.uid = uid;
+        this.name = name;
+        this.gold = gold;
+        this.head_img_url = head_img_url;
+    }
+
     public String getHead_img_url() {
         return head_img_url;
     }

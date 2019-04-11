@@ -124,7 +124,9 @@ public class AssembleActivity extends AppCompatActivity implements Consumer {
     private void getTeamList() throws JSONException {
         String url = "http://www.lecaigogo.com:4999/api/v1/team/team_list";
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put("u_unionid", MyApplication.getInstance().getU_unionid());
+        if (MyApplication.getInstance() != null) {
+            jsonObject.put("u_unionid", MyApplication.getInstance().getU_unionid());
+        }
         Client.getInstance().PostServer(url,jsonObject,Rxid.GET_TEAM_LIST);
     }
 
@@ -163,7 +165,6 @@ public class AssembleActivity extends AppCompatActivity implements Consumer {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        Log.i("WXEntryActivity_TAG","onPause");
         RxBus.getInstance().unSubcribe();
     }
 
@@ -218,8 +219,6 @@ public class AssembleActivity extends AppCompatActivity implements Consumer {
                 if(json_teamlist_data.getInt("dom_count") == 0){
                     handler.sendEmptyMessage(2005);
                 }
-            }else{
-
             }
         }
     }
