@@ -5,9 +5,9 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.util.Log;
 
-import com.lecai.quwen.AndroidRX.Rxid;
+import com.lecai.quwen.Pagers.Model.AndroidRX.Rxid;
 import com.lecai.quwen.MyApplication;
-import com.lecai.quwen.NetWork.Client;
+import com.lecai.quwen.Pagers.Model.NetWork.Client;
 
 import org.json.JSONException;
 import org.json.JSONObject;

@@ -6,7 +6,7 @@ public class Setting {
     private int Channle = 1;
     private static Setting instance = null;
 
-    public Setting() {
+    private Setting() {
     }
 
     public static Setting getInstance(){

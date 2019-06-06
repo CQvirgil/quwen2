@@ -41,7 +41,7 @@
         </service>
 
         <activity
-            android:name=".MainActivity.MainActivity"
+            android:name=".Pagers.View.Activity.MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -56,7 +56,7 @@
             android:launchMode="singleTask"
             android:taskAffinity="net.sourceforge.simcpux"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-        <activity android:name=".SettingActivity.SettingActivity" />
+        <activity android:name=".Pagers.View.Activity.SettingActivity" />
         <activity android:name=".DragGridView.DragGridActivity">
             <intent-filter>
                 <action android:name="startDragGridActivity" />
@@ -64,21 +64,21 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity.Fragment.Mine.Help.HelpActivity">
+        <activity android:name=".Pagers.View.Activity.HelpActivity">
             <intent-filter>
                 <action android:name="startHelpActivity" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity.Fragment.Mine.Massage.MassageActivity">
+        <activity android:name=".Pagers.View.Activity.MassageActivity">
             <intent-filter>
                 <action android:name="startMassageActivity" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity.Fragment.Task.Mentor.MentorActivity">
+        <activity android:name=".Pagers.View.Activity.MentorActivity">
             <intent-filter>
                 <data
                     android:host="task"
@@ -93,7 +93,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity.Fragment.Task.Assemble.AssembleActivity">
+        <activity android:name=".Pagers.View.Activity.AssembleActivity">
             <intent-filter>
                 <data
                     android:host="task"
@@ -110,70 +110,70 @@
                 <category android:name="android.intent.category.BROWSABLE" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity.Fragment.Task.PunchTheClock.PunchTheClockActivity">
+        <activity android:name=".Pagers.View.Activity.PunchTheClockActivity">
             <intent-filter>
                 <action android:name="startPunchTheClockActivity" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity.Fragment.Task.Mentor.BindingMaster.BindingMasterActivity">
+        <activity android:name=".Pagers.View.Activity.BindingMasterActivity">
             <intent-filter>
                 <action android:name="startBindingMasterActivity" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity.Fragment.Task.Assemble.MemberInformation.MemberInformationActivity">
+        <activity android:name=".Pagers.View.Activity.MemberInformationActivity">
             <intent-filter>
                 <action android:name="startMemberInformationActivity" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity.Fragment.Mine.QYFE.QYFEActivity">
+        <activity android:name=".Pagers.View.Activity.QYFEActivity">
             <intent-filter>
                 <action android:name="startQYFEActivity" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity.Fragment.Mine.QYFE.DirectionalGift.DirectionalGiftActivity">
+        <activity android:name=".Pagers.View.Activity.DirectionalGiftActivity">
             <intent-filter>
                 <action android:name="startDirectionalGiftActivity" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity.Fragment.Mine.QYFE.Realize.RealizeActivity">
+        <activity android:name=".Pagers.View.Activity.RealizeActivity">
             <intent-filter>
                 <action android:name="startRealizeActivity" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity.Fragment.Task.Ranking.RankingActivity">
+        <activity android:name=".Pagers.View.Activity.RankingActivity">
             <intent-filter>
                 <action android:name="startRankingActivity" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity.Fragment.Mine.LogInActivity">
+        <activity android:name=".Pagers.View.Activity.LogInActivity">
             <intent-filter>
                 <action android:name="startLogInActivity" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity.Fragment.Mine.QYFE.Realize.Record.RecordActivity">
+        <activity android:name=".Pagers.View.Activity.RecordActivity">
             <intent-filter>
                 <action android:name="startRecordActivity" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity.Fragment.Mine.Massage.MessageDetail.MessageDetailActivity">
+        <activity android:name=".Pagers.View.Activity.MessageDetailActivity">
 
             <intent-filter>
                 <action android:name="startMessageDetailActivity" />

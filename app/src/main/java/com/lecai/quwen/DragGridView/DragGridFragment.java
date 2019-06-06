@@ -13,7 +13,7 @@ import com.lecai.quwen.DragGridView.draggridview.DragAdapter;
 import com.lecai.quwen.DragGridView.draggridview.DragGridView;
 import com.lecai.quwen.DragGridView.model.ProvinceModel;
 import com.lecai.quwen.DragGridView.tools.Constant;
-import com.lecai.quwen.MainActivity.Fragment.NewsFragment;
+import com.lecai.quwen.Pagers.View.Fragmemt.NewsFragment;
 import com.lecai.quwen.R;
 
 import java.util.ArrayList;

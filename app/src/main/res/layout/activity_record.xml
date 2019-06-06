@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity.Fragment.Mine.QYFE.Realize.Record.RecordActivity">
+    tools:context=".Pagers.View.Activity.RecordActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"

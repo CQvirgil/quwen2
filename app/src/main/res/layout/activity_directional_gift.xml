@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    tools:context=".MainActivity.Fragment.Mine.QYFE.DirectionalGift.DirectionalGiftActivity">
+    tools:context=".Pagers.View.Activity.DirectionalGiftActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
