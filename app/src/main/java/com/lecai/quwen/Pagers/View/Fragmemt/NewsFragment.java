@@ -39,7 +39,6 @@ public class NewsFragment extends Fragment {
     public static List<ProvinceItem> tabTilte;
     private List<ChannelFragment> fragments;
     private SharedPreferences read;
-    private Button btn;
     private ViewPagerAdapter viewPagerAdapter;
     private int tabsize = 0;
     public static boolean isChang = true;
@@ -62,7 +61,6 @@ public class NewsFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         read = getContext().getSharedPreferences("user",MODE_PRIVATE);
-        Log.i("asdasdasdasd","onCreate");
     }
 
     @Override

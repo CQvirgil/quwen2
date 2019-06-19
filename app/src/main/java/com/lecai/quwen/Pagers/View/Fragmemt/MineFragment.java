@@ -3,8 +3,6 @@ package com.lecai.quwen.Pagers.View.Fragmemt;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -32,12 +30,9 @@ public class MineFragment extends Fragment implements View.OnClickListener {
     private LinearLayout fgm_Mine_LL_user,QYFE;
     private RelativeLayout Setting,Help,Msg,Update;
     public static Handler handler;
-    public static final int SET_fgm_Mine_LL_user_VISIABLE = 1001,SET_USER_ICON = 1002;
     private static MineFragment fragment;
     private TextView user_name,user_u_id,user_gold;
     private CircleImage user_icon;
-    private Bitmap bitmap;
-    private SharedPreferences read;
 
     @SuppressLint({"ValidFragment", "CommitPrefEdits"})
     private MineFragment(Context context) {
@@ -69,7 +64,6 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         initHelp();
         initMsg();
         initUpDate();
-        read = getContext().getSharedPreferences("Setting", Context.MODE_PRIVATE);
         if(Data.getInstance().getUser()!=null){
             user_icon.setImageURL(Data.getInstance().getUser().getHead_img_url());
             fgm_Mine_LL_user.setVisibility(View.VISIBLE);
@@ -90,7 +84,6 @@ public class MineFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onResume() {
         super.onResume();
-        //handler.sendEmptyMessage(1003);
     }
 
     @SuppressLint("HandlerLeak")

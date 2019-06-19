@@ -39,7 +39,8 @@ public class LogInActivity extends AppCompatActivity {
     }
 
     public void LoginWX(View view) {
-        WXUtil.getInstance().loginToWX();
+
+
         finish();
     }
 }

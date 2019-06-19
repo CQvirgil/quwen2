@@ -16,21 +16,23 @@ public class MainTabPresenterCompl implements IMainTabPresenter {
     }
 
     @Override
-    public void MainTabCheck() {
-        if (Data.getInstance().getU_unionid() != null) {
-            iMainTabPresenterView.loadFragment(1);
-        } else {
-            iMainTabPresenterView.onStartLoginActivity();
-        }
+    public void MineTabCheck() {
+        iMainTabPresenterView.loadFragment(1);
+//        if (Data.getInstance().getU_unionid() != null) {
+//            iMainTabPresenterView.loadFragment(1);
+//        } else {
+//            iMainTabPresenterView.onStartLoginActivity();
+//        }
     }
 
     @Override
     public void TaskTabCheck() {
-        if (Data.getInstance().getU_unionid() != null) {
-            iMainTabPresenterView.loadFragment(2);
-        } else {
-            iMainTabPresenterView.onStartLoginActivity();
-        }
+        iMainTabPresenterView.loadFragment(2);
+//        if (Data.getInstance().getU_unionid() != null) {
+//            iMainTabPresenterView.loadFragment(2);
+//        } else {
+//            iMainTabPresenterView.onStartLoginActivity();
+//        }
     }
 
 

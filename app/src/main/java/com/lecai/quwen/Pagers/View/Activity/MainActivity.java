@@ -30,7 +30,7 @@ import com.lecai.quwen.R;
 import org.json.JSONException;
 
 import static android.view.KeyEvent.KEYCODE_BACK;
-
+//首页
 public class MainActivity extends BaseActivity implements IMainTabPresenterView {
     private RadioButton rb_home, rb_task, rb_mine;
     private Fragment mfragments[];
@@ -48,10 +48,6 @@ public class MainActivity extends BaseActivity implements IMainTabPresenterView 
         setContentView(R.layout.activity_main);
         initView();
         iMainTabPresenter = new MainTabPresenterCompl(this);
-
-        initRadioButtonDrawable(rb_home, getResources().getDrawable(R.drawable.main_tab_news_selector));
-        initRadioButtonDrawable(rb_task, getResources().getDrawable(R.drawable.main_tab_task_selector));
-        initRadioButtonDrawable(rb_mine, getResources().getDrawable(R.drawable.main_tab_mine_selector));
         initTab();
         initHandler();
     }
@@ -61,11 +57,6 @@ public class MainActivity extends BaseActivity implements IMainTabPresenterView 
         super.onStart();
         editor = this.getSharedPreferences("Setting", Context.MODE_PRIVATE).edit();
         read = this.getSharedPreferences("Setting", Context.MODE_PRIVATE);
-        try {
-            isLogin();
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
     }
 
     private void isLogin() throws JSONException {
@@ -76,12 +67,6 @@ public class MainActivity extends BaseActivity implements IMainTabPresenterView 
             HttpRequest.getInstance().getUser();
         }
     }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-    }
-
 
     @SuppressLint("HandlerLeak")
     private void initHandler() {
@@ -98,16 +83,14 @@ public class MainActivity extends BaseActivity implements IMainTabPresenterView 
         };
     }
 
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-    }
-
     private void initView() {
         rb_home = findViewById(R.id.radio_button_home);
         rb_task = findViewById(R.id.radio_button_task);
         rb_mine = findViewById(R.id.radio_button_mine);
         mRadioGroup = findViewById(R.id.radio_group_button);
+        initRadioButtonDrawable(rb_home, getResources().getDrawable(R.drawable.main_tab_news_selector));
+        initRadioButtonDrawable(rb_task, getResources().getDrawable(R.drawable.main_tab_task_selector));
+        initRadioButtonDrawable(rb_mine, getResources().getDrawable(R.drawable.main_tab_mine_selector));
     }
 
     private void initRadioButtonDrawable(RadioButton radioButton, Drawable drawable) {
@@ -137,7 +120,7 @@ public class MainActivity extends BaseActivity implements IMainTabPresenterView 
                         iMainTabPresenter.NewsTabCheck();
                         break;
                     case R.id.radio_button_mine:
-                        iMainTabPresenter.MainTabCheck();
+                        iMainTabPresenter.MineTabCheck();
                         break;
                     case R.id.radio_button_task:
                         iMainTabPresenter.TaskTabCheck();
@@ -145,6 +128,7 @@ public class MainActivity extends BaseActivity implements IMainTabPresenterView 
                 }
             }
         });
+
         // 保证第一次会回调OnCheckedChangeListener
         rb_home.setChecked(true);
     }
