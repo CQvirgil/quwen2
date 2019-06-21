@@ -3,6 +3,7 @@ package com.lecai.quwen.Pagers.View.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -29,17 +30,29 @@ import java.util.List;
 
 import io.reactivex.functions.Consumer;
 
-public class MentorActivity extends AppCompatActivity implements Consumer {
+public class MentorActivity extends ToolBarActivity implements Consumer {
     private ListView listView;
     private CircleImage headimg;
     private TextView mentor_name,mentor_id;
     private List<Apprentice> list;
     private boolean isEnd = false;
     MentorAdapter adapter;
+
+    private void setToolBar(){
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        TextView toolbar_title = findViewById(R.id.toolbar_title);
+        toolbar_title.setText("师徒");
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mentor);
+        setToolBar();
         list = new ArrayList<>();
         initView();
         adapter = new MentorAdapter(this,list);
@@ -57,10 +70,6 @@ public class MentorActivity extends AppCompatActivity implements Consumer {
         mentor_id = findViewById(R.id.act_mentor_id);
         listView = findViewById(R.id.act_mentor_list_view);
         headimg = findViewById(R.id.act_mentor_headimg);
-    }
-
-    public void Back(View view) {
-        finish();
     }
 
     public void startBindingMasterActivity(View view) {

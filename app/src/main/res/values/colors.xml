@@ -6,7 +6,7 @@
     <color name="colorAccent">#D81B60</color>
 
     <color name="background">#dfdfdf</color>
-    <color name="windowbackground">#ededed</color>
+    <color name="windowbackground">#ffffff</color>
 
 
     <item name="subscribe_item_text_color_normal_night" type="color">@color/default_text_night</item>
@@ -37,5 +37,6 @@
     <color name="subscribe_activity_bg">#ffefefef</color>
     <color name="subscribe_bg">#fff5f5f5</color>
     <color name="subscribe_seperate_line">#ffcdcdcd</color>
-
+    <color name="title">#000000</color>
+    <color name="text">#000000</color>
 </resources>

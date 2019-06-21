@@ -117,7 +117,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".Pagers.View.Activity.BindingMasterActivity">
+        <activity android:name=".Pagers.View.Activity.SearchActivity">
             <intent-filter>
                 <action android:name="startBindingMasterActivity" />
 

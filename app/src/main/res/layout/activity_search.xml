@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Pagers.View.Activity.SearchActivity">
+
+
+    <include layout="@layout/tool_bar"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:paddingLeft="@dimen/qw_page_edge"
+        android:paddingRight="@dimen/qw_page_edge"
+        >
+        
+        <ImageView
+            android:layout_gravity="center_vertical"
+            android:layout_width="40dp"
+            android:layout_height="37dp"
+            android:src="@drawable/img_act_binding_master_search"
+            />
+
+
+        <EditText
+            android:id="@+id/act_binding_master_edittext"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:background="@null"
+            android:hint="请输入用户ID"
+            android:theme="@style/qw_text"
+            android:layout_marginLeft="14dp"
+            android:maxLength="10"
+            android:singleLine="true"
+            android:imeOptions="actionSearch"
+            android:inputType="numberSigned"
+            android:layout_height="match_parent" />
+        <!--<Button-->
+            <!--android:id="@+id/act_binding_master_btn_search"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="搜索"/>-->
+    </LinearLayout>
+
+    <include
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="25dp"
+        layout="@layout/line"
+        tools:ignore="IncludeLayoutParam" />
+
+    <ListView
+        android:paddingLeft="@dimen/qw_page_edge"
+        android:paddingRight="@dimen/qw_page_edge"
+        android:id="@+id/act_binding_master_listview"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:background="#fff"
+        android:layout_height="0dp"/>
+</LinearLayout>

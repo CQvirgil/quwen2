@@ -19,6 +19,8 @@
         <!--<item name="android:windowFullscreen">true</item>-->
         <!--半透明状态栏-->
         <!--<item name="android:windowTranslucentStatus">true</item>-->
+        <!--<item name="android:paddingLeft">@dimen/qw_page_edge</item>-->
+        <!--<item name="android:paddingRight">@dimen/qw_page_edge</item>-->
     </style>
 
     <style name="my_channle_text">
@@ -157,6 +159,19 @@
     <style name="mydialogstyle" parent="android:Animation">
         <item name="@android:windowEnterAnimation">@anim/dialog_enter</item>  //进入时的动画
         <item name="@android:windowExitAnimation">@anim/dialog_exit</item>    //退出时的动画
+    </style>
+
+    <style name="toolbar_title">
+
+        <item name="android:color">@color/title</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/title_size</item>
+
+    </style>
+
+    <style name="qw_text">
+        <item name="android:textSize">@dimen/text_size</item>
+        <item name="android:textColor">@color/text</item>
     </style>
 
 </resources>

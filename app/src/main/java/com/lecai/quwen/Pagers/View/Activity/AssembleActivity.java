@@ -6,10 +6,12 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.lecai.quwen.Pagers.Model.AndroidRX.RxBus;
 import com.lecai.quwen.Pagers.Model.AndroidRX.Rxid;
@@ -33,7 +35,7 @@ import java.util.List;
 
 import io.reactivex.functions.Consumer;
 
-public class AssembleActivity extends AppCompatActivity implements Consumer {
+public class AssembleActivity extends ToolBarActivity implements Consumer {
     private mGridView mGridView1, mGridView2;
     private CreateAssembleDiaLog diaLog1;
     private JoinAssembleDiaLog diaLog2;
@@ -48,10 +50,21 @@ public class AssembleActivity extends AppCompatActivity implements Consumer {
             SET_DOM_TEAM_NONE = 2005,
             SET_DOM_TEAM_HAVE = 2006;
 
+    private void setToolBar(){
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        TextView toolbar_title = findViewById(R.id.toolbar_title);
+        toolbar_title.setText("拼团");
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_assemble);
+        setToolBar();
         mGridView1 = findViewById(R.id.act_assemble_mgridview1);
         mGridView2 = findViewById(R.id.act_assemble_mgridview2);
         is_sub_team_none = findViewById(R.id.act_assemble_listnone2);
