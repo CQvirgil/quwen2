@@ -10,12 +10,13 @@ import com.lecai.quwen.MyApplication;
 import com.lecai.quwen.R;
 import com.lecai.quwen.wxapi.WXUtil;
 
-public class LogInActivity extends AppCompatActivity {
+public class LogInActivity extends ToolBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
+        setToolBar("");
         WXUtil.getInstance().regToWx(this, MyApplication.getWxAppId());
     }
 
@@ -26,7 +27,6 @@ public class LogInActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-
     }
 
     @Override
@@ -39,8 +39,6 @@ public class LogInActivity extends AppCompatActivity {
     }
 
     public void LoginWX(View view) {
-
-
         finish();
     }
 }

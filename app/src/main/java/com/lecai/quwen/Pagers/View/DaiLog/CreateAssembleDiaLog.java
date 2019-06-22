@@ -18,7 +18,7 @@ import org.json.JSONObject;
 
 import io.reactivex.functions.Consumer;
 
-public class CreateAssembleDiaLog extends BaseDiaLog implements Consumer {
+public class CreateAssembleDiaLog extends BaseDiaLog {
     private EditText editText;
     private TextView textView;
     private Button button;
@@ -31,7 +31,6 @@ public class CreateAssembleDiaLog extends BaseDiaLog implements Consumer {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dialog_create_assemble);
         initView();
-        RxBus.getInstance().subscribe(String.class,this);
         setButton();
     }
 
@@ -45,38 +44,8 @@ public class CreateAssembleDiaLog extends BaseDiaLog implements Consumer {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String url = "http://www.lecaigogo.com:4999/api/v1/team/team_create";
-                String team_name = editText.getText().toString();
-                JSONObject json_post = new JSONObject();
-                try {
-                    json_post.put("u_unionid",MyApplication.getInstance().getUser().getU_unionid());
-                    json_post.put("t_name",team_name);
-                    Client.getInstance().PostServer(url,json_post,Rxid.CREATE_TEAM);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
             }
         });
     }
 
-    @Override
-    public void accept(Object o) throws Exception {
-        String object = (String) o;
-        String rxid = object.substring(0,5);
-        String data = object.substring(5);
-        if(rxid.equals(Rxid.CREATE_TEAM)){
-            HandData(data);
-        }
-    }
-
-    private void HandData(String data) throws JSONException {
-        dismiss();
-        JSONObject json_data = new JSONObject(data);
-        if(json_data.getInt("return_code")==1){
-            String url = "http://www.lecaigogo.com:4999/api/v1/team/team_list";
-            JSONObject jsonObject = new JSONObject();
-            jsonObject.put("u_unionid", MyApplication.getInstance().getUser().getU_unionid());
-            Client.getInstance().PostServer(url,jsonObject,Rxid.GET_TEAM_LIST);
-        }
-    }
 }

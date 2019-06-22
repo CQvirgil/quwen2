@@ -155,6 +155,11 @@ public class PassWordEditorText extends EditText {
         }
     }
 
+    public void Empty(){
+        setText("");
+        passwordListener.onEmpty();
+    }
+
     public void NullMenuEditText() {
         setLongClickable(false);
         setTextIsSelectable(false);
@@ -190,4 +195,5 @@ public class PassWordEditorText extends EditText {
 
 interface PasswordListener {
     void onFinish(String text);
+    void onEmpty();
 }

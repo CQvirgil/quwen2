@@ -51,12 +51,9 @@
         layout="@layout/line"
         tools:ignore="IncludeLayoutParam" />
 
-    <ListView
-        android:paddingLeft="@dimen/qw_page_edge"
-        android:paddingRight="@dimen/qw_page_edge"
-        android:id="@+id/act_binding_master_listview"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/act_binding_maste_list"
         android:layout_weight="1"
         android:layout_width="match_parent"
-        android:background="#fff"
-        android:layout_height="0dp"/>
+        android:layout_height="wrap_content"/>
 </LinearLayout>

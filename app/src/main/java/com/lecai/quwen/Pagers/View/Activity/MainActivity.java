@@ -83,7 +83,7 @@ public class MainActivity extends BaseActivity implements IMainTabPresenterView 
         };
     }
 
-    private void initView() {
+    public void initView() {
         rb_home = findViewById(R.id.radio_button_home);
         rb_task = findViewById(R.id.radio_button_task);
         rb_mine = findViewById(R.id.radio_button_mine);

@@ -66,10 +66,9 @@ public class RxBus {
     public void unSubcribe() {
         if (dispoable != null && !dispoable.isDisposed()) {
             dispoable.dispose();
-            // subject.onComplete();
+            subject.onComplete();
             Log.i("WXEntryActivity_TAG", "unSubcribe");
         }
-
     }
 
 }

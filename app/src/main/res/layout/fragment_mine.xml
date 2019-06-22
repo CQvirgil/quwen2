@@ -46,7 +46,6 @@
 
                                     <com.lecai.quwen.MyView.CircleImage
                                         android:id="@+id/user_icon"
-                                        android:background="#dfdfdf"
                                         android:layout_width="71dp"
                                         android:layout_height="71dp"
                                         />
