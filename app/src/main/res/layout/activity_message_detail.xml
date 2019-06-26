@@ -7,23 +7,7 @@
     android:orientation="vertical"
     tools:context=".Pagers.View.Activity.MessageDetailActivity">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="47dp">
-
-        <ImageButton
-            android:layout_width="30dp"
-            android:layout_height="match_parent"
-            android:src="@mipmap/img_channle_goback"
-            android:layout_centerVertical="true"
-            android:background="@null"
-            android:layout_marginLeft="12dp"
-            android:onClick="Back"
-            />
-
-    </RelativeLayout>
-
-
+    <include layout="@layout/tool_bar"/>
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -98,7 +82,6 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
-            android:onClick="accept"
             android:text="接受"/>
 
         <Button
@@ -107,7 +90,6 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
-            android:onClick="reject"
             android:text="拒绝"/>
 
     </LinearLayout>

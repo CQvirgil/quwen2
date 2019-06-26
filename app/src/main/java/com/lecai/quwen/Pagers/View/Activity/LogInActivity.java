@@ -10,13 +10,12 @@ import com.lecai.quwen.MyApplication;
 import com.lecai.quwen.R;
 import com.lecai.quwen.wxapi.WXUtil;
 
-public class LogInActivity extends ToolBarActivity {
+public class LogInActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
-        setToolBar("");
         WXUtil.getInstance().regToWx(this, MyApplication.getWxAppId());
     }
 

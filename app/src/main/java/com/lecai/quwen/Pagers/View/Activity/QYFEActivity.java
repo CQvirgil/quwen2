@@ -7,7 +7,7 @@ import android.view.View;
 
 import com.lecai.quwen.R;
 
-public class QYFEActivity extends AppCompatActivity {
+public class QYFEActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -31,27 +31,14 @@ import java.util.List;
 import io.reactivex.functions.Consumer;
 
 public class MentorActivity extends ToolBarActivity{
-    private ListView listView;
-    private CircleImage headimg;
-    private TextView mentor_name,mentor_id;
-    private List<Apprentice> list;
-    private boolean isEnd = false;
-    MentorAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mentor);
         setToolBar("师徒");
-        initView();
     }
 
-    public void initView(){
-        mentor_name = findViewById(R.id.act_mentor_name);
-        mentor_id = findViewById(R.id.act_mentor_id);
-        listView = findViewById(R.id.act_mentor_list_view);
-        headimg = findViewById(R.id.act_mentor_headimg);
-    }
 
     public void startBindingMasterActivity(View view) {
         Intent intent = new Intent();

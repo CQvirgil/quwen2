@@ -39,4 +39,7 @@
     <color name="subscribe_seperate_line">#ffcdcdcd</color>
     <color name="title">#000000</color>
     <color name="text">#000000</color>
+    <color name="colorPrimary2">#e7af00</color>
+    <color name="colorWrite">#ffffff</color>
+    <color name="line">#ebebeb</color>
 </resources>
