@@ -161,9 +161,9 @@
         <item name="@android:windowExitAnimation">@anim/dialog_exit</item>    //退出时的动画
     </style>
 
-    <style name="toolbar_title">
+    <style name="qw_title">
 
-        <item name="android:color">@color/title</item>
+        <item name="android:textColor">@color/title</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">@dimen/title_size</item>
 
@@ -174,4 +174,14 @@
         <item name="android:textColor">@color/text</item>
     </style>
 
+
+    <style name="qw_text_2">
+        <item name="android:textColor">@color/title</item>
+        <item name="android:textSize">@dimen/text_size_2</item>
+    </style>
+
+    <style name="qw_text_small">
+        <item name="android:textSize">@dimen/text_size_small</item>
+        <item name="android:textColor">#b3b3b3</item>
+    </style>
 </resources>

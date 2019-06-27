@@ -20,8 +20,10 @@ import com.lecai.quwen.DragGridView.tools.Util;
 import com.lecai.quwen.Pagers.Presenter.IMainTabPresenter;
 import com.lecai.quwen.Pagers.Presenter.IMainTabPresenterView;
 import com.lecai.quwen.Pagers.Presenter.MainTabPresenterCompl;
+import com.lecai.quwen.Pagers.View.Fragmemt.LoginFragment;
 import com.lecai.quwen.Pagers.View.Fragmemt.NewsFragment;
 import com.lecai.quwen.Pagers.View.Fragmemt.MineFragment;
+import com.lecai.quwen.Pagers.View.Fragmemt.Task2Fragment;
 import com.lecai.quwen.Pagers.View.Fragmemt.TaskFragment;
 import com.lecai.quwen.MyApplication;
 import com.lecai.quwen.Pagers.Model.NetWork.HttpRequest;
@@ -109,7 +111,8 @@ public class MainActivity extends BaseActivity implements IMainTabPresenterView 
         mfragments = new Fragment[5];
         mfragments[0] = NewsFragment.newInstance(this);
         mfragments[1] = MineFragment.newInstance(this);
-        mfragments[2] = TaskFragment.newInstance();
+        mfragments[2] = Task2Fragment.newInstance();
+        mfragments[3] = LoginFragment.newInstance();
         mRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
 
             @SuppressLint("NewApi")

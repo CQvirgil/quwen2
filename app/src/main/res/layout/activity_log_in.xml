@@ -34,29 +34,48 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:theme="@style/toolbar_title"
+            android:theme="@style/qw_title"
             android:text="@string/app_name"/>
-
-        <EditText
-            android:id="@+id/act_login_et_pone_num"
-            android:layout_width="280dp"
-            android:layout_height="wrap_content"
-            android:maxLength="11"
-            android:layout_marginTop="31dp"
-            android:background="@drawable/et_bg1"
-            android:inputType="numberSigned"/>
 
         <LinearLayout
             android:layout_width="280dp"
             android:layout_height="25dp"
-            android:background="@drawable/et_bg1"
+            android:layout_marginTop="31dp"
+            android:background="@drawable/bottom_line_bg">
+
+            <EditText
+                android:layout_weight="1"
+                android:id="@+id/act_login_et_pone_num"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:maxLength="11"
+                android:background="@null"
+                android:inputType="numberSigned"
+                android:textCursorDrawable="@drawable/et_cursor"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:theme="@style/qw_text"
+                android:textColor="@color/colorPrimary"
+                android:text="请输入正确号码"
+                />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="280dp"
+            android:layout_height="25dp"
+            android:background="@drawable/bottom_line_bg"
             android:layout_marginTop="40dp">
             <EditText
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:background="@null"
                 android:inputType="text"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:textCursorDrawable="@drawable/et_cursor"/>
 
             <Button
                 android:layout_width="wrap_content"

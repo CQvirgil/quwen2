@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Pagers.View.Fragmemt.LoginFragment">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:orientation="vertical"
+       >
+       <ImageView
+           android:layout_width="83dp"
+           android:layout_height="83dp"
+           android:layout_gravity="center"
+           android:background="@drawable/btn_bg1"/>
+        <TextView
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:theme="@style/qw_title"
+            android:text="@string/app_name"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="17dp"
+            android:textSize="14sp"
+            android:textColor="#b3b3b3"
+            android:text="趣闻slogan"
+            />
+        
+        <Button
+            android:layout_width="223dp"
+            android:layout_height="44dp"
+            android:background="@drawable/btn_bg1"
+            android:textColor="@color/colorWrite"
+            android:layout_marginTop="80dp"
+            android:theme="@style/qw_text"
+            android:text="微信登录"/>
+        <Button
+            android:id="@+id/fgm_login_pone_num_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="34dp"
+            android:layout_gravity="center"
+            android:background="@null"
+            android:paddingTop="0dp"
+            android:paddingRight="0dp"
+            android:paddingLeft="0dp"
+            android:paddingBottom="0dp"
+            android:theme="@style/qw_text"
+            android:text="手机号登录"
+            />
+    </LinearLayout>
+
+</RelativeLayout>
