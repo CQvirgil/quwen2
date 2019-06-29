@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#ea3535</color>
+    <color name="colorPrimary">#e7af00</color>
     
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
@@ -42,4 +42,5 @@
     <color name="colorPrimary2">#e7af00</color>
     <color name="colorWrite">#ffffff</color>
     <color name="line">#ebebeb</color>
+    <color name="text_secondary">#b3b3b3</color>
 </resources>

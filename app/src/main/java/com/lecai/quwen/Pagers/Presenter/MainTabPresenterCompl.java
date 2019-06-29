@@ -16,7 +16,7 @@ public class MainTabPresenterCompl implements IMainTabPresenter {
 
     @Override
     public void MineTabCheck() {
-        iMainTabPresenterView.loadFragment(3);
+        iMainTabPresenterView.loadFragment(1);
         //iMainTabPresenterView.onStartLoginActivity();
     }
 

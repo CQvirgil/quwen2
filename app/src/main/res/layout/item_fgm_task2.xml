@@ -16,7 +16,7 @@
         tools:ignore="MissingConstraints" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/fgm_task2_item_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="14dp"
@@ -33,10 +33,11 @@
         android:layout_marginTop="14dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/fgm_task2_item_title"
         tools:ignore="MissingConstraints">
 
         <TextView
+            android:id="@+id/fgm_task2_item_unit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:theme="@style/qw_text"
@@ -44,6 +45,7 @@
             android:text="0" />
 
         <TextView
+            android:id="@+id/fgm_task2_item_unit_all"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:theme="@style/qw_text"
@@ -65,12 +67,14 @@
         tools:ignore="MissingConstraints">
 
         <TextView
+            android:id="@+id/fgm_task2_item_value"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:theme="@style/qw_text_2"
             android:text="0" />
 
         <TextView
+            android:id="@+id/fgm_task2_item_value_all"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:theme="@style/qw_text_small"

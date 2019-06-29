@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".Pagers.View.Fragmemt.Task2Fragment">
+
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="290dp"
@@ -63,7 +64,8 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/fgm_task2_recycler_view"
         android:layout_weight="1"
-        android:layout_marginTop="13dp"
+        android:nestedScrollingEnabled="false"
+        android:paddingTop="13dp"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:paddingLeft="16dp"
