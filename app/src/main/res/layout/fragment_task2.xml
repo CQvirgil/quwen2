@@ -51,6 +51,7 @@
             tools:ignore="MissingConstraints">
 
             <TextView
+                android:id="@+id/fgm_task2_all_gold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="全部金币：2330"

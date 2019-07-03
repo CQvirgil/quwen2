@@ -5,43 +5,42 @@
 
     <RelativeLayout
         android:background="@drawable/dialog_out_assemble_bg"
-        android:layout_width="256dp"
-        android:layout_height="146dp">
+        android:layout_width="278dp"
+        android:layout_height="152dp">
 
         <TextView
-            android:id="@+id/dialog_outassemble_text"
+            android:id="@+id/dialog_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="17sp"
-            android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
+            android:layout_marginTop="32dp"
             android:textColor="#333"
-            android:text="确定退出此团吗？"/>
-        
+            android:text="内容说明"/>
+
         <LinearLayout
             android:layout_alignParentBottom="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            
+
             <Button
-                android:id="@+id/dialog_out_assemble_btn1"
+                android:id="@+id/dialog_left_btn"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
                 android:background="@drawable/btn_dialog_out_assemble_bg"
-                android:textSize="15sp"
-                android:textColor="#ea3535"
-                android:text="确定"/>
-            <Button
-                android:id="@+id/dialog_out_assemble_btn2"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:background="@drawable/btn_dialog_out_assemble_bg"
-                android:textSize="15sp"
-                android:textColor="#333"
+                android:textSize="@dimen/text_size_18"
                 android:text="取消"/>
-            
+            <Button
+                android:id="@+id/dialog_right_btn"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:background="@drawable/btn_dialog_out_assemble_bg"
+                android:textSize="@dimen/text_size_18"
+                android:textColor="@color/colorPrimary"
+                android:text="确定"/>
+
         </LinearLayout>
 
     </RelativeLayout>

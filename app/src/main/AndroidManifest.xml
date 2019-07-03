@@ -9,15 +9,12 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.VIBRATE" />
-    //读取系统信息，包含系统版本等信息，用作统计
     <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
-    //这个权限用于进行网络定位
     <uses-permission
         android:name="android.permission.WRITE_SETTINGS"
         tools:ignore="ProtectedPermissions" />
-    //这个权限用于访问GPS定位
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    //获取统计数据
+
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
@@ -27,6 +24,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".Pagers.View.Activity.GiftActivity"></activity>
+        <activity android:name=".Pagers.View.Activity.ExchangeActivity" />
+        <activity android:name=".Pagers.View.Activity.IntegralActivity" />
+
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="R95hhTpjkVmK6vooZDj5xKsPGhk6qn0i" />
@@ -174,16 +175,14 @@
             </intent-filter>
         </activity>
         <activity android:name=".Pagers.View.Activity.MessageDetailActivity">
-
             <intent-filter>
                 <action android:name="startMessageDetailActivity" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-
         </activity>
 
-        <service android:name=".Service.MessageService"/>
+        <service android:name=".Service.MessageService" />
     </application>
 
 </manifest>

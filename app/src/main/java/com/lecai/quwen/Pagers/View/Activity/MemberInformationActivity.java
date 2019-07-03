@@ -9,9 +9,8 @@ import android.view.Window;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.lecai.quwen.Pagers.Model.AndroidRX.RxBus;
 import com.lecai.quwen.Pagers.View.DaiLog.GotoAssembleDiaLog;
-import com.lecai.quwen.Pagers.View.DaiLog.OutAssembleDiaLog;
+import com.lecai.quwen.Pagers.View.DaiLog.TowBtnDiaLog;
 import com.lecai.quwen.Pagers.View.Adapter.MemberAdapter;
 import com.lecai.quwen.Bean.MemberBean;
 import com.lecai.quwen.R;
@@ -42,7 +41,7 @@ public class MemberInformationActivity extends Activity{
     }
 
     public void OutAssemble(View view) {
-        OutAssembleDiaLog diaLog = new OutAssembleDiaLog(this);
+        TowBtnDiaLog diaLog = new TowBtnDiaLog(this);
         diaLog.show();
     }
 

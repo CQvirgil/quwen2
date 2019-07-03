@@ -43,7 +43,7 @@ public class MentorActivity extends ToolBarActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mentor);
-        setToolBar("我的徒弟");
+        setToolBar("我的徒弟", "");
         initView();
     }
 

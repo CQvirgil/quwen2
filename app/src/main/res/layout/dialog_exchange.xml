@@ -1,54 +1,126 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <LinearLayout
+        android:layout_width="340dp"
+        android:layout_height="327dp"
+        android:paddingLeft="@dimen/qw_pager_padding"
+        android:paddingRight="@dimen/qw_pager_padding"
         android:background="@drawable/dialog_out_assemble_bg"
-        android:gravity="center_horizontal"
-        android:orientation="vertical"
-        android:layout_width="256dp"
-        android:layout_height="146dp">
+        android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <ImageView
+            android:id="@+id/dialog_exchange_close"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_marginTop="@dimen/qw_pager_padding"
+            android:layout_gravity="end"
+            android:layout_marginBottom="16dp"
+            android:src="@drawable/btn_close"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bottom_line_bg"
+            android:paddingBottom="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_size_16"
+                android:textColor="@color/title"
+                android:text="微信钱包"/>
+
+            <TextView
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_size_16"
+                android:textColor="@color/title"
+                android:text="1000"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
-            android:textSize="14sp"
-            android:textColor="#333"
-            android:text="兑换数量"/>
-        
-        <EditText
-            android:id="@+id/dialog_exchange_edit_text"
-            android:layout_width="118dp"
-            android:layout_height="25dp"
-            android:padding="6dp"
-            android:textSize="11sp"
-            android:background="@drawable/act_directional_gift_editor_bg"
-            android:inputType="number"
-            android:hint="请输入兑换的数量"
-            />
+            android:background="@drawable/bottom_line_bg"
+            android:paddingBottom="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_size_16"
+                android:textColor="@color/title"
+                android:text="支付宝钱包"/>
+
+            <TextView
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_size_16"
+                android:textColor="@color/title"
+                android:text="0.8 ¥"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/bottom_line_bg"
+            android:paddingBottom="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_size_16"
+                android:textColor="@color/title"
+                android:text="变现至"/>
+
+            <LinearLayout
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/text_size_16"
+                    android:textColor="@color/text_secondary"
+                    android:layout_marginRight="11dp"
+                    android:text="微信钱包"/>
+                
+                <ImageView
+                    android:layout_gravity="center"
+                    android:layout_width="6dp"
+                    android:layout_height="10dp"
+                    android:src="@drawable/withdraw_btn_wallet"/>
+
+            </LinearLayout>
+
+
+
+        </RelativeLayout>
+
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="10sp"
-            android:textColor="#ea3535"
-            android:layout_marginRight="15dp"
-            android:text="*请输入>0的数值"/>
-        
-        <Button
-            android:id="@+id/dialog_exchange_btn"
-            android:layout_width="75dp"
-            android:layout_height="28dp"
-            android:textSize="13sp"
-            android:textColor="#fff"
-            android:background="@drawable/fgm_task_btn_bg_finish"
-            android:layout_marginTop="10dp"
-            android:text="申请"/>
-
-
+            android:textSize="@dimen/text_size_16"
+            android:textColor="@color/title"
+            android:layout_marginTop="20dp"
+            android:text="安全密码"/>
+        <com.lecai.quwen.MyView.PassWordEditorText
+            android:layout_marginTop="9dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp" />
     </LinearLayout>
-    
+
+
+
 </LinearLayout>

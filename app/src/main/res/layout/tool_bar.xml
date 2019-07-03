@@ -11,6 +11,16 @@
         android:layout_height="?attr/actionBarSize">
 
         <TextView
+            android:id="@+id/toolbar_right"
+            android:layout_gravity="right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:layout_marginRight="16dp"
+            android:textColor="@color/colorWrite"
+            android:text="right"/>
+
+        <TextView
             android:id="@+id/toolbar_title"
             android:layout_gravity="center"
             android:layout_width="wrap_content"
@@ -19,6 +29,8 @@
             android:text="title"
             android:textColor="@color/colorWrite"
             />
+
+
 
     </android.support.v7.widget.Toolbar>
 

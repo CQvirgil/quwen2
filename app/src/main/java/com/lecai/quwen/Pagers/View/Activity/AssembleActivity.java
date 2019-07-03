@@ -28,7 +28,7 @@ public class AssembleActivity extends ToolBarActivity  {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_assemble);
-        setToolBar("拼团");
+        setToolBar("拼团", "");
         initView();
         diaLog1 = new CreateAssembleDiaLog(this);
         diaLog2 = new JoinAssembleDiaLog(this);

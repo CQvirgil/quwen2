@@ -9,9 +9,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.lecai.quwen.Bean.Task2Item;
 import com.lecai.quwen.Pagers.View.Activity.AssembleActivity;
+import com.lecai.quwen.Pagers.View.Activity.IntegralActivity;
 import com.lecai.quwen.Pagers.View.Activity.MentorActivity;
 import com.lecai.quwen.Pagers.View.Activity.PunchTheClockActivity;
 import com.lecai.quwen.Pagers.View.Activity.SearchActivity;
@@ -21,10 +23,11 @@ import com.lecai.quwen.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Task2Fragment extends Fragment {
+public class Task2Fragment extends Fragment implements View.OnClickListener {
     private final String TAG = "Task2Fragment";
     private RecyclerView recyclerView;
     private Intent intent;
+    private TextView all_gold;
     public Task2Fragment() {
         // Required empty public constructor
     }
@@ -52,6 +55,12 @@ public class Task2Fragment extends Fragment {
     private void initView(View view){
         getRecycler(view);
         intent = new Intent();
+        getAllGold(view);
+    }
+
+    private void getAllGold(View view){
+        all_gold = view.findViewById(R.id.fgm_task2_all_gold);
+        all_gold.setOnClickListener(this);
     }
 
     private void getRecycler(View view){
@@ -105,5 +114,19 @@ public class Task2Fragment extends Fragment {
     private void startSearchActivity(){
         intent.setClass(getContext(), SearchActivity.class);
         startActivity(intent);
+    }
+
+    private void onAllGoldClick(){
+        intent.setClass(getContext(), IntegralActivity.class);
+        startActivity(intent);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.fgm_task2_all_gold:
+                onAllGoldClick();
+                break;
+        }
     }
 }

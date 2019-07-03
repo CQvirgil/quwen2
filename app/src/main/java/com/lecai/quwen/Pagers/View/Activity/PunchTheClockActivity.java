@@ -95,7 +95,7 @@ public class PunchTheClockActivity extends ToolBarActivity {
 
 
     private void initMapView(){
-        setToolBar("位置打卡");
+        setToolBar("位置打卡", "");
         mapView = findViewById(R.id.act_ptc_baidu_mapview);
         mLocationClient = new LocationClient(getApplicationContext());
 

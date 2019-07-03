@@ -26,7 +26,7 @@ public class SearchActivity extends ToolBarActivity {
     }
 
     public void initView() {
-        setToolBar("搜索用户");
+        setToolBar("搜索用户", "");
         setRecyclerView();
     }
 

@@ -25,7 +25,7 @@ public class MessageDetailActivity extends ToolBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_message_detail);
-        setToolBar("消息中心");
+        setToolBar("消息中心", "");
     }
 
 }

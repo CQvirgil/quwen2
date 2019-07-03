@@ -43,4 +43,5 @@
     <color name="colorWrite">#ffffff</color>
     <color name="line">#ebebeb</color>
     <color name="text_secondary">#b3b3b3</color>
+    <color name="text_error">#e25a5a</color>
 </resources>
