@@ -12,7 +12,7 @@ import android.view.View;
 //圆形进度条
 public class CircularProgress extends View {
     private float width, height;
-    private int percentage  = 0;
+    private int percentage  = 20;
 
     public int getPercentage() {
         return percentage;
@@ -53,7 +53,7 @@ public class CircularProgress extends View {
         Paint paint = new Paint();
         paint.setColor(Color.parseColor("#e2e2e2"));
         paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(px2dip(10));
+        paint.setStrokeWidth(dip2px(3));
         paint.setAntiAlias(true);
         paint.setDither(true);
         canvas.drawCircle(width/2,height/2,width/2 - px2dip(10), paint);

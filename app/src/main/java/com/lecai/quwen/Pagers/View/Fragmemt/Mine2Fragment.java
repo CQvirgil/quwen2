@@ -46,7 +46,6 @@ public class Mine2Fragment extends Fragment {
 
     @SuppressLint("NewApi")
     private void setStatusBar(){
-        //getActivity().getWindow().setStatusBarColor(Color.WHITE);
     }
 
     private void getMessages(View view) {
@@ -60,5 +59,6 @@ public class Mine2Fragment extends Fragment {
         messages.setLayoutManager(layoutManager);
         messages.setAdapter(adapter);
     }
+
 
 }

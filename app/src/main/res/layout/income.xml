@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/border_radius_write_transparency">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3/10"
+            android:textColor="@color/text"
+            android:theme="@style/qw_text"
+            app:layout_constraintBottom_toBottomOf="@+id/income_circularProgress"
+            app:layout_constraintEnd_toEndOf="@+id/income_circularProgress"
+            app:layout_constraintStart_toStartOf="@+id/income_circularProgress"
+            app:layout_constraintTop_toTopOf="@+id/income_circularProgress"
+            tools:ignore="MissingConstraints" />
+
+        <com.lecai.quwen.MyView.CircularProgress
+            android:id="@+id/income_circularProgress"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/income_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="17dp"
+            android:layout_marginTop="23dp"
+            android:layout_marginBottom="46dp"
+            android:textColor="@color/text"
+            android:text="26.5"
+            android:textSize="48sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/income_circularProgress"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="45dp"
+            android:layout_marginBottom="8dp"
+            android:text="金币"
+            android:textColor="@color/text"
+            android:theme="@style/qw_text"
+            app:layout_constraintBottom_toTopOf="@+id/income_hit"
+            app:layout_constraintStart_toEndOf="@+id/income_value"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/income_hit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="23dp"
+            android:text="每次打卡后20分钟内的阅读收益将增加5%"
+            android:textColor="@color/text_secondary"
+            android:theme="@style/qw_text_small"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/income_circularProgress"
+            app:layout_constraintTop_toBottomOf="@+id/income_value"
+            tools:ignore="MissingConstraints" />
+    </android.support.constraint.ConstraintLayout>
+</LinearLayout>

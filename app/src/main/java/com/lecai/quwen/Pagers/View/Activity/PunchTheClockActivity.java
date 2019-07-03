@@ -23,7 +23,7 @@ import com.baidu.mapapi.model.LatLng;
 import com.lecai.quwen.Pagers.View.DaiLog.PunchTheClockDiaLog;
 import com.lecai.quwen.R;
 
-public class PunchTheClockActivity extends BaseActivity {
+public class PunchTheClockActivity extends ToolBarActivity {
     private MapView mapView = null;
     private BaiduMap mBaiduMap;
     public LocationClient mLocationClient;
@@ -95,6 +95,7 @@ public class PunchTheClockActivity extends BaseActivity {
 
 
     private void initMapView(){
+        setToolBar("位置打卡");
         mapView = findViewById(R.id.act_ptc_baidu_mapview);
         mLocationClient = new LocationClient(getApplicationContext());
 

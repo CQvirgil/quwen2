@@ -9,134 +9,46 @@
 
     <include layout="@layout/tool_bar"/>
 
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <LinearLayout
-            android:background="#fff"
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:layout_marginLeft="12dp"
-                android:textSize="15sp"
-                android:textColor="#333333"
-                android:text="我的师傅"/>
-
-            <RelativeLayout
-                android:background="#fff"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="26dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <com.lecai.quwen.MyView.CircleImage
-                    android:id="@+id/act_mentor_headimg"
-                    android:layout_width="51dp"
-                    android:layout_height="51dp"
-                    android:layout_marginLeft="12dp"
-                    android:src="@drawable/default_headimg"
-                    />
-
-                <LinearLayout
-                    android:layout_toRightOf="@id/act_mentor_headimg"
-                    android:layout_marginLeft="14dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                    <TextView
-                        android:id="@+id/act_mentor_name"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="name"
-                        />
-                    <TextView
-                        android:id="@+id/act_mentor_id"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="ID:"
-                        />
-                </LinearLayout>
-
-                <Button
-                    android:layout_width="75dp"
-                    android:layout_height="35dp"
-                    android:background="@drawable/act_mentor_btn_bg"
-                    android:textColor="#fff"
-                    android:textSize="13sp"
-                    android:text="绑定"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginRight="12dp"
-                    android:onClick="startBindingMasterActivity"
-                    />
-
-            </RelativeLayout>
-
-        </LinearLayout>
-
-    </FrameLayout>
-
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_marginTop="10dp"
-        android:onClick="GetApprentice"
-        android:background="@drawable/img_act_mentor"/>
-
     <LinearLayout
-        android:layout_marginTop="10dp"
-        android:background="#fff"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
+        android:layout_marginLeft="16dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:layout_marginLeft="12dp"
-                android:textSize="15sp"
-                android:textColor="#333"
-                android:text="我的徒弟"
-                />
-
-            <Button
-                android:layout_width="75dp"
-                android:layout_height="35dp"
-                android:background="@drawable/act_mentor_btn_bg2"
-                android:textColor="#ea3535"
-                android:textSize="13sp"
-                android:layout_marginTop="9dp"
-                android:text="添加徒弟"
-                android:onClick="addApprentice"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginRight="12dp"
-                />
-
-        </RelativeLayout>
-
-        <ListView
-            android:id="@+id/act_mentor_list_view"
-            android:layout_marginTop="17dp"
-            android:layout_weight="1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+        <include layout="@layout/income"
+            tools:ignore="IncludeLayoutParam" />
 
     </LinearLayout>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textColor="@color/text"
+        android:layout_marginLeft="16dp"
+        android:textStyle="bold"
+        android:text="我的徒弟"/>
+
+
+    <FrameLayout
+        android:layout_marginTop="20dp"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/act_mentor_apprentices"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingRight="@dimen/qw_pager_padding"
+            android:paddingLeft="@dimen/qw_pager_padding"/>
+
+        <Button
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_width="280dp"
+            android:layout_height="44dp"
+            android:textColor="@color/colorWrite"
+            android:background="@drawable/btn_border_radius2"
+            android:layout_marginBottom="56dp"
+            android:text="添加徒弟"/>
+    </FrameLayout>
 </LinearLayout>

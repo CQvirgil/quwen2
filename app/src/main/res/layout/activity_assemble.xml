@@ -1,254 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center_horizontal"
+    android:orientation="vertical"
     tools:context=".Pagers.View.Activity.AssembleActivity">
 
-    <include layout="@layout/tool_bar"/>
+    <include layout="@layout/tool_bar" />
 
-    <ScrollView
+    <LinearLayout
+        android:layout_marginLeft="14dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <include
+            layout="@layout/income"
+            android:layout_gravity="left"
+            tools:ignore="IncludeLayoutParam" />
+
+    </LinearLayout>
+
+
+    <TextView
+        android:layout_marginLeft="14dp"
+        android:layout_marginRight="16dp"
+        android:layout_gravity="left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:theme="@style/qw_title"
+        android:textSize="18dp"
+        android:text="我的拼团"/>
+
+    
+    <android.support.constraint.ConstraintLayout
+        android:layout_weight="1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_marginLeft="14dp"
+        android:layout_marginRight="16dp"
+        android:layout_height="0dp">
 
-        <FrameLayout
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/act_assemble_assembles"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center_horizontal"
-                android:orientation="vertical">
-
-
-
-                <RelativeLayout
-                    android:layout_marginTop="14dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <View
-                        android:id="@+id/act_assemble_icon"
-                        android:layout_width="3dp"
-                        android:layout_height="20dp"
-                        android:layout_marginLeft="12dp"
-                        android:background="@drawable/act_assemble_icon"/>
-
-                    <TextView
-                        android:layout_toRightOf="@id/act_assemble_icon"
-                        android:id="@+id/act_assemble_title1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="15sp"
-                        android:textColor="#333333"
-                        android:layout_marginLeft="13dp"
-                        android:text="我发起的团"
-                        />
-
-                    <TextView
-                        android:layout_toRightOf="@+id/act_assemble_title1"
-                        android:layout_centerVertical="true"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:textSize="12sp"
-                        android:textColor="#888"
-                        android:text="最多可发起五个团"/>
-
-                </RelativeLayout>
-
-                <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <com.lecai.quwen.MyView.mGridView
-                        android:id="@+id/act_assemble_mgridview1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="6dp"
-                        android:layout_marginLeft="6dp"
-                        android:verticalSpacing="15dp"
-                        android:numColumns="3"
-                        />
-
-                    <RelativeLayout
-                        android:id="@+id/act_assemble_listnone"
-                        android:visibility="invisible"
-                        android:layout_gravity="center"
-                        android:layout_width="243dp"
-                        android:layout_height="144dp">
-
-                        <ImageView
-                            android:layout_width="205dp"
-                            android:layout_height="132dp"
-                            android:layout_centerHorizontal="true"
-                            android:layout_marginBottom="17dp"
-                            android:src="@drawable/img_task_grey"/>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentBottom="true"
-                            android:layout_centerHorizontal="true"
-                            android:textColor="#888888"
-                            android:textSize="10sp"
-                            android:text="暂时还没有我发起的拼团哦，赶快去拼团吧"/>
-
-                    </RelativeLayout>
-
-                </FrameLayout>
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_weight="1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="-16dp" />
 
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="60dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:ignore="MissingConstraints">
 
-                <Button
-                    android:layout_width="125dp"
-                    android:layout_height="33dp"
-                    android:textSize="16sp"
-                    android:textColor="#fff"
-                    android:background="@drawable/act_assemble_icon"
-                    android:layout_marginTop="10dp"
-                    android:onClick="CreateAssemble"
-                    android:text="创建团"
-                    />
+            <Button
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="56dp"
+                android:background="@drawable/btn_border_radius1"
+                android:textColor="@color/colorPrimary"
+                android:theme="@style/qw_text"
+                android:text="加入团"
+                android:layout_marginRight="35dp"
+                tools:ignore="MissingConstraints,Suspicious0dp" />
 
-                <RelativeLayout
-                    android:layout_marginTop="25dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+            <Button
+                android:background="@drawable/btn_border_radius2"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="56dp"
+                android:textColor="@color/colorWrite"
+                android:theme="@style/qw_text"
+                android:text="创建团"
+                tools:ignore="MissingConstraints,Suspicious0dp" />
 
-                    <View
-                        android:id="@+id/act_assemble_icon1"
-                        android:layout_width="3dp"
-                        android:layout_height="20dp"
-                        android:layout_marginLeft="12dp"
-                        android:background="@drawable/act_assemble_icon"/>
+        </LinearLayout>
 
-                    <TextView
-                        android:layout_toRightOf="@id/act_assemble_icon1"
-                        android:id="@+id/act_assemble_title2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="15sp"
-                        android:textColor="#333333"
-                        android:layout_marginLeft="13dp"
-                        android:text="我加入的团"
-                        />
-
-                    <TextView
-                        android:layout_toRightOf="@+id/act_assemble_title2"
-                        android:layout_centerVertical="true"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:textSize="12sp"
-                        android:textColor="#888"
-                        android:text="最多可加入五个团"/>
-
-                </RelativeLayout>
-
-                <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <com.lecai.quwen.MyView.mGridView
-                        android:layout_marginTop="20dp"
-                        android:id="@+id/act_assemble_mgridview2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:verticalSpacing="15dp"
-                        android:numColumns="3"/>
-
-
-
-                    <RelativeLayout
-                        android:id="@+id/act_assemble_listnone2"
-                        android:visibility="invisible"
-                        android:layout_gravity="center"
-                        android:layout_width="243dp"
-                        android:layout_height="144dp">
-
-                        <ImageView
-                            android:layout_width="205dp"
-                            android:layout_height="132dp"
-                            android:layout_centerHorizontal="true"
-                            android:layout_marginBottom="17dp"
-                            android:src="@drawable/img_task_grey"/>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentBottom="true"
-                            android:layout_centerHorizontal="true"
-                            android:textColor="#888888"
-                            android:textSize="10sp"
-                            android:text="暂时还没有加入拼团哦，赶快去拼团吧"/>
-
-                    </RelativeLayout>
-
-                </FrameLayout>
-
-                <Button
-                    android:layout_width="125dp"
-                    android:layout_height="33dp"
-                    android:textSize="16sp"
-                    android:textColor="#fff"
-                    android:background="@drawable/act_assemble_icon"
-                    android:layout_marginTop="10dp"
-                    android:onClick="JoinAssemble"
-                    android:text="加入团"
-                    android:layout_marginBottom="10dp"
-                    />
-
-            </LinearLayout>
-            
-            
-            <LinearLayout
-                android:visibility="invisible"
-                android:orientation="vertical"
-                android:layout_gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-                <RelativeLayout
-                    android:layout_gravity="center"
-                    android:layout_width="243dp"
-                    android:layout_height="144dp">
-
-                    <ImageView
-                        android:layout_width="205dp"
-                        android:layout_height="132dp"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginBottom="17dp"
-                        android:src="@drawable/img_task_grey"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
-                        android:layout_centerHorizontal="true"
-                        android:textColor="#888888"
-                        android:textSize="10sp"
-                        android:text="暂时还没有加入拼团哦，赶快去拼团吧"/>
-
-                </RelativeLayout>
-
-                <Button
-                    android:layout_gravity="center_horizontal"
-                    android:layout_width="125dp"
-                    android:layout_height="33dp"
-                    android:textSize="16sp"
-                    android:textColor="#fff"
-                    android:background="@drawable/act_assemble_icon"
-                    android:layout_marginTop="25dp"
-                    android:text="去拼团"
-                    />
-
-            </LinearLayout>
-            
-        </FrameLayout>
         
-    </ScrollView>
+    </android.support.constraint.ConstraintLayout>
+   
 </LinearLayout>
