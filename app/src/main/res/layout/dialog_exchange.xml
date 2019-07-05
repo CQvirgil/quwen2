@@ -83,6 +83,7 @@
                 android:text="变现至"/>
 
             <LinearLayout
+                android:id="@+id/dialog_exchange_select_pay"
                 android:layout_alignParentRight="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">

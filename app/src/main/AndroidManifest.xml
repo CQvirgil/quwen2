@@ -24,7 +24,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".Pagers.View.Activity.GiftActivity"></activity>
+        <activity android:name=".Pagers.View.Activity.JJRecordActivity"></activity>
+        <activity android:name=".Pagers.View.Activity.GiftActivity" />
         <activity android:name=".Pagers.View.Activity.ExchangeActivity" />
         <activity android:name=".Pagers.View.Activity.IntegralActivity" />
 

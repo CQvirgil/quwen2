@@ -24,7 +24,7 @@ public class PassWordEditorText extends EditText {
     private int text_lenth;
     private String rect_color = "#dddddd";
     private String point_color = "#000000";
-    private PasswordListener passwordListener = null;
+    private PasswordListener passwordListener;
 
     public void setOnPasswordListener(PasswordListener passwordListener) {
         this.passwordListener = passwordListener;
@@ -191,9 +191,10 @@ public class PassWordEditorText extends EditText {
     public boolean onTextContextMenuItem(int id) {
         return true;
     }
+
+    public interface PasswordListener {
+        void onFinish(String text);
+        void onEmpty();
+    }
 }
 
-interface PasswordListener {
-    void onFinish(String text);
-    void onEmpty();
-}

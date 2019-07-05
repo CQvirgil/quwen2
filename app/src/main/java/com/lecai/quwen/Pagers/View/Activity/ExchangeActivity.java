@@ -1,5 +1,6 @@
 package com.lecai.quwen.Pagers.View.Activity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -18,6 +19,13 @@ public class ExchangeActivity extends ToolBarActivity {
         setToolBar("竞价变现", "竞价记录");
         setToolbarColor(Color.WHITE);
         settoolbarTitleColor(Color.BLACK);
+        setToolbar_rightOnClick(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ExchangeActivity.this, JJRecordActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     public void onClickApplyBtn(View view) {
